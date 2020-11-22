@@ -1,0 +1,39 @@
+.projectToolbarButton{
+    background-color: #f9f9f9 !important;
+    color: #3b444b !important;
+    border: 1px solid #b6b1b7 !important;
+    height: 28px;
+}
+
+.actionToolbarButton{
+    background-color: #f9f9f9 !important;
+    color: #0a84ff !important;
+    border: 1px solid #b6b1b7 !important;
+    height: 28px;
+}
+
+.sidebarMenuItem{
+    font-size: 10pt !important;
+    font-weight: 500 !important;
+    color: #3b444b !important;
+}
+
+
+.sidebarSubMenuItem{
+    border-bottom: 1px solid #cecece !important;
+}
+
+.sidebarSubMenuItemText{
+    font-size: 10pt !important;
+    font-weight: 500 !important;
+    color: #3b444b !important;
+}
+
+.MuiList-padding{
+    padding-top: 0 !important;
+}
+
+.MuiListSubheader-root{
+    font-weight: bolder !important;
+    line-height: 32px !important;
+}
