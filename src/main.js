@@ -1,7 +1,7 @@
 const {app, BrowserWindow} = require('electron')
 const isDev = require("electron-is-dev");
 const ipcMain = require('electron').ipcMain;
-const {initMainControllers} = require(__dirname+'/platform/procs/main/init');
+const {registerMainEventHandlers} = require(__dirname+'/platform/process/main');
 
 function createWindow() {
     const win = new BrowserWindow({
@@ -9,7 +9,8 @@ function createWindow() {
         height: 768,
         webPreferences: {
             nodeIntegration: true,
-            preload: __dirname + '/preload.js'
+            enableRemoteModule: true,
+            preload: __dirname + '/preload.js',
         }
     })
 
@@ -21,7 +22,7 @@ function createWindow() {
         })
     }
 
-    initMainControllers(ipcMain)
+    registerMainEventHandlers(ipcMain)
 
     //open web tools to allow debugging
     win.webContents.openDevTools()

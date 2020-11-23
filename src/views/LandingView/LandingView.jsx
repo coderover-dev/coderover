@@ -8,11 +8,12 @@ import './landingView.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFolderOpen, faPlus} from "@fortawesome/free-solid-svg-icons";
 
-import {openProject} from '../../platform/procs/renderer/project'
+import {WorkspaceRendererEventHandler} from '../../platform/process/renderer/workspace-renderer-event.handler'
 
 export class LandingView extends React.Component {
     constructor(props) {
         super(props);
+        this.workspaceRendererEvtHandler = new WorkspaceRendererEventHandler();
     }
     render() {
         return (
@@ -85,10 +86,10 @@ export class LandingView extends React.Component {
                                               className="landingViewButton"
                                               size="small"
                                              onClick={()=>{
-                                                 openProject();
+                                                 this.workspaceRendererEvtHandler.openProject();
                                              }}>
                                             <FontAwesomeIcon icon={faFolderOpen} style={{paddingRight: '5px'}}/>
-                                            Open or Import
+                                            Open Existing Project
                                         </Link>
                                     </Grid>
                                 </Grid>
