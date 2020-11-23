@@ -1,8 +1,11 @@
 {
   "name": "coderover",
   "version": "1.0.0",
-  "private": true,
-  "main": "src/main.js",
+  "author": "Amrit K. Mishra",
+  "description": "A low code platform for rapid development of REST APIs",
+  "private": false,
+  "main": "public/electron.js",
+  "homepage": "./",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
@@ -21,6 +24,8 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
+    "preelectron-pack": "npm run-script react-build",
+    "electron-pack": "build --em.main=build/electron.js",
     "electron-start": "electron .",
     "react-start": "react-scripts start",
     "react-build": "react-scripts build",
@@ -51,5 +56,17 @@
     "electron": "^11.0.1",
     "electron-builder": "^22.9.1",
     "wait-on": "^5.2.0"
+  },
+  "files": [
+    "dist/**/*",
+    "package.json"
+  ],
+  "build": {
+    "appId": "dev.coderover.coderover-platform",
+    "files": [
+      "platform/**/*",
+      "build/**/*",
+      "node_modules/**/*"
+    ]
   }
 }

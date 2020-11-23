@@ -1,12 +1,11 @@
-// In renderer process (web page).
+import {RendererProcessEventHandler} from "./renderer-process-event.handler";
 
-export class WorkspaceRendererEventHandler{
+export class WorkspaceEventHandler extends RendererProcessEventHandler {
 
     constructor() {
-        this.ipcRenderer = window.ipcRenderer;
-
+        super();
         const handleProjectOpenedEvent = this.handleProjectOpenedEvent.bind(this);
-        this.ipcRenderer.on('project-opened', handleProjectOpenedEvent);
+        this.ipcRenderer.on('open-project-complete', handleProjectOpenedEvent);
     }
 
     handleProjectOpenedEvent(event, arg) {
@@ -19,7 +18,3 @@ export class WorkspaceRendererEventHandler{
     }
 
 }
-
-// module.exports = function(){
-//     return WorkspaceRendererEventHandler();
-// }

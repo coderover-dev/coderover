@@ -1,6 +1,6 @@
 import './App.css';
 import React from "react";
-import {Container} from "./shared/container/Container";
+import {Container} from "./components/container/Container";
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import {LandingView} from "./views/LandingView/LandingView";
 

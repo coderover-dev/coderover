@@ -8,12 +8,12 @@ import './landingView.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFolderOpen, faPlus} from "@fortawesome/free-solid-svg-icons";
 
-import {WorkspaceRendererEventHandler} from '../../platform/process/renderer/workspace-renderer-event.handler'
+import {WorkspaceEventHandler} from '../../renderer/workspace-event.handler'
 
 export class LandingView extends React.Component {
     constructor(props) {
         super(props);
-        this.workspaceRendererEvtHandler = new WorkspaceRendererEventHandler();
+        this.workspaceRendererEvtHandler = new WorkspaceEventHandler();
     }
     render() {
         return (

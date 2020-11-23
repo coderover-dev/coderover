@@ -1,7 +1,10 @@
+const path = require('path');
+const url = require('url');
+
 const {app, BrowserWindow} = require('electron')
 const isDev = require("electron-is-dev");
 const ipcMain = require('electron').ipcMain;
-const {registerMainEventHandlers} = require(__dirname+'/platform/process/main');
+const {registryMainProcessEvents} = require('../platform/main/events-registry');
 
 function createWindow() {
     const win = new BrowserWindow({
@@ -11,6 +14,7 @@ function createWindow() {
             nodeIntegration: true,
             enableRemoteModule: true,
             preload: __dirname + '/preload.js',
+            webSecurity: false
         }
     })
 
@@ -18,11 +22,14 @@ function createWindow() {
         win.loadURL("http://localhost:3000").then(r => {
         })
     } else {
-        win.loadFile('index.html').then(r => {
-        })
+        win.loadURL(url.format({
+            pathname: path.join(__dirname, '../build/index.html'),
+            protocol: 'file:',
+            slashes: true
+        })).then(r => {})
     }
 
-    registerMainEventHandlers(ipcMain)
+    registryMainProcessEvents(ipcMain)
 
     //open web tools to allow debugging
     win.webContents.openDevTools()

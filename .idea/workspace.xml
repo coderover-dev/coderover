@@ -19,16 +19,28 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="07424044-891a-4bc7-8a83-ef9993154c32" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/platform/process/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/platform/process/renderer/workspace-renderer-event.handler.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/platform/workspace.handler.js" afterDir="false" />
+    <list default="true" id="07424044-891a-4bc7-8a83-ef9993154c32" name="Default Changelist" comment="added IPC event handlers">
+      <change afterPath="$PROJECT_DIR$/build-macos.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/platform/main/events-registry.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/platform/main/main-process-event.handler.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/platform/main/workspace-event.handler.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/renderer/renderer-process-event.handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/platform/procs/main/init.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/platform/procs/main/project.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/platform/process/main/workspace-main-event.handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/platform/procs/renderer/project.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/electron.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/platform/process/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/platform/process/main/workspace-main-event.handler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/platform/process/renderer/workspace-renderer-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/workspace-event.handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/platform/workspace.handler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/preload.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/preload.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/container/Breadcrumbs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/container/Breadcrumbs.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/container/Container.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/container/Container.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/container/ItemListView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/container/ItemListView.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/container/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/container/Sidebar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/container/Toolbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/container/Toolbar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/container/container.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/container/container.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/LandingView/LandingView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LandingView/LandingView.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,25 +77,25 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.19.0" />
     <property name="javascript.nodejs.core.library.typings.version" value="12.19.0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/platform/process/renderer" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/platform/process/renderer" />
       <recent name="$PROJECT_DIR$/app/src/platform/procs/main" />
       <recent name="$PROJECT_DIR$/app/src/platform/procs" />
       <recent name="$PROJECT_DIR$/app/src" />
       <recent name="$PROJECT_DIR$/app/public/images" />
-      <recent name="$PROJECT_DIR$/app/src/assets/images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/platform/process" />
-      <recent name="$PROJECT_DIR$/src/platform/process/main" />
-      <recent name="$PROJECT_DIR$/src/platform/process/renderer" />
+      <recent name="$PROJECT_DIR$/src/renderer" />
+      <recent name="$PROJECT_DIR$/platform/main-process" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/src/platform" />
-      <recent name="$PROJECT_DIR$/src/process/main-process" />
     </key>
   </component>
   <component name="RunManager">
@@ -112,7 +124,7 @@
       <workItem from="1605785088576" duration="28084000" />
       <workItem from="1606050821486" duration="13487000" />
       <workItem from="1606068970507" duration="2010000" />
-      <workItem from="1606071175286" duration="16742000" />
+      <workItem from="1606071175286" duration="28553000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1606071312677</created>
@@ -121,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606071312677</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added IPC event handlers">
+      <created>1606127681907</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1606127681907</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -140,26 +159,27 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
+    <MESSAGE value="added IPC event handlers" />
+    <option name="LAST_COMMIT_MESSAGE" value="added IPC event handlers" />
   </component>
   <component name="WindowStateProjectService">
     <state x="304" y="160" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606114196721">
       <screen x="0" y="25" width="1680" height="953" />
     </state>
     <state x="304" y="160" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606114196721" />
-    <state x="569" y="307" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1605794795020">
+    <state x="569" y="307" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606152067199">
       <screen x="0" y="25" width="1680" height="953" />
     </state>
-    <state x="569" y="307" key="#com.intellij.fileTypes.FileTypeChooser/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1605794795020" />
+    <state x="569" y="307" key="#com.intellij.fileTypes.FileTypeChooser/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606152067199" />
     <state x="569" y="307" key="#com.intellij.fileTypes.FileTypeChooser/0.25.1680.953@0.25.1680.953" timestamp="1605789452999" />
     <state x="578" y="252" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606049503244">
       <screen x="0" y="25" width="1680" height="953" />
     </state>
     <state x="578" y="252" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606049503244" />
-    <state x="424" y="76" key="CommitChangelistDialog2" timestamp="1606071312456">
+    <state x="424" y="76" key="CommitChangelistDialog2" timestamp="1606150767336">
       <screen x="0" y="25" width="1680" height="953" />
     </state>
-    <state x="424" y="76" key="CommitChangelistDialog2/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606071312456" />
+    <state x="424" y="76" key="CommitChangelistDialog2/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606150767336" />
     <state x="710" y="402" key="Github.ShareDialog" timestamp="1606070985275">
       <screen x="0" y="25" width="1680" height="953" />
     </state>
@@ -192,14 +212,18 @@
       <screen x="0" y="25" width="1680" height="953" />
     </state>
     <state x="349" y="137" key="SettingsEditor/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606068298574" />
-    <state x="440" y="225" key="Vcs.Push.Dialog.v2" timestamp="1606071315152">
+    <state x="440" y="225" key="Vcs.Push.Dialog.v2" timestamp="1606127683602">
       <screen x="0" y="25" width="1680" height="953" />
     </state>
-    <state x="440" y="225" key="Vcs.Push.Dialog.v2/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606071315152" />
-    <state x="541" y="134" width="597" height="735" key="find.popup" timestamp="1606114194320">
+    <state x="440" y="225" key="Vcs.Push.Dialog.v2/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606127683602" />
+    <state x="99" y="125" width="1480" height="753" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606151600787">
       <screen x="0" y="25" width="1680" height="953" />
     </state>
-    <state x="541" y="134" width="597" height="735" key="find.popup/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606114194320" />
+    <state x="99" y="125" width="1480" height="753" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606151600787" />
+    <state x="541" y="134" width="597" height="735" key="find.popup" timestamp="1606154142486">
+      <screen x="0" y="25" width="1680" height="953" />
+    </state>
+    <state x="541" y="134" width="597" height="735" key="find.popup/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606154142486" />
     <state x="541" y="134" width="597" height="735" key="find.popup/0.25.1680.953@0.25.1680.953" timestamp="1605793357180" />
     <state x="505" y="250" width="670" height="728" key="search.everywhere.popup" timestamp="1606108520374">
       <screen x="0" y="25" width="1680" height="1025" />
