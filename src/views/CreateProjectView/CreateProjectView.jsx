@@ -183,7 +183,7 @@ export class CreateProjectView extends React.Component {
                 <DialogActions style={{padding: '20px', marginBottom: '15px'}}>
                     <Grid container spacing={1} direction="row" alignItems="flex-start">
                         <Grid item>
-                            <Button onClick={this.props.onConfirm}
+                            <Button onClick={() => this.props.onConfirm(this.state.project)}
                                     className="actionButton"
                                     color="primary" variant="contained">
                                 Create

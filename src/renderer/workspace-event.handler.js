@@ -6,9 +6,11 @@ export class WorkspaceEventHandler extends RendererProcessEventHandler {
         super();
         const handleProjectOpenedEvent = this.handleProjectOpenedEvent.bind(this);
         const handleWorkspaceSelectedEvent = this.handleWorkspaceSelectedEvent.bind(this);
+        const handleProjectCreatedEvent = this.handleProjectCreatedEvent.bind(this);
 
         this.ipcRenderer.on('project-opened', handleProjectOpenedEvent);
         this.ipcRenderer.on('workspace-selected', handleWorkspaceSelectedEvent);
+        this.ipcRenderer.on('project-created', handleProjectCreatedEvent);
     }
 
     handleProjectOpenedEvent(event, arg) {
@@ -31,8 +33,17 @@ export class WorkspaceEventHandler extends RendererProcessEventHandler {
         }
     }
 
-    newProject(projectData) {
-        window.ipcRenderer.send('new-project', '')
+    handleProjectCreatedEvent(event, arg) {
+        console.log("project created");
+        console.log(arg);
+        this.onProjectCreated();
+    }
+
+    newProject(projectData, callback) {
+        console.log("create-project :: ")
+        console.log(projectData)
+        this.onProjectCreated = callback;
+        window.ipcRenderer.send('create-project', projectData)
     }
 
     selectWorkspace(callback) {

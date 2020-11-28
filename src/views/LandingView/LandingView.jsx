@@ -26,12 +26,12 @@ export class LandingView extends React.Component {
     }
 
     handleProjectCreation(projectData) {
-        this.workspaceRendererEvtHandler.newProject(projectData);
+        this.renderer.getWorkspaceHandler().newProject(projectData);
 
     }
 
-    handleWorkspaceSelection(workspaceData){
-        this.workspaceRendererEvtHandler.selectWorkspace();
+    handleWorkspaceSelection(workspaceData) {
+        this.renderer.getWorkspaceHandler().selectWorkspace();
     }
 
     render() {
@@ -124,7 +124,9 @@ export class LandingView extends React.Component {
                     </Grid>
                 </Grid>
                 <CreateProjectView open={this.state.createProject}
-                                   onConfirm={this.handleProjectCreation}
+                                   onConfirm={(projectData) => {
+                                       this.handleProjectCreation(projectData);
+                                   }}
                                    onClose={() => {
                                        this.setState({
                                            createProject: false
