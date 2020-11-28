@@ -7,7 +7,16 @@ import {LandingView} from "./views/LandingView/LandingView";
 const theme = createMuiTheme({
     typography: {
         fontFamily: ["Montserrat", "sans-serif"].join(','),
-    },});
+    },
+    palette: {
+        primary: {
+            main: '#1569C7',
+        },
+        secondary: {
+            main: '#c77415',
+        },
+    }
+});
 
 const getProjectHomeView = function(){
     return (
@@ -20,7 +29,6 @@ const getLandingView = function (){
         <LandingView/>
     )
 }
-
 
 function App() {
   return (
