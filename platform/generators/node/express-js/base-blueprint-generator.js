@@ -2,6 +2,8 @@ const utils = require("../../../utils");
 const template = require('./template');
 const path = require('path');
 
+const APP_METADATA_FILE = 'coderover.json';
+const APP_METADATA_DIR = 'metadata';
 const APP_MAIN_FILE = 'app.js';
 const BIN_DIR = 'bin';
 const CONFIG_DIR = 'config';
@@ -25,6 +27,8 @@ class BaseBlueprintGenerator {
         //add routes.js to handle route registry
         this.writeRoutesJs(projectMetaData);
 
+        //write project metadata to coderover.json
+        this.writeMetadata(projectMetaData);
     }
 
     writePackageJson(projectMetaData) {
@@ -57,6 +61,8 @@ class BaseBlueprintGenerator {
         this.createDirectory(projectMetaData, MODELS_DIR);
         //create dao directory
         this.createDirectory(projectMetaData, DAO_DIR);
+        //create metadata directory
+        this.createDirectory(projectMetaData, APP_METADATA_DIR);
     }
 
     createDirectory(projectMetaData, dirName) {
@@ -69,10 +75,10 @@ class BaseBlueprintGenerator {
     }
 
     writeAppJs(projectMetaData) {
-        let appJsContent = utils.parseTemplate(template.APP_JS_TEMPLATE, {
+        let content = utils.parseTemplate(template.APP_JS_TEMPLATE, {
             projectName: projectMetaData.name
         });
-        utils.writeFile(projectMetaData.location, APP_MAIN_FILE, appJsContent,
+        utils.writeFile(projectMetaData.location, APP_MAIN_FILE, content,
             (error) => {
                 if (!error) {
                     console.log(APP_MAIN_FILE + ' created.');
@@ -81,13 +87,23 @@ class BaseBlueprintGenerator {
     }
 
     writeRoutesJs(projectMetaData) {
-        let appJsContent = utils.parseTemplate(template.ROUTE_JS_TEMPLATE, {
+        let content = utils.parseTemplate(template.ROUTE_JS_TEMPLATE, {
             projectName: projectMetaData.name
         });
-        utils.writeFile(path.join(projectMetaData.location, ROUTES_DIR), ROUTES_FILE, appJsContent,
+        utils.writeFile(path.join(projectMetaData.location, ROUTES_DIR), ROUTES_FILE, content,
             (error) => {
                 if (!error) {
                     console.log(ROUTES_FILE + ' created.');
+                }
+            });
+    }
+
+    writeMetadata(projectMetaData) {
+        let content = utils.parseTemplate(template.PROJECT_METADATA_JSON_TEMPLATE, projectMetaData);
+        utils.writeFile(projectMetaData.location, APP_METADATA_FILE, content,
+            (error) => {
+                if (!error) {
+                    console.log(APP_METADATA_FILE + ' created.');
                 }
             });
     }

@@ -20,26 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07424044-891a-4bc7-8a83-ef9993154c32" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/platform/generators/node/express-js/base-blueprint-generator.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/platform/generators/node/express-js/template.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/platform/utils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/alert/Alerts.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/progress/Progress.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/generators/node/express-js/generator.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/generators/node/express-js/generator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/generators/node/express-js/project-generator.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/main/main-process-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/main/main-process-event.handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/main/workspace-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/main/workspace-event.handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/util/file-writer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/workspace.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/workspace.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/renderer-process-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/renderer-process-event.handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/workspace-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/workspace-event.handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/CreateProjectView/CreateProjectView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/CreateProjectView/CreateProjectView.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/LandingView/LandingView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LandingView/LandingView.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform/generators/node/express-js/base-blueprint-generator.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/generators/node/express-js/base-blueprint-generator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform/generators/node/express-js/template.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/generators/node/express-js/template.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +113,7 @@
       <workItem from="1606369981225" duration="1133000" />
       <workItem from="1606398309770" duration="418000" />
       <workItem from="1606399822297" duration="1965000" />
-      <workItem from="1606539318709" duration="65859000" />
+      <workItem from="1606539318709" duration="67721000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1606071312677</created>
@@ -167,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606588342993</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added blue print generators&#10;added alerts &#10;added progress indicator">
+      <created>1606749354934</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1606749354934</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,7 +181,8 @@
     <MESSAGE value="1. refactored to separate main and renderer event handlers&#10;2. added macos build configs &#10;&#10;tested:&#10;stable working macos builds&#10;stable dev execution as well" />
     <MESSAGE value="added new project dialog" />
     <MESSAGE value="added basic generator flow" />
-    <option name="LAST_COMMIT_MESSAGE" value="added basic generator flow" />
+    <MESSAGE value="added blue print generators&#10;added alerts &#10;added progress indicator" />
+    <option name="LAST_COMMIT_MESSAGE" value="added blue print generators&#10;added alerts &#10;added progress indicator" />
   </component>
   <component name="WindowStateProjectService">
     <state x="304" y="160" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606114196721">
@@ -208,11 +199,12 @@
       <screen x="0" y="25" width="1680" height="953" />
     </state>
     <state x="578" y="252" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606049503244" />
-    <state x="-1435" y="43" key="CommitChangelistDialog2" timestamp="1606588342802">
-      <screen x="-1920" y="25" width="1920" height="983" />
+    <state x="424" y="42" key="CommitChangelistDialog2" timestamp="1606749354619">
+      <screen x="0" y="25" width="1680" height="953" />
     </state>
     <state x="-1435" y="43" key="CommitChangelistDialog2/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606588342802" />
     <state x="424" y="42" key="CommitChangelistDialog2/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606156766200" />
+    <state x="424" y="42" key="CommitChangelistDialog2/0.25.1680.953@0.25.1680.953" timestamp="1606749354619" />
     <state x="-1820" y="125" width="1720" height="855" key="DiffContextDialog" timestamp="1606546064028">
       <screen x="-1920" y="25" width="1920" height="1055" />
     </state>
@@ -255,12 +247,13 @@
     <state x="349" y="137" key="SettingsEditor/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606068298574" />
     <state x="-1521" y="149" key="SettingsEditor/0.25.1680.953/-1920.25.1920.1055@-1920.25.1920.1055" timestamp="1606553498572" />
     <state x="698" y="91" key="SettingsEditor/0.25.1680.953@0.25.1680.953" timestamp="1606724498008" />
-    <state x="-1417" y="231" key="Vcs.Push.Dialog.v2" timestamp="1606588344764">
-      <screen x="-1920" y="25" width="1920" height="983" />
+    <state x="440" y="225" key="Vcs.Push.Dialog.v2" timestamp="1606749357205">
+      <screen x="0" y="25" width="1680" height="953" />
     </state>
     <state x="-1417" y="231" key="Vcs.Push.Dialog.v2/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606588344764" />
     <state x="440" y="225" key="Vcs.Push.Dialog.v2/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606156568435" />
     <state x="-1417" y="246" key="Vcs.Push.Dialog.v2/0.25.1680.953/-1920.25.1920.1055@-1920.25.1920.1055" timestamp="1606539521904" />
+    <state x="440" y="225" key="Vcs.Push.Dialog.v2/0.25.1680.953@0.25.1680.953" timestamp="1606749357205" />
     <state x="-1807" y="128" width="1692" height="777" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606584072522">
       <screen x="-1920" y="25" width="1920" height="983" />
     </state>

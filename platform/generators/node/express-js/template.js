@@ -1,3 +1,13 @@
+const PROJECT_METADATA_JSON_TEMPLATE = `
+{
+    "schemaVersion: "1.0",
+    "name": "{{name}}",
+    "type": "{{type}}",
+    "platform": "{{platform}}",
+    "framework": "{{framework}}"
+}
+`
+
 const PACKAGE_JSON_TEMPLATE = `
 {
     "name": "{{projectName}}",
@@ -61,5 +71,6 @@ module.exports = router;
 module.exports = {
     PACKAGE_JSON_TEMPLATE,
     APP_JS_TEMPLATE,
-    ROUTE_JS_TEMPLATE
+    ROUTE_JS_TEMPLATE,
+    PROJECT_METADATA_JSON_TEMPLATE
 }
