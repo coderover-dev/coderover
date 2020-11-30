@@ -12,6 +12,8 @@ import OutlinedInput from "@material-ui/core/OutlinedInput";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import {getRenderer} from "../../renderer/renderer";
+import {Progress} from "../../components/progress/Progress";
+import {ThemeProvider} from "@material-ui/core/styles";
 
 export class CreateProjectView extends React.Component {
     constructor(props) {
@@ -27,6 +29,15 @@ export class CreateProjectView extends React.Component {
                 framework: ""
             }
         }
+    }
+
+    isCreateEnabled() {
+        return !(this.state.project.name !== "" &&
+            this.state.project.workspace !== "" &&
+            this.state.project.location !== "" &&
+            this.state.project.type !== "" &&
+            this.state.project.platform !== "" &&
+            this.state.project.framework !== "");
     }
 
     handleWorkspaceSelection(workspaceLocation) {
@@ -57,7 +68,9 @@ export class CreateProjectView extends React.Component {
 
     render() {
         return (
-            <Dialog open={this.props.open} onClose={this.props.onClose} maxWidth={"md"} fullWidth={true}>
+
+            <Dialog open={this.props.open} onClose={this.props.onClose} maxWidth={"md"} fullWidth="true"
+                    disableEscapeKeyDown="false" disableBackdropClick="false">
                 <DialogTitle style={{backgroundColor: "#e7e2e7", fontWeight: "bold"}}>New Project</DialogTitle>
                 <DialogContent style={{padding: '20px'}}>
                     {/*<DialogContentText>*/}
@@ -180,25 +193,25 @@ export class CreateProjectView extends React.Component {
                         </Grid>
                     </Grid>
                 </DialogContent>
-                <DialogActions style={{padding: '20px', marginBottom: '15px'}}>
-                    <Grid container spacing={1} direction="row" alignItems="flex-start">
-                        <Grid item>
-                            <Button onClick={() => this.props.onConfirm(this.state.project)}
-                                    className="actionButton"
-                                    color="primary" variant="contained">
-                                Create
-                            </Button>
-                        </Grid>
-                        <Grid item>
-                            <Button onClick={this.props.onClose}
-                                    className="actionButton"
-                                    color="primary" variant="outlined">
-                                Cancel
-                            </Button>
-                        </Grid>
-                    </Grid>
+                <DialogActions style={{padding: '20px'}}>
+
+                    <Button
+                        onClick={() => {
+                            this.props.onConfirm(this.state.project);
+                        }}
+                        disabled={this.isCreateEnabled()}
+                        className="actionButton" color="primary" variant="contained">
+                        Create
+                    </Button>
+                    <Button onClick={this.props.onClose}
+                            className="actionButton"
+                            color="primary" variant="outlined">
+                        Cancel
+                    </Button>
+
                 </DialogActions>
             </Dialog>
+
         )
     }
 

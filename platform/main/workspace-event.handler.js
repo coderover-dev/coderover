@@ -26,7 +26,7 @@ class WorkspaceEventHandler extends MainProcessEventHandler {
         this.ipcMain.on('create-project', handleCreateProjectEvent);
     }
 
-    handleOpenProjectEvent(event, arg) {
+    handleOpenProjectEvent(event, args) {
         this.event = event;
         this.replyEventName = 'project-opened';
         electron.dialog.showOpenDialog({properties: ["openDirectory"]})
@@ -34,7 +34,7 @@ class WorkspaceEventHandler extends MainProcessEventHandler {
             .catch(this.handleOpenProjectError)
     }
 
-    handleSelectWorkspaceEvent(event, arg) {
+    handleSelectWorkspaceEvent(event, args) {
         this.event = event;
         this.replyEventName = 'workspace-selected';
         electron.dialog.showOpenDialog({properties: ["openDirectory"]})
@@ -42,20 +42,26 @@ class WorkspaceEventHandler extends MainProcessEventHandler {
             .catch(this.handleSelectWorkspaceError)
     }
 
-    handleCreateProjectEvent(event, arg) {
+    handleCreateProjectEvent(event, args) {
         this.event = event;
-        this.arg = arg;
-        this.replyEventName = 'project-created';
-        console.log(this.arg)
-        const result = workspace.createProject(this.arg.location);
-        console.log(result)
-        if(result!=null && result.success){
-            generatorFactory.getGenerator().getProjectGenerator().generate(arg);
+        this.args = args;
+        console.log(args);
+        const result = workspace.createProject(this.args.location);
+        if (result != null && result.success) {
+            generatorFactory
+                .getGenerator()
+                .getBaseBlueprintGenerator()
+                .generate(args);
+            this.replyEventName = 'project-created';
             this.handleSelectWorkspaceSuccess(null);
+        } else {
+            this.replyEventName = 'project-creation-failed';
+            this.event.reply(this.replyEventName, {
+                message: result.message,
+                error: true
+            });
         }
-
     }
-
 
 }
 

@@ -11,7 +11,6 @@ class Workspace {
         if(!this.existsProjectDir(projectLocation)){
             //if not exists, then create dir
             let projectDirCreated = this.createProjectDir(projectLocation)
-            console.log(projectDirCreated)
             if(projectDirCreated===undefined || !(projectDirCreated == null)){
                 //project directory created
                 return {

@@ -38,13 +38,19 @@
   url('./assets/fonts/montserrat/montserrat-v15-latin-600.svg#Montserrat') format('svg'); /* Legacy iOS */
 }
 
-.MuiButton-label{
+.MuiButton-label {
   text-transform: none;
 }
-.actionButton{
+
+.actionButton {
   font-weight: bold !important;
   font-size: 12pt !important;
 }
-.MuiOutlinedInput-adornedEnd{
+
+.MuiOutlinedInput-adornedEnd {
   padding-right: 5px !important;
+}
+
+.MuiDialog-paper {
+  border-radius: 20px !important;
 }

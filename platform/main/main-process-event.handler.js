@@ -4,7 +4,7 @@ module.exports = class MainProcessEventHandler {
     constructor(ipcMain) {
         this.ipcMain = ipcMain;
         this.event = null;
-        this.arg = null;
+        this.args = null;
         this.replyEventName = null;
     }
 

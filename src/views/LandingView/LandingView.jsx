@@ -10,6 +10,8 @@ import {faFolderOpen, faPlus} from "@fortawesome/free-solid-svg-icons";
 
 import {CreateProjectView} from "../CreateProjectView/CreateProjectView";
 import {getRenderer} from "../../renderer/renderer";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import {showProgress, hideProgress} from "../../components/progress/Progress";
 
 export class LandingView extends React.Component {
 
@@ -26,7 +28,13 @@ export class LandingView extends React.Component {
     }
 
     handleProjectCreation(projectData) {
-        this.renderer.getWorkspaceHandler().newProject(projectData);
+        showProgress("Creating project...");
+        this.renderer
+            .getWorkspaceHandler()
+            .newProject(projectData, () => {
+                this.setState({createProject: false});
+                hideProgress();
+            });
 
     }
 

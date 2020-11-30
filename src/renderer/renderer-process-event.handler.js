@@ -3,7 +3,7 @@ export class RendererProcessEventHandler {
     constructor() {
         this.ipcRenderer = window.ipcRenderer;
         this.event = null;
-        this.arg = null;
+        this.args = null;
         this.replyEventName = null;
     }
 

@@ -1,4 +1,5 @@
 import {RendererProcessEventHandler} from "./renderer-process-event.handler";
+import {pushAlert, ALERT_OK} from "../components/alert/Alerts"
 
 export class WorkspaceEventHandler extends RendererProcessEventHandler {
 
@@ -7,21 +8,18 @@ export class WorkspaceEventHandler extends RendererProcessEventHandler {
         const handleProjectOpenedEvent = this.handleProjectOpenedEvent.bind(this);
         const handleWorkspaceSelectedEvent = this.handleWorkspaceSelectedEvent.bind(this);
         const handleProjectCreatedEvent = this.handleProjectCreatedEvent.bind(this);
+        const handleProjectCreationFailureEvent = this.handleProjectCreationFailureEvent.bind(this);
 
         this.ipcRenderer.on('project-opened', handleProjectOpenedEvent);
         this.ipcRenderer.on('workspace-selected', handleWorkspaceSelectedEvent);
         this.ipcRenderer.on('project-created', handleProjectCreatedEvent);
+        this.ipcRenderer.on('project-creation-failed', handleProjectCreationFailureEvent);
     }
 
     handleProjectOpenedEvent(event, arg) {
-        console.log("project opened");
-        console.log(arg)
     }
 
     handleWorkspaceSelectedEvent(event, arg) {
-        console.log("workspace selected");
-        console.log(arg)
-
         let location = null;
         if (arg !== undefined && arg != null &&
             arg.filePaths != null && arg.filePaths.length > 0) {
@@ -33,16 +31,25 @@ export class WorkspaceEventHandler extends RendererProcessEventHandler {
         }
     }
 
-    handleProjectCreatedEvent(event, arg) {
-        console.log("project created");
-        console.log(arg);
-        this.onProjectCreated();
+    handleProjectCreatedEvent(event, args) {
+        if (this.newProjectCallback != null) {
+            this.newProjectCallback();
+        }
+    }
+
+    handleProjectCreationFailureEvent(event, args) {
+        pushAlert('PROJECT_CREATION_FAILED', ALERT_OK,
+            args.message.summary, args.message.description,
+            () => {
+            }, () => {
+            });
+        if (this.newProjectCallback != null) {
+            this.newProjectCallback();
+        }
     }
 
     newProject(projectData, callback) {
-        console.log("create-project :: ")
-        console.log(projectData)
-        this.onProjectCreated = callback;
+        this.newProjectCallback = callback;
         window.ipcRenderer.send('create-project', projectData)
     }
 

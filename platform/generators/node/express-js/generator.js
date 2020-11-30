@@ -1,7 +1,7 @@
-const projectGenerator = require('./project-generator');
+const baseBlueprintGenerator = require('./base-blueprint-generator');
 
 module.exports = {
-    getProjectGenerator: () => {
-        return projectGenerator;
+    getBaseBlueprintGenerator: () => {
+        return baseBlueprintGenerator;
     }
 }
