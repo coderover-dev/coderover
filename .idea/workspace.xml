@@ -20,23 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07424044-891a-4bc7-8a83-ef9993154c32" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/platform/constants.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/workspaceMetadata.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/generators/node/express-js/base-blueprint-generator.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/generators/node/express-js/base-blueprint-generator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/main/events-registry.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/main/events-registry.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/main/workspace-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/main/workspace-event.handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/workspace.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/workspace.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/container/Breadcrumbs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workspace/Breadcrumbs.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/container/Container.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workspace/Workspace.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/container/ItemListView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workspace/ItemListView.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/container/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workspace/Sidebar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/container/Toolbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workspace/Toolbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/container/container.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/workspace/workspace.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/progress/Progress.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/progress/Progress.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/workspace-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/workspace-event.handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/LandingView/LandingView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LandingView/LandingView.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/CreateProjectView/CreateProjectView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/CreateProjectView/CreateProjectView.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +115,7 @@
       <workItem from="1606398309770" duration="418000" />
       <workItem from="1606399822297" duration="1965000" />
       <workItem from="1606539318709" duration="76634000" />
-      <workItem from="1606808638253" duration="3711000" />
+      <workItem from="1606808638253" duration="4284000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1606071312677</created>
@@ -181,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606757786209</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="refactored events&#10;added open &amp; close workspace functionality">
+      <created>1606814544705</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1606814544705</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,7 +199,8 @@
     <MESSAGE value="added basic generator flow" />
     <MESSAGE value="added blue print generators&#10;added alerts &#10;added progress indicator" />
     <MESSAGE value="added basic metadata generator" />
-    <option name="LAST_COMMIT_MESSAGE" value="added basic metadata generator" />
+    <MESSAGE value="refactored events&#10;added open &amp; close workspace functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored events&#10;added open &amp; close workspace functionality" />
   </component>
   <component name="WindowStateProjectService">
     <state x="304" y="160" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606114196721">
@@ -224,12 +217,12 @@
       <screen x="0" y="25" width="1680" height="953" />
     </state>
     <state x="578" y="252" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606049503244" />
-    <state x="424" y="42" key="CommitChangelistDialog2" timestamp="1606757786056">
+    <state x="424" y="42" key="CommitChangelistDialog2" timestamp="1606814544449">
       <screen x="0" y="25" width="1680" height="953" />
     </state>
     <state x="-1435" y="43" key="CommitChangelistDialog2/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606588342802" />
     <state x="424" y="42" key="CommitChangelistDialog2/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606156766200" />
-    <state x="424" y="42" key="CommitChangelistDialog2/0.25.1680.953@0.25.1680.953" timestamp="1606757786056" />
+    <state x="424" y="42" key="CommitChangelistDialog2/0.25.1680.953@0.25.1680.953" timestamp="1606814544449" />
     <state x="-1820" y="125" width="1720" height="855" key="DiffContextDialog" timestamp="1606546064028">
       <screen x="-1920" y="25" width="1920" height="1055" />
     </state>
@@ -272,13 +265,13 @@
     <state x="349" y="137" key="SettingsEditor/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606068298574" />
     <state x="-1521" y="149" key="SettingsEditor/0.25.1680.953/-1920.25.1920.1055@-1920.25.1920.1055" timestamp="1606553498572" />
     <state x="698" y="91" key="SettingsEditor/0.25.1680.953@0.25.1680.953" timestamp="1606724498008" />
-    <state x="440" y="225" key="Vcs.Push.Dialog.v2" timestamp="1606757787502">
+    <state x="440" y="225" key="Vcs.Push.Dialog.v2" timestamp="1606814547306">
       <screen x="0" y="25" width="1680" height="953" />
     </state>
     <state x="-1417" y="231" key="Vcs.Push.Dialog.v2/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606588344764" />
     <state x="440" y="225" key="Vcs.Push.Dialog.v2/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606156568435" />
     <state x="-1417" y="246" key="Vcs.Push.Dialog.v2/0.25.1680.953/-1920.25.1920.1055@-1920.25.1920.1055" timestamp="1606539521904" />
-    <state x="440" y="225" key="Vcs.Push.Dialog.v2/0.25.1680.953@0.25.1680.953" timestamp="1606757787502" />
+    <state x="440" y="225" key="Vcs.Push.Dialog.v2/0.25.1680.953@0.25.1680.953" timestamp="1606814547306" />
     <state x="-1807" y="128" width="1692" height="777" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606584072522">
       <screen x="-1920" y="25" width="1920" height="983" />
     </state>

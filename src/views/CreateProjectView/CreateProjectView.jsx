@@ -24,9 +24,9 @@ export class CreateProjectView extends React.Component {
                 name: "",
                 workspace: "",
                 location: "",
-                type: "",
-                platform: "",
-                framework: ""
+                type: "REST_API",
+                platform: "NODE",
+                framework: "EXPRESSJS"
             }
         }
     }
@@ -134,60 +134,61 @@ export class CreateProjectView extends React.Component {
 
 
                             {/* project type specific fields : begin */}
-                            <Grid container spacing={1} direction="column">
-                                <Grid item style={{textAlign: "left", paddingTop: '15px'}}>
-                                    Type :
-                                </Grid>
-                                <Grid item>
-                                    <Select
-                                        id="projectType" fullWidth
-                                        variant="outlined" margin="dense"
-                                        value={this.state.project.type}
-                                        onChange={(event) => {
-                                            let project = this.state.project;
-                                            project.type = event.target.value;
-                                            this.setState({project: project});
-                                        }}>
-                                        <MenuItem value={"REST_API"}>REST API</MenuItem>
-                                    </Select>
-                                </Grid>
-                            </Grid>
-                            <Grid container spacing={1} direction="column">
-                                <Grid item style={{textAlign: "left", paddingTop: '15px'}}>
-                                    Platform :
-                                </Grid>
-                                <Grid item>
-                                    <Select
-                                        id="projectPlatform" fullWidth
-                                        variant="outlined" margin="dense"
-                                        value={this.state.project.platform}
-                                        onChange={(event) => {
-                                            let project = this.state.project;
-                                            project.platform = event.target.value;
-                                            this.setState({project: project});
-                                        }}>
-                                        <MenuItem value={"NODE"}>Node</MenuItem>
-                                    </Select>
-                                </Grid>
-                            </Grid>
-                            <Grid container spacing={1} direction="column">
-                                <Grid item style={{textAlign: "left", paddingTop: '15px'}}>
-                                    Framework :
-                                </Grid>
-                                <Grid item>
-                                    <Select
-                                        id="projectFramework" fullWidth
-                                        variant="outlined" margin="dense"
-                                        value={this.state.project.framework}
-                                        onChange={(event) => {
-                                            let project = this.state.project;
-                                            project.framework = event.target.value;
-                                            this.setState({project: project});
-                                        }}>
-                                        <MenuItem value={"EXPRESSJS"}>Express.js</MenuItem>
-                                    </Select>
-                                </Grid>
-                            </Grid>
+                            {/*<Grid container spacing={1} direction="column">*/}
+                            {/*    <Grid item style={{textAlign: "left", paddingTop: '15px'}}>*/}
+                            {/*        Type :*/}
+                            {/*    </Grid>*/}
+                            {/*    <Grid item>*/}
+                            {/*        <Select*/}
+                            {/*            id="projectType" fullWidth*/}
+                            {/*            variant="outlined" margin="dense"*/}
+                            {/*            value={this.state.project.type}*/}
+                            {/*            onChange={(event) => {*/}
+                            {/*                let project = this.state.project;*/}
+                            {/*                project.type = event.target.value;*/}
+                            {/*                this.setState({project: project});*/}
+                            {/*            }}>*/}
+                            {/*            <MenuItem value={"REST_API"}>REST API</MenuItem>*/}
+                            {/*        </Select>*/}
+                            {/*    </Grid>*/}
+                            {/*</Grid>*/}
+                            {/*<Grid container spacing={1} direction="column">*/}
+                            {/*    <Grid item style={{textAlign: "left", paddingTop: '15px'}}>*/}
+                            {/*        Platform :*/}
+                            {/*    </Grid>*/}
+                            {/*    <Grid item>*/}
+                            {/*        <Select*/}
+                            {/*            id="projectPlatform" fullWidth*/}
+                            {/*            variant="outlined" margin="dense"*/}
+                            {/*            value={this.state.project.platform}*/}
+                            {/*            onChange={(event) => {*/}
+                            {/*                let project = this.state.project;*/}
+                            {/*                project.platform = event.target.value;*/}
+                            {/*                this.setState({project: project});*/}
+                            {/*            }}>*/}
+                            {/*            <MenuItem value={"NODE"}>Node</MenuItem>*/}
+                            {/*        </Select>*/}
+                            {/*    </Grid>*/}
+                            {/*</Grid>*/}
+                            {/*<Grid container spacing={1} direction="column">*/}
+                            {/*    <Grid item style={{textAlign: "left", paddingTop: '15px'}}>*/}
+                            {/*        Framework :*/}
+                            {/*    </Grid>*/}
+                            {/*    <Grid item>*/}
+                            {/*        <Select*/}
+                            {/*            id="projectFramework" fullWidth*/}
+                            {/*            variant="outlined" margin="dense"*/}
+                            {/*            value={this.state.project.framework}*/}
+                            {/*            onChange={(event) => {*/}
+                            {/*                let project = this.state.project;*/}
+                            {/*                project.framework = event.target.value;*/}
+                            {/*                this.setState({project: project});*/}
+                            {/*            }}>*/}
+                            {/*            <MenuItem value={"EXPRESSJS"}>Express.js</MenuItem>*/}
+                            {/*        </Select>*/}
+                            {/*    </Grid>*/}
+                            {/*</Grid>*/}
+
                             {/* project type specific fields : begin */}
 
                         </Grid>
