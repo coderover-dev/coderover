@@ -10,7 +10,6 @@ import {faFolderOpen, faPlus} from "@fortawesome/free-solid-svg-icons";
 
 import {CreateProjectView} from "../CreateProjectView/CreateProjectView";
 import {getRenderer} from "../../renderer/renderer";
-import LinearProgress from "@material-ui/core/LinearProgress";
 import {showProgress, hideProgress} from "../../components/progress/Progress";
 
 export class LandingView extends React.Component {

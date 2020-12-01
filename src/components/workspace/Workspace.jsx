@@ -5,8 +5,9 @@ import {Divider} from "@material-ui/core";
 import {Breadcrumbs} from "./Breadcrumbs";
 import {Toolbar} from "./Toolbar";
 import {ItemListView} from "./ItemListView";
+import './workspace.css'
 
-export class Container extends React.Component {
+export class Workspace extends React.Component {
 
     constructor() {
         super();

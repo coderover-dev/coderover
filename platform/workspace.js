@@ -1,4 +1,6 @@
 const fs = require('fs');
+const path = require('path');
+const constants = require("./constants");
 
 class Workspace {
 
@@ -42,6 +44,10 @@ class Workspace {
 
     createProjectDir(projectLocation){
         return fs.mkdirSync(projectLocation)
+    }
+
+    validateProjectDir(projectLocation){
+        return fs.existsSync(path.join(projectLocation, constants.APP_METADATA_FILE))
     }
 
 }

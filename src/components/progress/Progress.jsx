@@ -29,9 +29,15 @@ export class Progress extends React.Component {
             visible: false,
             message: ""
         }
+    }
 
+    componentDidMount() {
         let handleProgressStateChange = this.handleProgressStateChange.bind(this);
         progress.subscribe(handleProgressStateChange);
+    }
+
+    componentWillUnmount() {
+        progress.unsubscribe();
     }
 
     handleProgressStateChange(state) {

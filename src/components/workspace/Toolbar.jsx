@@ -13,7 +13,8 @@ import {
     faWindowClose
 } from "@fortawesome/free-solid-svg-icons";
 
-import './container.css'
+import './workspace.css'
+import {closeWorkspace} from "../../data/workspaceMetadata";
 
 export class Toolbar extends React.Component {
 
@@ -21,8 +22,8 @@ export class Toolbar extends React.Component {
         super(props);
     }
 
-    getSidebarToggle(){
-        return(
+    getSidebarToggle() {
+        return (
             <ButtonGroup color="primary" variant="outlined"
                          size="small" aria-label="outlined secondary button group">
                 <Button className="projectToolbarButton" onClick={this.props.onSidebarToggle}>
@@ -32,24 +33,27 @@ export class Toolbar extends React.Component {
         )
     }
 
-    getProjectToolbar(){
-        return(
+    getProjectToolbar() {
+        return (
             <ButtonGroup color="primary" variant="outlined"
                          size="small" aria-label="outlined secondary button group">
                 <Button className="projectToolbarButton">
-                    <FontAwesomeIcon icon={faFolderOpen} />
+                    <FontAwesomeIcon icon={faFolderOpen}/>
                 </Button>
                 <Button className="projectToolbarButton">
                     <FontAwesomeIcon icon={faPlus}/>
                 </Button>
-                <Button className="projectToolbarButton">
+                <Button className="projectToolbarButton"
+                        onClick={() => {
+                            closeWorkspace();
+                        }}>
                     <FontAwesomeIcon icon={faWindowClose}/>
                 </Button>
             </ButtonGroup>
         )
     }
 
-    getActionsToolbar(){
+    getActionsToolbar() {
         return (
             <ButtonGroup color="primary" variant="outlined"
                          size="small" aria-label="outlined secondary button group">
@@ -71,13 +75,13 @@ export class Toolbar extends React.Component {
 
     render() {
         return (
-            <Grid container style={{backgroundColor:"#e7e2e7", height: '44px', padding: 8}}>
+            <Grid container style={{backgroundColor: "#e7e2e7", height: '44px', padding: 8}}>
 
                 <Grid container item xs={12}>
                     {this.getSidebarToggle()}
-                    <span style={{padding:12}}/>
+                    <span style={{padding: 12}}/>
                     {this.getProjectToolbar()}
-                    <span style={{padding:12}}/>
+                    <span style={{padding: 12}}/>
                     {this.getActionsToolbar()}
                 </Grid>
 

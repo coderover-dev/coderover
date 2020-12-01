@@ -1,12 +1,13 @@
 import './App.css';
 import React from "react";
-import {Container} from "./components/container/Container";
+import {Workspace} from "./components/workspace/Workspace";
 import {ThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import {LandingView} from "./views/LandingView/LandingView";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {Progress} from "./components/progress/Progress";
 import {Grid} from "@material-ui/core";
 import {Alerts} from "./components/alert/Alerts";
+import {workspaceMetadata, onWorkspaceUpdate} from "./data/workspaceMetadata";
 
 const theme = createMuiTheme({
     typography: {
@@ -24,7 +25,7 @@ const theme = createMuiTheme({
 
 const getProjectHomeView = function () {
     return (
-        <Container/>
+        <Workspace/>
     )
 }
 
@@ -34,11 +35,26 @@ const getLandingView = function () {
     )
 }
 
+
 function App() {
+    const [init, setInit] = React.useState(false);
+
+    const getContentView = function () {
+        onWorkspaceUpdate.subscribe(value => {
+            setInit(workspaceMetadata.init);
+        });
+
+        if (init) {
+            return getProjectHomeView();
+        } else {
+            return getLandingView();
+        }
+    }
+
     return (
         <ThemeProvider theme={theme}>
             <div className="App">
-                {getLandingView()}
+                {getContentView()}
             </div>
             <Progress/>
             <Alerts/>

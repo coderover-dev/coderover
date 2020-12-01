@@ -1,29 +1,45 @@
 import {RendererProcessEventHandler} from "./renderer-process-event.handler";
 import {pushAlert, ALERT_OK} from "../components/alert/Alerts"
+import {openWorkspace} from "../data/workspaceMetadata"
 
 export class WorkspaceEventHandler extends RendererProcessEventHandler {
 
     constructor() {
         super();
-        const handleProjectOpenedEvent = this.handleProjectOpenedEvent.bind(this);
-        const handleWorkspaceSelectedEvent = this.handleWorkspaceSelectedEvent.bind(this);
-        const handleProjectCreatedEvent = this.handleProjectCreatedEvent.bind(this);
-        const handleProjectCreationFailureEvent = this.handleProjectCreationFailureEvent.bind(this);
 
-        this.ipcRenderer.on('project-opened', handleProjectOpenedEvent);
-        this.ipcRenderer.on('workspace-selected', handleWorkspaceSelectedEvent);
-        this.ipcRenderer.on('project-created', handleProjectCreatedEvent);
-        this.ipcRenderer.on('project-creation-failed', handleProjectCreationFailureEvent);
+        const handleProjectOpened = this.handleProjectOpenedEvent.bind(this);
+        this.ipcRenderer.on('ProjectOpened', handleProjectOpened);
+
+        const handleOpenProjectFailed = this.handleProjectOpenedEvent.bind(this);
+        this.ipcRenderer.on('OpenProjectFailed', handleOpenProjectFailed);
+
+        const handleWorkspaceSelected = this.handleWorkspaceSelectedEvent.bind(this);
+        this.ipcRenderer.on('WorkspaceSelected', handleWorkspaceSelected);
+
+        const handleProjectCreated = this.handleProjectCreatedEvent.bind(this);
+        this.ipcRenderer.on('ProjectCreated', handleProjectCreated);
+
+        const handleCreateProjectFailed = this.handleCreateProjectFailedEvent.bind(this);
+        this.ipcRenderer.on('CreateProjectFailed', handleCreateProjectFailed);
     }
 
-    handleProjectOpenedEvent(event, arg) {
+    handleProjectOpenedEvent(event, args) {
+        if (args.success) {
+            openWorkspace();
+        } else {
+            pushAlert('OpenProjectFailed', ALERT_OK,
+                args.message.summary, args.message.description,
+                () => {
+                }, () => {
+                });
+        }
     }
 
-    handleWorkspaceSelectedEvent(event, arg) {
+    handleWorkspaceSelectedEvent(event, args) {
         let location = null;
-        if (arg !== undefined && arg != null &&
-            arg.filePaths != null && arg.filePaths.length > 0) {
-            location = arg.filePaths[0];
+        if (args !== undefined && args != null &&
+            args.filePaths != null && args.filePaths.length > 0) {
+            location = args.filePaths[0];
         }
 
         if (this.onWorkspaceSelection !== undefined) {
@@ -32,13 +48,14 @@ export class WorkspaceEventHandler extends RendererProcessEventHandler {
     }
 
     handleProjectCreatedEvent(event, args) {
+
         if (this.newProjectCallback != null) {
             this.newProjectCallback();
         }
     }
 
-    handleProjectCreationFailureEvent(event, args) {
-        pushAlert('PROJECT_CREATION_FAILED', ALERT_OK,
+    handleCreateProjectFailedEvent(event, args) {
+        pushAlert('CreateProjectFailed', ALERT_OK,
             args.message.summary, args.message.description,
             () => {
             }, () => {
@@ -50,16 +67,16 @@ export class WorkspaceEventHandler extends RendererProcessEventHandler {
 
     newProject(projectData, callback) {
         this.newProjectCallback = callback;
-        window.ipcRenderer.send('create-project', projectData)
+        window.ipcRenderer.send('CreateProject', projectData)
     }
 
     selectWorkspace(callback) {
         this.onWorkspaceSelection = callback;
-        window.ipcRenderer.send('select-workspace', '')
+        window.ipcRenderer.send('SelectWorkspace', '')
     }
 
     openProject() {
-        window.ipcRenderer.send('open-project', '')
+        window.ipcRenderer.send('OpenProject', '')
     }
 
 }

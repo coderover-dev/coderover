@@ -76,7 +76,7 @@ export class ItemListView extends React.Component {
                         variant="outlined"/>
                 </Grid>
                 <Grid item xs={2} style={{paddingRight: '15px'}}>
-                    <Button variant="small" style={{
+                    <Button style={{
                         marginTop: '8px',
                         fontSize: '15pt',
                         height: '40px',
