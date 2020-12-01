@@ -115,7 +115,7 @@
       <workItem from="1606398309770" duration="418000" />
       <workItem from="1606399822297" duration="1965000" />
       <workItem from="1606539318709" duration="76634000" />
-      <workItem from="1606808638253" duration="4284000" />
+      <workItem from="1606808638253" duration="4453000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1606071312677</created>
@@ -173,7 +173,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606814544705</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="removed inputs like project type, platform and framework as these should be hidden from the end user.">
+      <created>1606815139093</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1606815139093</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,7 +207,8 @@
     <MESSAGE value="added blue print generators&#10;added alerts &#10;added progress indicator" />
     <MESSAGE value="added basic metadata generator" />
     <MESSAGE value="refactored events&#10;added open &amp; close workspace functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored events&#10;added open &amp; close workspace functionality" />
+    <MESSAGE value="removed inputs like project type, platform and framework as these should be hidden from the end user." />
+    <option name="LAST_COMMIT_MESSAGE" value="removed inputs like project type, platform and framework as these should be hidden from the end user." />
   </component>
   <component name="WindowStateProjectService">
     <state x="304" y="160" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606114196721">
@@ -217,12 +225,12 @@
       <screen x="0" y="25" width="1680" height="953" />
     </state>
     <state x="578" y="252" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606049503244" />
-    <state x="424" y="42" key="CommitChangelistDialog2" timestamp="1606814544449">
+    <state x="424" y="42" key="CommitChangelistDialog2" timestamp="1606815138930">
       <screen x="0" y="25" width="1680" height="953" />
     </state>
     <state x="-1435" y="43" key="CommitChangelistDialog2/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606588342802" />
     <state x="424" y="42" key="CommitChangelistDialog2/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606156766200" />
-    <state x="424" y="42" key="CommitChangelistDialog2/0.25.1680.953@0.25.1680.953" timestamp="1606814544449" />
+    <state x="424" y="42" key="CommitChangelistDialog2/0.25.1680.953@0.25.1680.953" timestamp="1606815138930" />
     <state x="-1820" y="125" width="1720" height="855" key="DiffContextDialog" timestamp="1606546064028">
       <screen x="-1920" y="25" width="1920" height="1055" />
     </state>
@@ -265,13 +273,13 @@
     <state x="349" y="137" key="SettingsEditor/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606068298574" />
     <state x="-1521" y="149" key="SettingsEditor/0.25.1680.953/-1920.25.1920.1055@-1920.25.1920.1055" timestamp="1606553498572" />
     <state x="698" y="91" key="SettingsEditor/0.25.1680.953@0.25.1680.953" timestamp="1606724498008" />
-    <state x="440" y="225" key="Vcs.Push.Dialog.v2" timestamp="1606814547306">
+    <state x="440" y="225" key="Vcs.Push.Dialog.v2" timestamp="1606815142472">
       <screen x="0" y="25" width="1680" height="953" />
     </state>
     <state x="-1417" y="231" key="Vcs.Push.Dialog.v2/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606588344764" />
     <state x="440" y="225" key="Vcs.Push.Dialog.v2/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606156568435" />
     <state x="-1417" y="246" key="Vcs.Push.Dialog.v2/0.25.1680.953/-1920.25.1920.1055@-1920.25.1920.1055" timestamp="1606539521904" />
-    <state x="440" y="225" key="Vcs.Push.Dialog.v2/0.25.1680.953@0.25.1680.953" timestamp="1606814547306" />
+    <state x="440" y="225" key="Vcs.Push.Dialog.v2/0.25.1680.953@0.25.1680.953" timestamp="1606815142472" />
     <state x="-1807" y="128" width="1692" height="777" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606584072522">
       <screen x="-1920" y="25" width="1920" height="983" />
     </state>

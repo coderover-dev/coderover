@@ -69,7 +69,7 @@ export class CreateProjectView extends React.Component {
     render() {
         return (
 
-            <Dialog open={this.props.open} onClose={this.props.onClose} maxWidth={"md"} fullWidth="true"
+            <Dialog open={this.props.open} onClose={this.props.onClose} maxWidth="sm" fullWidth="true"
                     disableEscapeKeyDown="false" disableBackdropClick="false">
                 <DialogTitle style={{backgroundColor: "#e7e2e7", fontWeight: "bold"}}>New Project</DialogTitle>
                 <DialogContent style={{padding: '20px'}}>
