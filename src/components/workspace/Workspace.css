@@ -37,3 +37,16 @@
     font-weight: bolder !important;
     line-height: 32px !important;
 }
+
+.BreadcrumbText-bold{
+    padding-top: 2px;
+    font-size: 9pt !important;
+    font-weight: bold !important;
+    color: rgba(0, 0, 0, 0.54) !important;
+}
+
+.BreadcrumbText-normal{
+    padding-top: 2px;
+    font-size: 9pt !important;
+    color: rgba(0, 0, 0, 0.54) !important;
+}

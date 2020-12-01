@@ -13,8 +13,8 @@ import {
     faWindowClose
 } from "@fortawesome/free-solid-svg-icons";
 
-import './workspace.css'
-import {closeWorkspace} from "../../data/workspaceMetadata";
+import './Workspace.css'
+import {closeWorkspace} from "./workspace-events";
 
 export class Toolbar extends React.Component {
 
@@ -76,7 +76,6 @@ export class Toolbar extends React.Component {
     render() {
         return (
             <Grid container style={{backgroundColor: "#e7e2e7", height: '44px', padding: 8}}>
-
                 <Grid container item xs={12}>
                     {this.getSidebarToggle()}
                     <span style={{padding: 12}}/>
@@ -84,8 +83,6 @@ export class Toolbar extends React.Component {
                     <span style={{padding: 12}}/>
                     {this.getActionsToolbar()}
                 </Grid>
-
-
             </Grid>
         );
     }

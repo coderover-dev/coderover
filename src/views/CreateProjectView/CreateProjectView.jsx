@@ -12,7 +12,7 @@ import OutlinedInput from "@material-ui/core/OutlinedInput";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import {getRenderer} from "../../renderer/renderer";
-import {Progress} from "../../components/progress/Progress";
+import {StatusBar} from "../../components/statusBar/StatusBar";
 import {ThemeProvider} from "@material-ui/core/styles";
 
 export class CreateProjectView extends React.Component {

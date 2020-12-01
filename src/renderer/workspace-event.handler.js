@@ -1,6 +1,6 @@
 import {RendererProcessEventHandler} from "./renderer-process-event.handler";
 import {pushAlert, ALERT_OK} from "../components/alert/Alerts"
-import {openWorkspace} from "../data/workspaceMetadata"
+import {openWorkspace} from "../components/workspace/workspace-events";
 
 export class WorkspaceEventHandler extends RendererProcessEventHandler {
 
@@ -24,8 +24,9 @@ export class WorkspaceEventHandler extends RendererProcessEventHandler {
     }
 
     handleProjectOpenedEvent(event, args) {
+        console.log(args)
         if (args.success) {
-            openWorkspace();
+            openWorkspace(args.project);
         } else {
             pushAlert('OpenProjectFailed', ALERT_OK,
                 args.message.summary, args.message.description,

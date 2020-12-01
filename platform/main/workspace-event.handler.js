@@ -4,7 +4,7 @@ const workspace = require('../workspace');
 const electron = require('electron');
 const MainProcessEventHandler = require('./main-process-event.handler');
 
-class WorkspaceEventHandler extends MainProcessEventHandler {
+class WorkspaceMainEventHandler extends MainProcessEventHandler {
 
     constructor(ipcMain) {
         super(ipcMain)
@@ -27,24 +27,25 @@ class WorkspaceEventHandler extends MainProcessEventHandler {
     handleOpenProjectEvent(event, args) {
         this.event = event;
         let error = false;
-        const result = electron.dialog.showOpenDialogSync({properties: ["openDirectory"]})
-        if (result != null && result.length > 0) {
-            const location = result[0];
-            console.log(location)
-            try {
-                if (workspace.validateProjectDir(location)) {
-                    this.replyEventName = 'ProjectOpened';
-                    this.event.reply(this.replyEventName, {
-                        location: location,
-                        success: true
-                    });
-                } else {
-                    error = true;
-                }
-            }catch (err){
+        const result = electron.dialog.showOpenDialogSync({properties: ["openDirectory"]});
+
+        try {
+            if (result === undefined) {
+                this.replyEventName = "OpenProjectCancelled"
+                this.event.reply(this.replyEventName, {
+                    success: true
+                });
+            } else if (result != null && result.length > 0 && workspace.validateProjectDir(result[0])) {
+                let projectMetadata = workspace.loadProjectMetadata(result[0]);
+                this.replyEventName = 'ProjectOpened';
+                this.event.reply(this.replyEventName, {
+                    project: projectMetadata,
+                    success: true
+                });
+            } else {
                 error = true;
             }
-        } else {
+        } catch (err) {
             error = true;
         }
 
@@ -94,6 +95,6 @@ class WorkspaceEventHandler extends MainProcessEventHandler {
 }
 
 module.exports = function (ipcMain) {
-    return new WorkspaceEventHandler(ipcMain);
+    return new WorkspaceMainEventHandler(ipcMain);
 }
 

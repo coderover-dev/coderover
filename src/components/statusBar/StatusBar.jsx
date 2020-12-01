@@ -4,23 +4,23 @@ import Grid from "@material-ui/core/Grid";
 import {Typography} from "@material-ui/core";
 import {Subject} from 'rxjs'
 
-const progress = new Subject();
+const statusBar = new Subject();
 
 export function showProgress(message) {
-    progress.next({
+    statusBar.next({
         visible: true,
         message: message
     })
 }
 
 export function hideProgress() {
-    progress.next({
+    statusBar.next({
         visible: false,
         message: ""
     })
 }
 
-export class Progress extends React.Component {
+export class StatusBar extends React.Component {
 
     constructor(props) {
         super(props);
@@ -29,15 +29,13 @@ export class Progress extends React.Component {
             visible: false,
             message: ""
         }
-    }
 
-    componentDidMount() {
         let handleProgressStateChange = this.handleProgressStateChange.bind(this);
-        progress.subscribe(handleProgressStateChange);
+        statusBar.subscribe(handleProgressStateChange);
     }
 
     componentWillUnmount() {
-        progress.unsubscribe();
+        statusBar.unsubscribe();
     }
 
     handleProgressStateChange(state) {

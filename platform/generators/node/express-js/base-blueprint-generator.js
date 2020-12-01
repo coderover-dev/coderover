@@ -5,28 +5,28 @@ const path = require('path');
 
 class BaseBlueprintGenerator {
 
-    generate(projectMetaData) {
+    generate(projectMetadata) {
         console.log("creating project blueprint..")
         //create app.js
-        this.writeAppJs(projectMetaData);
+        this.writeAppJs(projectMetadata);
         //generate package.json
-        this.writePackageJson(projectMetaData);
+        this.writePackageJson(projectMetadata);
         //add bin directory
-        this.createAppDirectories(projectMetaData);
+        this.createAppDirectories(projectMetadata);
         //add routes.js to handle route registry
-        this.writeRoutesJs(projectMetaData);
+        this.writeRoutesJs(projectMetadata);
 
         //write project metadata to coderover.json
-        this.writeMetadata(projectMetaData);
+        this.writeMetadata(projectMetadata);
     }
 
-    writePackageJson(projectMetaData) {
+    writePackageJson(projectMetadata) {
         let pkgJsonContent = utils.parseTemplate(template.PACKAGE_JSON_TEMPLATE, {
-            projectName: projectMetaData.name
+            projectName: projectMetadata.name
         })
 
         let writePackageJsonCallback = this.packageJsonWritten.bind(this);
-        utils.writeFile(projectMetaData.location, 'package.json', pkgJsonContent, writePackageJsonCallback);
+        utils.writeFile(projectMetadata.location, 'package.json', pkgJsonContent, writePackageJsonCallback);
 
         return pkgJsonContent;
     }
@@ -37,25 +37,25 @@ class BaseBlueprintGenerator {
         }
     }
 
-    createAppDirectories(projectMetaData) {
+    createAppDirectories(projectMetadata) {
         //create bin directory
-        this.createDirectory(projectMetaData, constants.BIN_DIR);
+        this.createDirectory(projectMetadata, constants.BIN_DIR);
         //create config directory
-        this.createDirectory(projectMetaData, constants.CONFIG_DIR);
+        this.createDirectory(projectMetadata, constants.CONFIG_DIR);
         //create routes directory
-        this.createDirectory(projectMetaData, constants.ROUTES_DIR);
+        this.createDirectory(projectMetadata, constants.ROUTES_DIR);
         //create services directory
-        this.createDirectory(projectMetaData, constants.SERVICES_DIR);
+        this.createDirectory(projectMetadata, constants.SERVICES_DIR);
         //create models directory
-        this.createDirectory(projectMetaData, constants.MODELS_DIR);
+        this.createDirectory(projectMetadata, constants.MODELS_DIR);
         //create dao directory
-        this.createDirectory(projectMetaData, constants.DAO_DIR);
+        this.createDirectory(projectMetadata, constants.DAO_DIR);
         //create metadata directory
-        this.createDirectory(projectMetaData, constants.APP_METADATA_DIR);
+        this.createDirectory(projectMetadata, constants.APP_METADATA_DIR);
     }
 
-    createDirectory(projectMetaData, dirName) {
-        utils.mkdir(projectMetaData.location, dirName,
+    createDirectory(projectMetadata, dirName) {
+        utils.mkdir(projectMetadata.location, dirName,
             (error) => {
                 if (!error) {
                     console.log(dirName + " directory created.")
@@ -63,11 +63,11 @@ class BaseBlueprintGenerator {
             });
     }
 
-    writeAppJs(projectMetaData) {
+    writeAppJs(projectMetadata) {
         let content = utils.parseTemplate(template.APP_JS_TEMPLATE, {
-            projectName: projectMetaData.name
+            projectName: projectMetadata.name
         });
-        utils.writeFile(projectMetaData.location, constants.APP_MAIN_FILE, content,
+        utils.writeFile(projectMetadata.location, constants.APP_MAIN_FILE, content,
             (error) => {
                 if (!error) {
                     console.log(constants.APP_MAIN_FILE + ' created.');
@@ -75,11 +75,11 @@ class BaseBlueprintGenerator {
             });
     }
 
-    writeRoutesJs(projectMetaData) {
+    writeRoutesJs(projectMetadata) {
         let content = utils.parseTemplate(template.ROUTE_JS_TEMPLATE, {
-            projectName: projectMetaData.name
+            projectName: projectMetadata.name
         });
-        utils.writeFile(path.join(projectMetaData.location, constants.ROUTES_DIR), constants.ROUTES_FILE, content,
+        utils.writeFile(path.join(projectMetadata.location, constants.ROUTES_DIR), constants.ROUTES_FILE, content,
             (error) => {
                 if (!error) {
                     console.log(constants.ROUTES_FILE + ' created.');
@@ -87,9 +87,9 @@ class BaseBlueprintGenerator {
             });
     }
 
-    writeMetadata(projectMetaData) {
-        let content = utils.parseTemplate(template.PROJECT_METADATA_JSON_TEMPLATE, projectMetaData);
-        utils.writeFile(projectMetaData.location, constants.APP_METADATA_FILE, content,
+    writeMetadata(projectMetadata) {
+        let content = utils.parseTemplate(template.PROJECT_METADATA_JSON_TEMPLATE, projectMetadata);
+        utils.writeFile(projectMetadata.location, constants.APP_METADATA_FILE, content,
             (error) => {
                 if (!error) {
                     console.log(constants.APP_METADATA_FILE + ' created.');

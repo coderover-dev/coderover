@@ -33,7 +33,11 @@ export class Alerts extends React.Component {
         }
 
         let addAlertToQueue = this.addAlertToQueue.bind(this);
-        alerts.subscribe(addAlertToQueue);
+        this.alertSubscription = alerts.subscribe(addAlertToQueue);
+    }
+
+    componentWillUnmount() {
+        this.alertSubscription.unsubscribe();
     }
 
     addAlertToQueue(alert) {

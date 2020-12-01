@@ -2,15 +2,15 @@ import * as React from "react";
 import Grid from "@material-ui/core/Grid";
 import {Sidebar} from "./Sidebar";
 import {Divider} from "@material-ui/core";
-import {Breadcrumbs} from "./Breadcrumbs";
+import {Breadcrumb} from "./Breadcrumb";
 import {Toolbar} from "./Toolbar";
 import {ItemListView} from "./ItemListView";
-import './workspace.css'
+import './Workspace.css'
 
 export class Workspace extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.sidebar = true;
     }
 
@@ -64,7 +64,7 @@ export class Workspace extends React.Component {
                         this.forceUpdate(() => {});
                     }}/>
                     <Divider style={{backgroundColor: '#cecece'}}/>
-                    <Breadcrumbs/>
+                    <Breadcrumb/>
                     <Divider style={{backgroundColor: '#cecece'}}/>
                 </Grid>
                 <Grid container item style={{height: 'calc(100vh - 68px)'}}>

@@ -7,11 +7,19 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
+import {onBreadcrumbUpdate} from "./Breadcrumb";
+import {workspaceMetadata} from "../../data/workspace-metadata";
 
 export class Sidebar extends React.Component {
-    createSidebarItem(icon, text) {
+    createSidebarItem(icon, key, text) {
         return (
-            <ListItem button style={{height: '32px', paddingLeft: '20px'}}>
+            <ListItem button style={{height: '32px', paddingLeft: '20px'}}
+                      onClick={() => {
+                          onBreadcrumbUpdate.next({
+                              project: workspaceMetadata.project.name,
+                              component: text
+                          });
+                      }}>
                 <ListItemIcon style={{minWidth: '24px'}} className="sidebarMenuItem">
                     <FontAwesomeIcon icon={icon}/>
                 </ListItemIcon>
@@ -26,6 +34,7 @@ export class Sidebar extends React.Component {
         return (
             <Grid container style={{
                 flexDirection: "column",
+                paddingTop: '5px',
                 borderRight: '2px',
                 borderRightColor: "#cecece"
             }}>
@@ -35,11 +44,11 @@ export class Sidebar extends React.Component {
                               Workspace
                           </ListSubheader>
                       }>
-                    {this.createSidebarItem(faDatabase, "Data Models")}
-                    {this.createSidebarItem(faCube, "Resources")}
-                    {this.createSidebarItem(faSlidersH, "Profiles")}
-                    {this.createSidebarItem(faCog, "Settings")}
-                    {this.createSidebarItem(faFlask, "Console")}
+                    {this.createSidebarItem(faDatabase, "DATA_MODELS", "Data Models")}
+                    {this.createSidebarItem(faCube, "RESOURCES", "Resources")}
+                    {this.createSidebarItem(faSlidersH, "PROFILES", "Profiles")}
+                    {this.createSidebarItem(faCog, "SETTINGS", "Settings")}
+                    {this.createSidebarItem(faFlask, "NA", "Console")}
                 </List>
             </Grid>
         )

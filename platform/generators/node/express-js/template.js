@@ -1,6 +1,5 @@
-const PROJECT_METADATA_JSON_TEMPLATE = `
-{
-    "schemaVersion: "1.0",
+const PROJECT_METADATA_JSON_TEMPLATE = `{
+    "schemaVersion": "1.0",
     "name": "{{name}}",
     "type": "{{type}}",
     "platform": "{{platform}}",
@@ -8,8 +7,7 @@ const PROJECT_METADATA_JSON_TEMPLATE = `
 }
 `
 
-const PACKAGE_JSON_TEMPLATE = `
-{
+const PACKAGE_JSON_TEMPLATE = `{
     "name": "{{projectName}}",
     "version": "0.0.0",
     "private": true,
