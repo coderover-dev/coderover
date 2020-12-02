@@ -1,4 +1,4 @@
-export let workspaceMetadata = {
+export let workspaceData = {
     init: false,
     project: {
         name: "",
@@ -8,5 +8,8 @@ export let workspaceMetadata = {
         platform: "",
         framework: ""
     },
-    selectedComponent: ""
+    selectedComponent: {
+        key: "",
+        text: ""
+    }
 }

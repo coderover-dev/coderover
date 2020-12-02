@@ -4,7 +4,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Link from "@material-ui/core/Link";
-import './landingView.css'
+import './LandingView.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFolderOpen, faPlus} from "@fortawesome/free-solid-svg-icons";
 

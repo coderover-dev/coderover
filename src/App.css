@@ -54,3 +54,15 @@
 .MuiDialog-paper {
   border-radius: 20px !important;
 }
+
+.MuiOutlinedInput-inputMarginDense {
+  padding: 5px !important;
+}
+
+.MuiCheckbox-root {
+  padding: 0px !important;
+}
+
+.MuiMenuItem-root, .MuiInputBase-input {
+  font-size: 10pt !important;
+}

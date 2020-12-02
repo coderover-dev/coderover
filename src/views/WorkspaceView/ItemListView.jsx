@@ -92,24 +92,16 @@ export class ItemListView extends React.Component {
 
     render() {
         return (
-            <Grid container item>
-                <Grid container item
-                      style={{
-                          width: '240px',
-                          height: 'calc(100vh - 68px)',
-                          alignContent: "flex-start",
-                          backgroundColor: "#ffffff",
-                          borderRight: "1px solid #cecece"
-                      }}>
-                    {this.getFilterBar()}
-                    {this.getItemList()}
-                </Grid>
-                <Grid container item
-                      style={{
-                          width: 'calc(100vw - 480px)',
-                          alignContent: "flex-start"
-                      }}>
-                </Grid>
+            <Grid container item
+                  style={{
+                      width: '240px',
+                      height: '100%',
+                      alignContent: "flex-start",
+                      backgroundColor: "#ffffff",
+                      borderRight: "1px solid #cecece"
+                  }}>
+                {this.getFilterBar()}
+                {this.getItemList()}
             </Grid>
         )
     }

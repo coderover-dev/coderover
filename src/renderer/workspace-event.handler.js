@@ -1,6 +1,6 @@
 import {RendererProcessEventHandler} from "./renderer-process-event.handler";
 import {pushAlert, ALERT_OK} from "../components/alert/Alerts"
-import {openWorkspace} from "../components/workspace/workspace-events";
+import {openWorkspace} from "../shared/workspace-events";
 
 export class WorkspaceEventHandler extends RendererProcessEventHandler {
 

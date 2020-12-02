@@ -7,18 +7,26 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
-import {onBreadcrumbUpdate} from "./Breadcrumb";
-import {workspaceMetadata} from "../../data/workspace-metadata";
+import {breadcrumbSubject} from "./Breadcrumb";
+import {workspaceData} from "../../shared/workspace-data";
+import {workspaceSubject} from "../../shared/workspace-events";
 
 export class Sidebar extends React.Component {
     createSidebarItem(icon, key, text) {
         return (
             <ListItem button style={{height: '32px', paddingLeft: '20px'}}
                       onClick={() => {
-                          onBreadcrumbUpdate.next({
-                              project: workspaceMetadata.project.name,
+                          breadcrumbSubject.next({
+                              project: workspaceData.project.name,
                               component: text
                           });
+
+                          workspaceData.selectedComponent = {
+                              key: key,
+                              text: text
+                          }
+
+                          workspaceSubject.next(0);
                       }}>
                 <ListItemIcon style={{minWidth: '24px'}} className="sidebarMenuItem">
                     <FontAwesomeIcon icon={icon}/>

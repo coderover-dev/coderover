@@ -14,7 +14,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import './Workspace.css'
-import {closeWorkspace} from "./workspace-events";
+import {closeWorkspace} from "../../shared/workspace-events";
 
 export class Toolbar extends React.Component {
 
@@ -40,9 +40,9 @@ export class Toolbar extends React.Component {
                 <Button className="projectToolbarButton">
                     <FontAwesomeIcon icon={faFolderOpen}/>
                 </Button>
-                <Button className="projectToolbarButton">
-                    <FontAwesomeIcon icon={faPlus}/>
-                </Button>
+                {/*<Button className="projectToolbarButton">*/}
+                {/*    <FontAwesomeIcon icon={faPlus}/>*/}
+                {/*</Button>*/}
                 <Button className="projectToolbarButton"
                         onClick={() => {
                             closeWorkspace();

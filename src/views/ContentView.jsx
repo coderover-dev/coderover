@@ -1,8 +1,8 @@
 import React from "react";
-import {Workspace} from "../components/workspace/Workspace";
+import {WorkspaceView} from "./WorkspaceView/WorkspaceView";
 import {LandingView} from "./LandingView/LandingView";
-import {onWorkspaceUpdate} from "../components/workspace/workspace-events";
-import {workspaceMetadata} from "../data/workspace-metadata";
+import {workspaceSubject} from "../shared/workspace-events";
+import {workspaceData} from "../shared/workspace-data";
 
 export class ContentView extends React.Component {
 
@@ -12,8 +12,8 @@ export class ContentView extends React.Component {
             init: false
         }
         this.workspaceUpdateSubscription =
-            onWorkspaceUpdate.subscribe(value => {
-                this.setState({init: workspaceMetadata.init});
+            workspaceSubject.subscribe(value => {
+                this.setState({init: workspaceData.init});
             });
     }
 
@@ -22,6 +22,6 @@ export class ContentView extends React.Component {
     }
 
     render() {
-        return this.state.init ? (<Workspace/>) : (<LandingView/>);
+        return this.state.init ? (<WorkspaceView/>) : (<LandingView/>);
     }
 }

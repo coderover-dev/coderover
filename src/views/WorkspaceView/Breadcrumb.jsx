@@ -9,7 +9,7 @@ import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "@material-ui/core/Link";
 import {NavigateNext} from "@material-ui/icons";
 
-export let onBreadcrumbUpdate = new Subject();
+export let breadcrumbSubject = new Subject();
 
 export class Breadcrumb extends React.Component {
     constructor(props) {
@@ -20,11 +20,11 @@ export class Breadcrumb extends React.Component {
         }
 
         let handleBreadcrumbUpdate = this.handleBreadcrumbUpdate.bind(this);
-        this.breadcrumbUpdateSubscription = onBreadcrumbUpdate.subscribe(handleBreadcrumbUpdate);
+        this.breadcrumbSubjectSubscription = breadcrumbSubject.subscribe(handleBreadcrumbUpdate);
     }
 
     componentWillUnmount() {
-        this.breadcrumbUpdateSubscription.unsubscribe();
+        this.breadcrumbSubjectSubscription.unsubscribe();
     }
 
     handleBreadcrumbUpdate(data) {
