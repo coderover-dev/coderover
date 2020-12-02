@@ -56,18 +56,19 @@ export class WorkspaceView extends React.Component {
     getContentContainer() {
         if (this.sidebar) {
             return (
-                <Grid container item
-                      style={{
-                          width: 'calc(100% - 240px)',
-                          alignContent: "flex-start"
-                      }}>
-                    <Grid container>
-                        <Grid item style={{width: '240px'}}>
-                            <ItemListView/>
-                        </Grid>
-                        <Grid item style={{width: 'calc(100% - 240px)'}}>
-                            {this.getContent()}
-                        </Grid>
+                <Grid container item style={{
+                    width: 'calc(100% - 240px)',
+                    alignContent: "flex-start"
+                }}>
+                    <Grid item style={{width: '240px'}}>
+                        <ItemListView/>
+                    </Grid>
+                    <Grid item style={{
+                        width: 'calc(100% - 240px)',
+                        height: 'calc(100vh - 68px)',
+                        overflow: "scroll"
+                    }}>
+                        {this.getContent()}
                     </Grid>
                 </Grid>
             )
@@ -81,7 +82,11 @@ export class WorkspaceView extends React.Component {
                     <Grid item style={{width: '240px'}}>
                         <ItemListView/>
                     </Grid>
-                    <Grid item style={{width: 'calc(100% - 240px)'}}>
+                    <Grid item style={{
+                        width: 'calc(100% - 240px)',
+                        height: 'calc(100vh - 68px)',
+                        overflow: "scroll"
+                    }}>
                         {this.getContent()}
                     </Grid>
                 </Grid>
@@ -92,8 +97,8 @@ export class WorkspaceView extends React.Component {
 
     render() {
         return (
-            <Grid container style={{flexDirection: "row", height: '100vh'}}>
-                <Grid item style={{height: '68px', width: '100vw', flexDirection: "column", zIndex: 1}}>
+            <Grid container style={{flexDirection: "row", height: '100vh', width: '100vw'}}>
+                <Grid item style={{height: '68px', width: '100%', flexDirection: "column", zIndex: 1}}>
                     <Toolbar onSidebarToggle={() => {
                         this.sidebar = !this.sidebar;
                         this.forceUpdate(() => {

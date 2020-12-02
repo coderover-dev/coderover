@@ -65,4 +65,10 @@
 
 .MuiMenuItem-root, .MuiInputBase-input {
   font-size: 10pt !important;
+  height: 15px !important;
+  background-color: white !important;
+}
+
+.MuiTypography-root{
+  font-weight: 500 !important;
 }

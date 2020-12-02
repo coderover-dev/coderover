@@ -9,9 +9,10 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPlusCircle, faSearch} from "@fortawesome/free-solid-svg-icons";
+import {faFolderOpen, faPlusCircle, faSearch, faTimesCircle} from "@fortawesome/free-solid-svg-icons";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
+import {camelCaseToSnakeCase} from "../../shared/string-utils";
 
 export class ManageDataModelView extends React.Component {
 
@@ -72,10 +73,9 @@ export class ManageDataModelView extends React.Component {
     }
 
     fieldListItem(field) {
-        let itemBgColor = (field.idx % 2 === 0) ? '#ffffff' : '#f9f9f9';
-
+        //let itemBgColor = (field.idx % 2 === 0) ? '#ffffff' : '#f9f9f9';
         return (
-            <Grid container direction="row" style={{border: '1px solid #cecece', backgroundColor: itemBgColor}}
+            <Grid container direction="row" style={{border: '1px solid #cecece', backgroundColor: '#f9f9f9'}}
                   key={'field_' + field.idx}>
                 <Grid item style={{padding: '5px'}}>
                     <Grid container direction={"column"}>
@@ -180,6 +180,15 @@ export class ManageDataModelView extends React.Component {
                         </Grid>
                     </Grid>
                 </Grid>
+                <Grid item style={{padding: '18px 10px'}}>
+                    <Tooltip title="Delete this field">
+                        <IconButton style={{fontSize: '15pt', height: '10px', color: '#922B21'}}
+                                    onClick={() => {
+                                    }}>
+                            <FontAwesomeIcon icon={faTimesCircle}/>
+                        </IconButton>
+                    </Tooltip>
+                </Grid>
             </Grid>
         )
     }
@@ -194,42 +203,23 @@ export class ManageDataModelView extends React.Component {
 
     getForm() {
         return (
-            <Grid container direction={"column"} style={{padding: '15px'}}>
-                <Grid item container direction="row" xs={12}>
-                    <Grid item style={{textAlign: "left", paddingTop: "10px"}} xs={4}>
+            <Grid container direction={"column"}>
+                <Grid item container direction="row" style={{paddingTop: "10px"}} xs={12}>
+                    <Grid item style={{textAlign: "left"}} xs={2}>
                         <Typography variant={"caption"}>Name :</Typography>
                     </Grid>
-                    <Grid item xs={8}>
+                    <Grid item xs={10} style={{textAlign: "left"}}>
                         <OutlinedInput
                             id="dataModelName"
                             value={this.state.dataModelName}
                             onChange={(event) => {
                                 this.setState({
-                                    dataModelName: event.target.value
+                                    dataModelName: event.target.value,
+                                    tableName: camelCaseToSnakeCase(event.target.value)
                                 })
                             }}
                             margin="dense"/>
-                    </Grid>
-                </Grid>
-                <Grid item container direction="row" xs={12}>
-                    <Grid item style={{textAlign: "left", paddingTop: "10px"}} xs={4}>
-                        <Typography variant={"caption"}>Table name :</Typography>
-                    </Grid>
-                    <Grid item xs={8}>
-                        <OutlinedInput
-                            id="tableName"
-                            value={this.state.tableName}
-                            onChange={(event) => {
-                                this.setState({tableName: event.target.value});
-                            }}
-                            margin="dense"/>
-                    </Grid>
-                </Grid>
-                <Grid item container direction="row" xs={12}>
-                    <Grid item style={{textAlign: "left", paddingTop: "10px"}} xs={4}>
-                        <Typography variant={"caption"}>Data transfer only</Typography>
-                    </Grid>
-                    <Grid item xs={8}>
+                        <Typography variant={"caption"} style={{paddingLeft: '20px'}}>Data transfer only :</Typography>
                         <Checkbox
                             color="primary"
                             value={this.state.dataTransferOnly}
@@ -237,6 +227,21 @@ export class ManageDataModelView extends React.Component {
                                 this.setState({dataTransferOnly: event.target.value});
                             }}
                             inputProps={{'aria-label': 'secondary checkbox'}}/>
+                    </Grid>
+                </Grid>
+                <Grid item container direction="row" style={{paddingTop: "10px"}} xs={12}>
+                    <Grid item style={{textAlign: "left"}} xs={2}>
+                        <Typography variant={"caption"}>Table name :</Typography>
+                    </Grid>
+                    <Grid item xs={10}>
+                        <OutlinedInput
+                            id="tableName"
+                            value={this.state.tableName}
+                            onChange={(event) => {
+                                this.setState({tableName: event.target.value});
+                            }}
+                            disabled={this.state.dataTransferOnly}
+                            margin="dense"/>
                     </Grid>
                 </Grid>
                 <Grid item container direction="column" xs={12}>
@@ -248,7 +253,8 @@ export class ManageDataModelView extends React.Component {
                                         <Typography variant="h6">Fields</Typography>
                                     </Grid>
                                     <Grid item style={{paddingLeft: '5px', paddingTop: '3px'}}>
-                                        <Typography variant="subtitle1">{'(' + this.state.fields.length + ')'}</Typography>
+                                        <Typography
+                                            variant="subtitle1">{'(' + this.state.fields.length + ')'}</Typography>
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -257,12 +263,12 @@ export class ManageDataModelView extends React.Component {
                                     <IconButton color="primary"
                                                 style={{fontWeight: 'bold', fontSize: '14pt', padding: 0}}
                                                 onClick={() => this.addNewField()}>
-                                        <FontAwesomeIcon className="dataTableButtonIcon" color="primary"
+                                        <FontAwesomeIcon className="iconButton" color="primary"
                                                          icon={faPlusCircle}/>
                                     </IconButton>
                                 </Tooltip>
                             </Grid>
-                            <Grid item style={{paddingTop: '8px'}}>
+                            <Grid item style={{paddingTop: '8px', paddingLeft: '8px'}}>
                                 <OutlinedInput
                                     id="dataModelName"
                                     value={this.state.searchField}
@@ -279,7 +285,7 @@ export class ManageDataModelView extends React.Component {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item>
+                    <Grid item xs={10}>
                         {this.fieldList()}
                     </Grid>
                 </Grid>

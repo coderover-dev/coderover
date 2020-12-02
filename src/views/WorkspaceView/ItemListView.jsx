@@ -8,7 +8,7 @@ import {
     faCube,
     faDatabase,
     faFlask,
-    faPlus,
+    faPlus, faPlusCircle,
     faSearch,
     faSlidersH
 } from "@fortawesome/free-solid-svg-icons";
@@ -20,6 +20,7 @@ import {Button, IconButton} from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import Tooltip from "@material-ui/core/Tooltip";
 
 export class ItemListView extends React.Component {
 
@@ -75,16 +76,15 @@ export class ItemListView extends React.Component {
                         }}
                         variant="outlined"/>
                 </Grid>
-                <Grid item xs={2} style={{paddingRight: '15px'}}>
-                    <Button style={{
-                        marginTop: '8px',
-                        fontSize: '15pt',
-                        height: '40px',
-                        minWidth: '40px',
-                        maxWidth: '40px'
-                    }}>
-                        <FontAwesomeIcon icon={faPlus}/>
-                    </Button>
+                <Grid item xs={2} style={{paddingLeft: '10px', marginTop: '10px'}}>
+                    <Tooltip title="Add new component">
+                        <IconButton color="primary"
+                                    style={{fontWeight: 'bold', fontSize: '14pt', padding: 0}}
+                                    onClick={() => {}}>
+                            <FontAwesomeIcon className="iconButton" color="primary"
+                                             icon={faPlusCircle}/>
+                        </IconButton>
+                    </Tooltip>
                 </Grid>
             </Grid>
         )
@@ -92,10 +92,10 @@ export class ItemListView extends React.Component {
 
     render() {
         return (
-            <Grid container item
+            <Grid container
                   style={{
+                      height: 'calc(100vh - 68px)',
                       width: '240px',
-                      height: '100%',
                       alignContent: "flex-start",
                       backgroundColor: "#ffffff",
                       borderRight: "1px solid #cecece"

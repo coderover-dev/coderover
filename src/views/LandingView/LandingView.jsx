@@ -49,7 +49,8 @@ export class LandingView extends React.Component {
                     justifyContent: "center",
                     paddingLeft: "calc((100vw - 650px)/2)",
                     backgroundColor: "#E5E4E2",
-                    height: '100vh', width: '100vw'
+                    height: window.innerHeight,
+                    width: window.innerWidth
                 }}>
                     <Grid item>
                         <Card style={{

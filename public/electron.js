@@ -1,15 +1,15 @@
 const path = require('path');
 const url = require('url');
-
-const {app, BrowserWindow} = require('electron')
+const {app, screen, BrowserWindow} = require('electron')
 const isDev = require("electron-is-dev");
 const ipcMain = require('electron').ipcMain;
 const {registryMainProcessEvents} = require('../platform/main/events-registry');
 
 function createWindow() {
+    const {width, height} = screen.getPrimaryDisplay().workAreaSize
     const win = new BrowserWindow({
-        width: 1024,
-        height: 768,
+        width: width,
+        height: height,
         webPreferences: {
             nodeIntegration: true,
             enableRemoteModule: true,
@@ -26,7 +26,8 @@ function createWindow() {
             pathname: path.join(__dirname, '../build/index.html'),
             protocol: 'file:',
             slashes: true
-        })).then(r => {})
+        })).then(r => {
+        })
     }
 
     registryMainProcessEvents(ipcMain)
