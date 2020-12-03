@@ -7,7 +7,7 @@ import {Toolbar} from "./Toolbar";
 import {ItemListView} from "./ItemListView";
 import './Workspace.css'
 import {workspaceData} from "../../shared/workspace-data";
-import {ManageDataModelView} from "../ManageDataModelView/ManageDataModelView";
+import {DataModelView} from "../DataModelView/DataModelView";
 import {workspaceSubject} from "../../shared/workspace-events";
 
 export class WorkspaceView extends React.Component {
@@ -41,7 +41,7 @@ export class WorkspaceView extends React.Component {
     }
 
     getDataModelView() {
-        return (<ManageDataModelView/>);
+        return (<DataModelView/>);
     }
 
     getContent() {
@@ -66,7 +66,7 @@ export class WorkspaceView extends React.Component {
                     <Grid item style={{
                         width: 'calc(100% - 240px)',
                         height: 'calc(100vh - 68px)',
-                        overflow: "scroll"
+                        overflow: "auto"
                     }}>
                         {this.getContent()}
                     </Grid>
@@ -85,7 +85,7 @@ export class WorkspaceView extends React.Component {
                     <Grid item style={{
                         width: 'calc(100% - 240px)',
                         height: 'calc(100vh - 68px)',
-                        overflow: "scroll"
+                        overflow: "auto"
                     }}>
                         {this.getContent()}
                     </Grid>
