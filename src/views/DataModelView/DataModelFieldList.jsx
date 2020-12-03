@@ -15,6 +15,9 @@ export class DataModelFieldList extends React.Component {
     constructor(props) {
         super(props);
         this.fieldCount = 0;
+        // need to handle default transient fields
+        // when a new field is added it should take the value from this.transient
+        this.transient = props.transient;
         this.state = props.fields;
     }
 
@@ -34,7 +37,7 @@ export class DataModelFieldList extends React.Component {
             fieldDataType: "",
             dbColumnName: "",
             defaultValue: "",
-            transient: false,
+            transient: this.transient,
             nullable: true,
             unique: false,
             refDataModelName: "",

@@ -25,7 +25,7 @@ export class DataModelView extends React.Component {
         this.state = {
             dataModelName: "",
             tableName: "",
-            dataTransferOnly: false,
+            transient: false,
             fields: [],
             searchField: ""
         }
@@ -52,9 +52,9 @@ export class DataModelView extends React.Component {
                         <Typography variant={"caption"} style={{paddingLeft: '20px'}}>Data transfer only :</Typography>
                         <Checkbox
                             color="primary"
-                            checked={this.state.dataTransferOnly}
-                            onChange={(event) => {
-                                this.setState({dataTransferOnly: event.target.value});
+                            checked={this.state.transient}
+                            onChange={(event, checked) => {
+                                this.setState({transient: checked});
                             }}
                             inputProps={{'aria-label': 'secondary checkbox'}}/>
                     </Grid>
@@ -70,12 +70,12 @@ export class DataModelView extends React.Component {
                             onChange={(event) => {
                                 this.setState({tableName: event.target.value});
                             }}
-                            disabled={this.state.dataTransferOnly}
+                            disabled={this.state.transient}
                             margin="dense"/>
                     </Grid>
                 </Grid>
                 <Grid item container direction="column" xs={12}>
-                    <DataModelFieldList fields={this.state.fields}/>
+                    <DataModelFieldList fields={this.state.fields} transient={this.state.transient}/>
                 </Grid>
             </Grid>
         )
