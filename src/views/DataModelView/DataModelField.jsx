@@ -1,6 +1,6 @@
 import * as React from "react";
 import Grid from "@material-ui/core/Grid";
-import {Typography} from "@material-ui/core";
+import {Divider, Typography} from "@material-ui/core";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -86,7 +86,7 @@ export class DataModelField extends React.Component {
                         variant={"body2"}>
                         {(this.state.field.unique != null && this.state.field.unique) ? 'unique' : ''}</Typography>
                 </Grid>
-                <Grid item style={{paddingRight: '10px',paddingTop:'2px'}}>
+                <Grid item style={{paddingRight: '10px', paddingTop: '2px'}}>
                     <Tooltip title="Edit">
                         <IconButton style={{fontSize: '15pt', height: '10px'}}
                                     color="primary"
@@ -114,172 +114,168 @@ export class DataModelField extends React.Component {
             <Grid container direction="row" style={{
                 border: '1px solid #cecece',
                 backgroundColor: '#f9f9f9',
-                paddingTop: '10px',
-                paddingBottom: '10px'
+                padding: '5px',
+                marginTop: 10,
+                borderRadius: '10px'
             }}
                   key={'field_' + this.state.field.fieldId}>
-                <Grid item container direction={"row"}>
-                    <Grid item style={{padding: '5px'}}>
-                        <Grid container direction={"column"}>
-                            <Grid item style={{paddingTop: '2px'}}>
-                                <Typography variant={"caption"}>Field Name</Typography>
-                            </Grid>
-                            <Grid item>
-                                <OutlinedInput
-                                    id={'fieldName_' + this.state.field.fieldId}
-                                    value={this.state.field.fieldName}
-                                    onChange={(event) => {
-                                        let dbColumnName = this.state.field.dbColumnName;
-                                        let fieldName = event.target.value;
-                                        let newField = this.state.field.newField;
-                                        let transient = this.state.field.transient;
-                                        if (!transient && newField) {
-                                            dbColumnName = camelCaseToSnakeCase(fieldName, dbColumnName);
-                                            this.setFieldValue(this.state.field.fieldId, 'dbColumnName', dbColumnName);
-                                        }
-                                        this.setFieldValue(this.state.field.fieldId, 'fieldName', fieldName);
-                                    }}
-                                    margin="dense"/>
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                    <Grid item style={{padding: '5px', width: '160px'}}>
-                        <Grid container direction={"column"}>
-                            <Grid item style={{paddingTop: '2px'}}>
-                                <Typography variant={"caption"}>Data Type</Typography>
-                            </Grid>
-                            <Grid item>
-                                <TextField select id={'fieldDataType_' + this.state.field.fieldId} size="small"
-                                           defaultValue="" variant="outlined" fullWidth
-                                           value={this.state.field.fieldDataType}
-                                           onChange={(event) => {
-                                               this.setFieldValue(this.state.field.fieldId, 'fieldDataType', event.target.value);
-                                           }}>
-                                    {this.dataTypes.map((dataType) => (
-                                        <MenuItem key={dataType.value} value={dataType.value}>
-                                            {dataType.label}
-                                        </MenuItem>
-                                    ))}
-                                </TextField>
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                    <Grid item style={{padding: '5px'}}>
-                        <Grid container direction={"column"}>
-                            <Grid item>
-                                <Typography variant={"caption"}>DB Column Name</Typography>
-                            </Grid>
-                            <Grid item style={{paddingTop: '2px'}}>
-                                <OutlinedInput
-                                    id={'dbColumnName_' + this.state.field.fieldId}
-                                    value={this.state.field.dbColumnName}
-                                    onChange={(event) => {
-                                        this.setFieldValue(this.state.field.fieldId, 'dbColumnName', event.target.value);
-                                    }}
-                                    margin="dense"/>
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                    <Grid item style={{padding: '5px'}}>
-                        <Grid container direction={"column"}>
-                            <Grid item>
-                                <Typography variant={"caption"}>Default value</Typography>
-                            </Grid>
-                            <Grid item style={{paddingTop: '2px'}}>
-                                <OutlinedInput
-                                    id={'defaultValue_' + this.state.field.fieldId}
-                                    value={this.state.field.defaultValue}
-                                    onChange={(event) => {
-                                        this.setFieldValue(this.state.field.fieldId, 'defaultValue', event.target.value);
-                                    }}
-                                    margin="dense"/>
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </Grid>
-                <Grid item container direction={"row"}>
-                    <Grid item xs={6} style={{padding: '5px'}}>
-                        <Grid container direction={"row"} spacing={1}>
+                <Grid item container direction={"row"} spacing={2}>
 
-                            <Grid item style={{paddingTop: '2px', paddingLeft: '5px', textAlign: "center"}}>
-                                <Checkbox
-                                    id={'transient_' + this.state.field.fieldId}
-                                    color="primary"
-                                    checked={this.state.field.transient}
-                                    onChange={(event, checked) => {
-                                        this.setFieldValue(this.state.field.fieldId, 'transient', checked);
-                                    }}
-                                    inputProps={{'aria-label': 'secondary checkbox'}}/>
-                            </Grid>
-                            <Grid item>
-                                <Typography variant={"caption"}>Transient</Typography>
-                            </Grid>
-
-                            <Grid item style={{paddingTop: '2px', paddingLeft: '5px', textAlign: "center"}}>
-                                <Checkbox
-                                    id={'nullable_' + this.state.field.fieldId}
-                                    color="primary"
-                                    checked={this.state.field.nullable}
-                                    onChange={(event, checked) => {
-                                        this.setFieldValue(this.state.field.fieldId, 'nullable', checked);
-                                    }}
-                                    inputProps={{'aria-label': 'secondary checkbox'}}/>
-                            </Grid>
-                            <Grid item>
-                                <Typography variant={"caption"}>Nullable</Typography>
-                            </Grid>
-
-                            <Grid item style={{paddingTop: '2px', paddingLeft: '5px', textAlign: "center"}}>
-                                <Checkbox
-                                    id={'nullable_' + this.state.field.fieldId}
-                                    color="primary"
-                                    checked={this.state.field.unique}
-                                    onChange={(event, checked) => {
-                                        this.setFieldValue(this.state.field.fieldId, 'unique', checked);
-                                    }}
-                                    inputProps={{'aria-label': 'secondary checkbox'}}/>
-                            </Grid>
-                            <Grid item>
-                                <Typography variant={"caption"}>Unique</Typography>
-                            </Grid>
-
+                    <Grid item>
+                        <Grid item style={{paddingTop: '2px'}}>
+                            <Typography variant={"caption"}>Field Name</Typography>
                         </Grid>
-                    </Grid>
-                    <Grid item xs={6} container spacing={1} justify={"flex-end"} direction={"row"}
-                          style={{paddingTop: '5px'}}>
                         <Grid item>
-                            <Tooltip title="Apply">
-                                <Button
-                                    variant={"contained"}
+                            <OutlinedInput fullWidth
+                                           id={'fieldName_' + this.state.field.fieldId}
+                                           value={this.state.field.fieldName}
+                                           onChange={(event) => {
+                                               let dbColumnName = this.state.field.dbColumnName;
+                                               let fieldName = event.target.value;
+                                               let newField = this.state.field.newField;
+                                               let transient = this.state.field.transient;
+                                               if (!transient && newField) {
+                                                   dbColumnName = camelCaseToSnakeCase(fieldName, dbColumnName);
+                                                   this.setFieldValue(this.state.field.fieldId, 'dbColumnName', dbColumnName);
+                                               }
+                                               this.setFieldValue(this.state.field.fieldId, 'fieldName', fieldName);
+                                           }}
+                                           margin="dense"/>
+                        </Grid>
+                    </Grid>
+
+                    <Grid item style={{width: '150px'}}>
+                        <Grid item style={{paddingTop: '2px'}}>
+                            <Typography variant={"caption"}>Data Type</Typography>
+                        </Grid>
+                        <Grid item>
+                            <TextField select id={'fieldDataType_' + this.state.field.fieldId} size="small"
+                                       defaultValue="" variant="outlined" fullWidth
+                                       value={this.state.field.fieldDataType}
+                                       onChange={(event) => {
+                                           this.setFieldValue(this.state.field.fieldId, 'fieldDataType', event.target.value);
+                                       }}>
+                                {this.dataTypes.map((dataType) => (
+                                    <MenuItem key={dataType.value} value={dataType.value}>
+                                        {dataType.label}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </Grid>
+                    </Grid>
+
+                    <Grid item>
+                        <Grid item>
+                            <Typography variant={"caption"}>DB Column Name</Typography>
+                        </Grid>
+                        <Grid item style={{paddingTop: '2px'}}>
+                            <OutlinedInput fullWidth
+                                           id={'dbColumnName_' + this.state.field.fieldId}
+                                           value={this.state.field.dbColumnName}
+                                           onChange={(event) => {
+                                               this.setFieldValue(this.state.field.fieldId, 'dbColumnName', event.target.value);
+                                           }}
+                                           margin="dense"/>
+                        </Grid>
+                    </Grid>
+
+                    <Grid item>
+                        <Grid item>
+                            <Typography variant={"caption"}>Default value</Typography>
+                        </Grid>
+                        <Grid item style={{paddingTop: '2px'}}>
+                            <OutlinedInput fullWidth
+                                           id={'defaultValue_' + this.state.field.fieldId}
+                                           value={this.state.field.defaultValue}
+                                           onChange={(event) => {
+                                               this.setFieldValue(this.state.field.fieldId, 'defaultValue', event.target.value);
+                                           }}
+                                           margin="dense"/>
+                        </Grid>
+                    </Grid>
+
+                    <Grid item>
+                        <Grid item>
+                            <Typography variant={"caption"}>Transient</Typography>
+                        </Grid>
+                        <Grid item style={{paddingTop: '2px'}}>
+                            <Checkbox
+                                id={'transient_' + this.state.field.fieldId}
+                                color="primary"
+                                checked={this.state.field.transient}
+                                onChange={(event, checked) => {
+                                    this.setFieldValue(this.state.field.fieldId, 'transient', checked);
+                                }}
+                                inputProps={{'aria-label': 'secondary checkbox'}}/>
+                        </Grid>
+                    </Grid>
+
+                    <Grid item>
+                        <Grid item>
+                            <Typography variant={"caption"}>Nullable</Typography>
+                        </Grid>
+                        <Grid item style={{paddingTop: '2px'}}>
+                            <Checkbox
+                                id={'nullable_' + this.state.field.fieldId}
+                                color="primary"
+                                checked={this.state.field.nullable}
+                                onChange={(event, checked) => {
+                                    this.setFieldValue(this.state.field.fieldId, 'nullable', checked);
+                                }}
+                                inputProps={{'aria-label': 'secondary checkbox'}}/>
+                        </Grid>
+                    </Grid>
+
+                    <Grid item>
+                        <Grid item>
+                            <Typography variant={"caption"}>Unique</Typography>
+                        </Grid>
+                        <Grid item style={{paddingTop: '2px'}}>
+                            <Checkbox
+                                id={'nullable_' + this.state.field.fieldId}
+                                color="primary"
+                                checked={this.state.field.unique}
+                                onChange={(event, checked) => {
+                                    this.setFieldValue(this.state.field.fieldId, 'unique', checked);
+                                }}
+                                inputProps={{'aria-label': 'secondary checkbox'}}/>
+                        </Grid>
+                    </Grid>
+
+                    <Grid item style={{paddingTop: '18px'}}>
+                        <Tooltip title="Apply">
+                            <Button
+                                variant={"contained"}
+                                size={"small"}
+                                color="primary"
+                                disabled={!this.allowSave()}
+                                onClick={() => {
+                                    this.props.onUpdate(this.state.field);
+                                    this.setState({editMode: false});
+                                }}
+                                startIcon={
+                                    <FontAwesomeIcon style={{fontSize: '15pt'}} icon={faCheckCircle}/>
+                                }>Apply</Button>
+                        </Tooltip>
+                    </Grid>
+
+                    <Grid item style={{paddingTop: '18px'}}>
+                        <Tooltip title="Cancel">
+                            <Button variant={"outlined"}
                                     size={"small"}
                                     color="primary"
-                                    disabled={!this.allowSave()}
                                     onClick={() => {
-                                        this.props.onUpdate(this.state.field);
+                                        if (this.state.field.newField) {
+                                            this.props.onDelete(this.state.field.fieldId);
+                                        }
                                         this.setState({editMode: false});
                                     }}
                                     startIcon={
-                                        <FontAwesomeIcon style={{fontSize: '15pt'}} icon={faCheckCircle}/>
-                                    }>Apply</Button>
-                            </Tooltip>
-                        </Grid>
-                        <Grid item>
-                            <Tooltip title="Cancel">
-                                <Button variant={"outlined"}
-                                        size={"small"}
-                                        color="primary"
-                                        onClick={() => {
-                                            if (this.state.field.newField) {
-                                                this.props.onDelete(this.state.field.fieldId);
-                                            }
-                                            this.setState({editMode: false});
-                                        }}
-                                        startIcon={
-                                            <FontAwesomeIcon style={{fontSize: '15pt'}} icon={faTimesCircle}/>
-                                        }>Cancel</Button>
-                            </Tooltip>
-                        </Grid>
+                                        <FontAwesomeIcon style={{fontSize: '15pt'}} icon={faTimesCircle}/>
+                                    }>Cancel</Button>
+                        </Tooltip>
                     </Grid>
+
                 </Grid>
             </Grid>
         )

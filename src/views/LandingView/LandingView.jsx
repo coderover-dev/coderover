@@ -47,7 +47,7 @@ export class LandingView extends React.Component {
                 <Grid container style={{
                     flexDirection: "column",
                     justifyContent: "center",
-                    paddingLeft: "calc((100vw - 650px)/2)",
+                    paddingLeft: "calc((100% - 650px)/2)",
                     backgroundColor: "#E5E4E2",
                     height: window.innerHeight,
                     width: window.innerWidth

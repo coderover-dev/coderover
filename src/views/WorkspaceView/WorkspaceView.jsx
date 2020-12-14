@@ -30,7 +30,7 @@ export class WorkspaceView extends React.Component {
                 <Grid container item
                       style={{
                           padding: 5,
-                          width: '240px',
+                          width: '200px',
                           alignContent: "flex-start",
                           backgroundColor: "#d3dce3"
                       }}>
@@ -57,7 +57,7 @@ export class WorkspaceView extends React.Component {
         if (this.sidebar) {
             return (
                 <Grid container item style={{
-                    width: 'calc(100% - 240px)',
+                    width: 'calc(100% - 200px)',
                     alignContent: "flex-start"
                 }}>
                     <Grid item style={{width: '240px'}}>

@@ -109,7 +109,7 @@ export class DataModelFieldList extends React.Component {
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid containeitem xs={12}>
                     {
                         Object.keys(this.state)
                             .map(fieldId => this.state[fieldId])
