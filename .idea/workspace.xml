@@ -20,46 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07424044-891a-4bc7-8a83-ef9993154c32" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/generators/generator-factory.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/generators/generator-factory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/generators/node/express-js/base-blueprint-generator.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/generators/node/express-js/base-blueprint-generator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/generators/node/express-js/generator.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/generators/node/express-js/generator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/generators/node/express-js/template.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/generators/node/express-js/template.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/main/data-model-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/main/data-model-event.handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/main/events-registry.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/main/events-registry.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/main/main-process-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/main/main-process-event.handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/main/workspace-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/main/workspace-event.handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/metadata.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/workspace.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/workspace.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/electron.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/electron.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/alert/Alerts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/alert/Alerts.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/statusBar/StatusBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statusBar/StatusBar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/data-model-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/data-model-event.handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/renderer-process-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/renderer-process-event.handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/renderer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/renderer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/workspace-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/workspace-event.handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/string-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/string-utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/workspace-data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/workspace-data.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/workspace-events.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/workspace-events.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/ContentView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ContentView.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/CreateProjectView/CreateProjectView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/CreateProjectView/CreateProjectView.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/DataModelView/DataModelField.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DataModelView/DataModelField.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/DataModelView/DataModelFieldList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DataModelView/DataModelFieldList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/DataModelView/DataModelView.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DataModelView/DataModelView.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/DataModelView/DataModelView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DataModelView/DataModelView.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/LandingView/LandingView.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LandingView/LandingView.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/LandingView/LandingView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LandingView/LandingView.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/Breadcrumb.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/Breadcrumb.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/ItemListView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/ItemListView.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/Sidebar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/Toolbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/Toolbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/Workspace.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/Workspace.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/WorkspaceView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/WorkspaceView.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +118,7 @@
       <workItem from="1606808638253" duration="49775000" />
       <workItem from="1606969841751" duration="22070000" />
       <workItem from="1607672798918" duration="751000" />
-      <workItem from="1607948324447" duration="11165000" />
+      <workItem from="1607948324447" duration="12963000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1606071312677</created>
@@ -268,7 +232,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607955579969</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="refactored indentation with 2 spaces">
+      <created>1607961882509</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1607961882509</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -303,7 +274,8 @@
     <MESSAGE value="updated data model view&#10;added new components to handle field list and field list item" />
     <MESSAGE value="added functionality to handle transient fields" />
     <MESSAGE value="refactored data model view" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored data model view" />
+    <MESSAGE value="refactored indentation with 2 spaces" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored indentation with 2 spaces" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-815" y="655" key="#JavaScript" timestamp="1607961447194">
@@ -325,9 +297,10 @@
     </state>
     <state x="-1259" y="259" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606916405922" />
     <state x="578" y="252" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606049503244" />
-    <state x="2187" y="-53" key="CommitChangelistDialog2" timestamp="1607955579633">
-      <screen x="1920" y="-87" width="1080" height="1895" />
+    <state x="-813" y="59" key="CommitChangelistDialog2" timestamp="1607961882307">
+      <screen x="-1080" y="25" width="1080" height="1895" />
     </state>
+    <state x="-813" y="59" key="CommitChangelistDialog2/-2461.552.1381.875/0.25.1080.1895/-1080.25.1080.1895@-1080.25.1080.1895" timestamp="1607961882307" />
     <state x="-1435" y="43" key="CommitChangelistDialog2/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606588342802" />
     <state x="424" y="42" key="CommitChangelistDialog2/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606156766200" />
     <state x="358" y="-1036" key="CommitChangelistDialog2/0.25.1680.953/-127.-1055.1920.1055@-127.-1055.1920.1055" timestamp="1606845397538" />
@@ -388,9 +361,10 @@
       <screen x="-1920" y="25" width="1920" height="1055" />
     </state>
     <state width="500" height="445" key="SwitcherDM/0.25.1680.953/-1920.25.1920.1055@-1920.25.1920.1055" timestamp="1606984701704" />
-    <state x="2200" y="311" key="Vcs.Push.Dialog.v2" timestamp="1607955582404">
-      <screen x="1920" y="-87" width="1080" height="1895" />
+    <state x="-800" y="423" key="Vcs.Push.Dialog.v2" timestamp="1607961884405">
+      <screen x="-1080" y="25" width="1080" height="1895" />
     </state>
+    <state x="-800" y="423" key="Vcs.Push.Dialog.v2/-2461.552.1381.875/0.25.1080.1895/-1080.25.1080.1895@-1080.25.1080.1895" timestamp="1607961884405" />
     <state x="-1417" y="231" key="Vcs.Push.Dialog.v2/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606588344764" />
     <state x="440" y="225" key="Vcs.Push.Dialog.v2/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606156568435" />
     <state x="376" y="-834" key="Vcs.Push.Dialog.v2/0.25.1680.953/-127.-1055.1920.1055@-127.-1055.1920.1055" timestamp="1606845174645" />

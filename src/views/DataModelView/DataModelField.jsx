@@ -61,11 +61,11 @@ export class DataModelField extends React.Component {
               key={'field_' + this.state.field.fieldId}>
           <Grid item style={{paddingRight: '10px', paddingTop: '5px'}}>
             <Typography variant={"body1"}
-                        style={{fontWeight: 'bolder'}}>{this.state.field.fieldName}</Typography>
+                        style={{fontWeight: 'normal'}}>{this.state.field.fieldName}</Typography>
           </Grid>
           <Grid item style={{paddingRight: '10px', paddingTop: '5px'}}>
             <Typography variant={"body2"} style={{
-              fontWeight: 500,
+              fontWeight: "bolder",
               fontStyle: "italic"
             }}>{this.state.field.fieldDataType}</Typography>
           </Grid>
@@ -153,6 +153,11 @@ export class DataModelField extends React.Component {
                            defaultValue="" variant="outlined" fullWidth
                            value={this.state.field.fieldDataType}
                            onChange={(event) => {
+                             if(event.target.value==='ID'){
+                               this.state.field.transient = false;
+                               this.state.field.nullable = false;
+                               this.state.field.unique = true;
+                             }
                              this.setFieldValue(this.state.field.fieldId, 'fieldDataType', event.target.value);
                            }}>
                   {this.dataTypes.map((dataType) => (

@@ -30,20 +30,31 @@ export class DataModelView extends React.Component {
   constructor(props) {
     super(props);
     this.renderer = getRenderer();
-    this.state = {
+    this.reset();
+  }
+
+  reset() {
+
+    let state = {
       dataModelName: "",
       tableName: "",
       transient: false,
       fields: [],
       searchField: ""
+    };
+
+    if (this.state == null) {
+      this.state = state;
+    } else {
+      this.setState(state)
     }
   }
 
   getForm() {
     return (
-        <Grid container direction={"column"}>
-          <Grid item container direction="row" style={{paddingTop: "10px"}} xs={12}>
-            <Grid item style={{textAlign: "left"}} xs={2}>
+        <Grid container direction={"column"} spacing={2}>
+          <Grid item container direction="row" style={{paddingTop: "10px"}} xs={12} spacing={2}>
+            <Grid item style={{textAlign: "left"}}>
               <Typography variant={"caption"}>Name</Typography>
             </Grid>
             <Grid item style={{textAlign: "left"}}>
@@ -57,7 +68,8 @@ export class DataModelView extends React.Component {
                     })
                   }}
                   margin="dense"/>
-              <Typography variant={"caption"} style={{paddingLeft: '20px'}}>Data transfer only &nbsp;&nbsp;</Typography>
+            </Grid>
+            <Grid item style={{textAlign: "left"}}>
               <Checkbox
                   color="primary"
                   checked={this.state.transient}
@@ -65,10 +77,9 @@ export class DataModelView extends React.Component {
                     this.setState({transient: checked});
                   }}
                   inputProps={{'aria-label': 'secondary checkbox'}}/>
+              <Typography variant={"caption"}>Data transfer only &nbsp;&nbsp;</Typography>
             </Grid>
-          </Grid>
-          <Grid item container direction="row" style={{paddingTop: "10px"}} xs={12}>
-            <Grid item style={{textAlign: "left"}} xs={2}>
+            <Grid item style={{textAlign: "left"}}>
               <Typography variant={"caption"}>Table name</Typography>
             </Grid>
             <Grid item>
@@ -81,6 +92,9 @@ export class DataModelView extends React.Component {
                   disabled={this.state.transient}
                   margin="dense"/>
             </Grid>
+          </Grid>
+          <Grid item>
+            <Divider/>
           </Grid>
           <Grid item direction="column" xs={12}>
             <DataModelFieldList fields={this.state.fields} transient={this.state.transient}/>
@@ -95,7 +109,7 @@ export class DataModelView extends React.Component {
 
   render() {
     return (
-        <Grid container direction="column" style={{padding: '15px'}}>
+        <Grid container direction="column" style={{padding: '15px', minWidth:'850px', maxWidth:'100%'}}>
           <Grid item container direction="row">
             <Grid item direction={"row"} xs="9">
               <Typography variant="h6" style={{fontWeight: 'bold'}}>
@@ -136,7 +150,7 @@ export class DataModelView extends React.Component {
           <Grid item style={{paddingTop: '5px', paddingBottom: '5px'}}>
             <Divider/>
           </Grid>
-          <Grid item>
+          <Grid item style={{paddingTop: 10}}>
             {this.getForm()}
           </Grid>
           <Grid item>

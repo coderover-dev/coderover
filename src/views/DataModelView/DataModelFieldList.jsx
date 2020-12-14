@@ -69,7 +69,7 @@ export class DataModelFieldList extends React.Component {
   render() {
     return (
         <div>
-          <Grid item style={{textAlign: "left", paddingTop: "10px", paddingBottom: "10px"}}>
+          <Grid item style={{textAlign: "left", paddingBottom: "10px"}}>
             <Grid container spacing={1}>
               <Grid item container direction={"row"} spacing={1} xs={2}>
                 <Grid item>
