@@ -12,54 +12,54 @@ import {workspaceData} from "../../shared/workspace-data";
 import {workspaceSubject} from "../../shared/workspace-events";
 
 export class Sidebar extends React.Component {
-    createSidebarItem(icon, key, text) {
-        return (
-            <ListItem button style={{height: '32px', paddingLeft: '20px'}}
-                      onClick={() => {
-                          breadcrumbSubject.next({
-                              project: workspaceData.project.name,
-                              component: text
-                          });
+  createSidebarItem(icon, key, text) {
+    return (
+        <ListItem button style={{height: '32px', paddingLeft: '20px'}}
+                  onClick={() => {
+                    breadcrumbSubject.next({
+                      project: workspaceData.project.name,
+                      component: text
+                    });
 
-                          workspaceData.selectedComponent = {
-                              key: key,
-                              text: text
-                          }
+                    workspaceData.selectedComponent = {
+                      key: key,
+                      text: text
+                    }
 
-                          workspaceSubject.next(0);
-                      }}>
-                <ListItemIcon style={{minWidth: '24px'}} className="sidebarMenuItem">
-                    <FontAwesomeIcon icon={icon}/>
-                </ListItemIcon>
-                <ListItemText>
-                    <span className="sidebarMenuItem">{text}</span>
-                </ListItemText>
-            </ListItem>
-        )
-    }
+                    workspaceSubject.next(0);
+                  }}>
+          <ListItemIcon style={{minWidth: '24px'}} className="sidebarMenuItem">
+            <FontAwesomeIcon icon={icon}/>
+          </ListItemIcon>
+          <ListItemText>
+            <span className="sidebarMenuItem">{text}</span>
+          </ListItemText>
+        </ListItem>
+    )
+  }
 
-    render() {
-        return (
-            <Grid container style={{
-                flexDirection: "column",
-                paddingTop: '5px',
-                borderRight: '2px',
-                borderRightColor: "#cecece"
-            }}>
-                <List component="nav"
-                      subheader={
-                          <ListSubheader component="div" id="nested-list-subheader">
-                              Workspace
-                          </ListSubheader>
-                      }>
-                    {this.createSidebarItem(faDatabase, "DATA_MODELS", "Data Models")}
-                    {this.createSidebarItem(faCube, "RESOURCES", "Resources")}
-                    {this.createSidebarItem(faSlidersH, "PROFILES", "Profiles")}
-                    {this.createSidebarItem(faCog, "SETTINGS", "Settings")}
-                    {this.createSidebarItem(faFlask, "NA", "Console")}
-                </List>
-            </Grid>
-        )
-    }
+  render() {
+    return (
+        <Grid container style={{
+          flexDirection: "column",
+          paddingTop: '5px',
+          borderRight: '2px',
+          borderRightColor: "#cecece"
+        }}>
+          <List component="nav"
+                subheader={
+                  <ListSubheader component="div" id="nested-list-subheader">
+                    Workspace
+                  </ListSubheader>
+                }>
+            {this.createSidebarItem(faDatabase, "DATA_MODELS", "Data Models")}
+            {this.createSidebarItem(faCube, "RESOURCES", "Resources")}
+            {this.createSidebarItem(faSlidersH, "PROFILES", "Profiles")}
+            {this.createSidebarItem(faCog, "SETTINGS", "Settings")}
+            {this.createSidebarItem(faFlask, "NA", "Console")}
+          </List>
+        </Grid>
+    )
+  }
 }
 

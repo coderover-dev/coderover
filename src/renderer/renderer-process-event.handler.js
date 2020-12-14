@@ -1,17 +1,17 @@
 export class RendererProcessEventHandler {
 
-    constructor() {
-        this.ipcRenderer = window.ipcRenderer;
-        this.event = null;
-        this.args = null;
-        this.replyEventName = null;
-    }
+  constructor() {
+    this.ipcRenderer = window.ipcRenderer;
+    this.event = null;
+    this.args = null;
+    this.replyEventName = null;
+  }
 
-    handleSuccess(result) {
+  handleSuccess(result) {
 
-    }
+  }
 
-    handleError(error) {
-    }
+  handleError(error) {
+  }
 
 }

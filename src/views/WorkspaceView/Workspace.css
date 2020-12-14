@@ -1,11 +1,11 @@
-.projectToolbarButton{
+.projectToolbarButton {
     background-color: #f9f9f9 !important;
     color: #3b444b !important;
     border: 1px solid #b6b1b7 !important;
     height: 28px;
 }
 
-.actionToolbarButton{
+.actionToolbarButton {
     background-color: #f9f9f9 !important;
     color: #3b444b !important;
     /*color: #0a84ff !important;*/
@@ -13,40 +13,40 @@
     height: 28px;
 }
 
-.sidebarMenuItem{
+.sidebarMenuItem {
     font-size: 10pt !important;
     font-weight: 500 !important;
     color: #3b444b !important;
 }
 
 
-.sidebarSubMenuItem{
+.sidebarSubMenuItem {
     border-bottom: 1px solid #cecece !important;
 }
 
-.sidebarSubMenuItemText{
+.sidebarSubMenuItemText {
     font-size: 10pt !important;
     font-weight: 500 !important;
     color: #3b444b !important;
 }
 
-.MuiList-padding{
+.MuiList-padding {
     padding-top: 0 !important;
 }
 
-.MuiListSubheader-root{
+.MuiListSubheader-root {
     font-weight: bolder !important;
     line-height: 32px !important;
 }
 
-.BreadcrumbText-bold{
+.BreadcrumbText-bold {
     padding-top: 2px;
     font-size: 9pt !important;
     font-weight: bold !important;
     color: rgba(0, 0, 0, 0.54) !important;
 }
 
-.BreadcrumbText-normal{
+.BreadcrumbText-normal {
     padding-top: 2px;
     font-size: 9pt !important;
     color: rgba(0, 0, 0, 0.54) !important;

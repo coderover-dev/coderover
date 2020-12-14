@@ -12,108 +12,108 @@ import {workspaceSubject} from "../../shared/workspace-events";
 
 export class WorkspaceView extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.sidebar = true;
-        this.state = {
-            component: ""
-        }
-        this.workspaceUpdateSubscription =
-            workspaceSubject.subscribe((data) => {
-                this.setState({component: workspaceData.selectedComponent.key});
-            })
+  constructor(props) {
+    super(props);
+    this.sidebar = true;
+    this.state = {
+      component: ""
     }
+    this.workspaceUpdateSubscription =
+        workspaceSubject.subscribe((data) => {
+          this.setState({component: workspaceData.selectedComponent.key});
+        })
+  }
 
-    getSidebarContent() {
-        if (this.sidebar) {
-            return (
-                <Grid container item
-                      style={{
-                          padding: 5,
-                          width: '200px',
-                          alignContent: "flex-start",
-                          backgroundColor: "#d3dce3"
-                      }}>
-                    <Sidebar/>
-                </Grid>
-            )
-        }
-    }
-
-    getDataModelView() {
-        return (<DataModelView/>);
-    }
-
-    getContent() {
-        switch (workspaceData.selectedComponent.key.toUpperCase()) {
-            case "DATA_MODELS":
-                return this.getDataModelView();
-            default:
-                return (<div/>);
-        }
-    }
-
-    getContentContainer() {
-        if (this.sidebar) {
-            return (
-                <Grid container item style={{
-                    width: 'calc(100% - 200px)',
-                    alignContent: "flex-start"
+  getSidebarContent() {
+    if (this.sidebar) {
+      return (
+          <Grid container item
+                style={{
+                  padding: 5,
+                  width: '200px',
+                  alignContent: "flex-start",
+                  backgroundColor: "#d3dce3"
                 }}>
-                    <Grid item style={{width: '240px'}}>
-                        <ItemListView/>
-                    </Grid>
-                    <Grid item style={{
-                        width: 'calc(100% - 240px)',
-                        height: 'calc(100vh - 68px)',
-                        overflow: "auto"
-                    }}>
-                        {this.getContent()}
-                    </Grid>
-                </Grid>
-            )
-        } else {
-            return (
-                <Grid container item
-                      style={{
-                          width: '100%',
-                          alignContent: "flex-start"
-                      }}>
-                    <Grid item style={{width: '240px'}}>
-                        <ItemListView/>
-                    </Grid>
-                    <Grid item style={{
-                        width: 'calc(100% - 240px)',
-                        height: 'calc(100vh - 68px)',
-                        overflow: "auto"
-                    }}>
-                        {this.getContent()}
-                    </Grid>
-                </Grid>
-            )
-        }
+            <Sidebar/>
+          </Grid>
+      )
     }
+  }
 
+  getDataModelView() {
+    return (<DataModelView/>);
+  }
 
-    render() {
-        return (
-            <Grid container style={{flexDirection: "row", height: '100vh', width: '100vw'}}>
-                <Grid item style={{height: '68px', width: '100%', flexDirection: "column", zIndex: 1}}>
-                    <Toolbar onSidebarToggle={() => {
-                        this.sidebar = !this.sidebar;
-                        this.forceUpdate(() => {
-                        });
-                    }}/>
-                    <Divider style={{backgroundColor: '#cecece'}}/>
-                    <Breadcrumb/>
-                    <Divider style={{backgroundColor: '#cecece'}}/>
-                </Grid>
-                <Grid container item style={{height: 'calc(100vh - 68px)'}}>
-                    {this.getSidebarContent()}
-                    {this.getContentContainer()}
-                </Grid>
+  getContent() {
+    switch (workspaceData.selectedComponent.key.toUpperCase()) {
+      case "DATA_MODELS":
+        return this.getDataModelView();
+      default:
+        return (<div/>);
+    }
+  }
+
+  getContentContainer() {
+    if (this.sidebar) {
+      return (
+          <Grid container item style={{
+            width: 'calc(100% - 200px)',
+            alignContent: "flex-start"
+          }}>
+            <Grid item style={{width: '240px'}}>
+              <ItemListView/>
             </Grid>
-
-        );
+            <Grid item style={{
+              width: 'calc(100% - 240px)',
+              height: 'calc(100vh - 68px)',
+              overflow: "auto"
+            }}>
+              {this.getContent()}
+            </Grid>
+          </Grid>
+      )
+    } else {
+      return (
+          <Grid container item
+                style={{
+                  width: '100%',
+                  alignContent: "flex-start"
+                }}>
+            <Grid item style={{width: '240px'}}>
+              <ItemListView/>
+            </Grid>
+            <Grid item style={{
+              width: 'calc(100% - 240px)',
+              height: 'calc(100vh - 68px)',
+              overflow: "auto"
+            }}>
+              {this.getContent()}
+            </Grid>
+          </Grid>
+      )
     }
+  }
+
+
+  render() {
+    return (
+        <Grid container style={{flexDirection: "row", height: '100vh', width: '100vw'}}>
+          <Grid item style={{height: '68px', width: '100%', flexDirection: "column", zIndex: 1}}>
+            <Toolbar onSidebarToggle={() => {
+              this.sidebar = !this.sidebar;
+              this.forceUpdate(() => {
+              });
+            }}/>
+            <Divider style={{backgroundColor: '#cecece'}}/>
+            <Breadcrumb/>
+            <Divider style={{backgroundColor: '#cecece'}}/>
+          </Grid>
+          <Grid container item style={{height: 'calc(100vh - 68px)'}}>
+            {this.getSidebarContent()}
+            {this.getContentContainer()}
+          </Grid>
+        </Grid>
+
+    );
+  }
 }

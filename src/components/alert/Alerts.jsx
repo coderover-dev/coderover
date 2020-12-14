@@ -14,107 +14,107 @@ export const ALERT_CONFIRM = 'ALERT_CONFIRM';
 
 
 export function pushAlert(key, type, titleText, contentText, confirmCallback, dismissCallback) {
-    alerts.next({
-        key: key,
-        type: type,
-        titleText: titleText,
-        contentText: contentText,
-        confirmCallback: confirmCallback,
-        dismissCallback: dismissCallback
-    })
+  alerts.next({
+    key: key,
+    type: type,
+    titleText: titleText,
+    contentText: contentText,
+    confirmCallback: confirmCallback,
+    dismissCallback: dismissCallback
+  })
 }
 
 export class Alerts extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            alerts: []
-        }
-
-        let addAlertToQueue = this.addAlertToQueue.bind(this);
-        this.alertSubscription = alerts.subscribe(addAlertToQueue);
+  constructor(props) {
+    super(props);
+    this.state = {
+      alerts: []
     }
 
-    componentWillUnmount() {
-        this.alertSubscription.unsubscribe();
-    }
+    let addAlertToQueue = this.addAlertToQueue.bind(this);
+    this.alertSubscription = alerts.subscribe(addAlertToQueue);
+  }
 
-    addAlertToQueue(alert) {
-        let alerts = this.state.alerts;
-        alerts.push(alert);
-        this.setState({
-            alerts: alerts
-        });
-    }
+  componentWillUnmount() {
+    this.alertSubscription.unsubscribe();
+  }
 
-    dismiss(key) {
-        let alerts = this.state.alerts;
-        alerts = alerts.filter(alert => alert['key'] !== key);
-        this.setState({
-            alerts: alerts
-        });
-    }
+  addAlertToQueue(alert) {
+    let alerts = this.state.alerts;
+    alerts.push(alert);
+    this.setState({
+      alerts: alerts
+    });
+  }
 
-    getAlertButtons(alert) {
-        if (alert.type === ALERT_OK) {
-            return (
-                <div>
-                    <Button onClick={() => {
-                        this.dismiss(alert.key);
-                        alert.dismissCallback(alert.key);
-                    }} color="primary" autoFocus>OK</Button>
-                </div>
-            )
-        } else if (alert.type === ALERT_CONFIRM) {
-            return (
-                <div>
-                    <Button onClick={() => {
-                        this.dismiss(alert.key);
-                        alert.dismissCallback(alert.key)
-                    }} color="primary">Cancel</Button>
-                    <Button onClick={() => {
-                        this.dismiss(alert.key);
-                        alert.confirmCallback(alert.key)
-                    }} color="primary" autoFocus>Confirm</Button>
-                </div>
-            )
-        }
-    }
+  dismiss(key) {
+    let alerts = this.state.alerts;
+    alerts = alerts.filter(alert => alert['key'] !== key);
+    this.setState({
+      alerts: alerts
+    });
+  }
 
-    getAlertDialog(alert) {
-        return (
-            <Dialog
-                id={'alert_' + alert.key}
-                maxWidth="sm" disableEscapeKeyDown="false" disableBackdropClick="false"
-                open={true}
-                onClose={() => {
-                    this.dismiss(alert.key);
-                    alert.dismissCallback(alert.key)
-                }}>
-                <DialogTitle>{alert.titleText}</DialogTitle>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        {alert.contentText}
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    {this.getAlertButtons(alert)}
-                </DialogActions>
-            </Dialog>
-        )
+  getAlertButtons(alert) {
+    if (alert.type === ALERT_OK) {
+      return (
+          <div>
+            <Button onClick={() => {
+              this.dismiss(alert.key);
+              alert.dismissCallback(alert.key);
+            }} color="primary" autoFocus>OK</Button>
+          </div>
+      )
+    } else if (alert.type === ALERT_CONFIRM) {
+      return (
+          <div>
+            <Button onClick={() => {
+              this.dismiss(alert.key);
+              alert.dismissCallback(alert.key)
+            }} color="primary">Cancel</Button>
+            <Button onClick={() => {
+              this.dismiss(alert.key);
+              alert.confirmCallback(alert.key)
+            }} color="primary" autoFocus>Confirm</Button>
+          </div>
+      )
     }
+  }
 
-    render() {
-        if (this.state.alerts != null) {
-            return (
-                <div>{this.state.alerts.map((alert) => this.getAlertDialog(alert))}</div>
-            )
-        } else {
-            return (
-                <div/>
-            )
-        }
+  getAlertDialog(alert) {
+    return (
+        <Dialog
+            id={'alert_' + alert.key}
+            maxWidth="sm" disableEscapeKeyDown="false" disableBackdropClick="false"
+            open={true}
+            onClose={() => {
+              this.dismiss(alert.key);
+              alert.dismissCallback(alert.key)
+            }}>
+          <DialogTitle>{alert.titleText}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              {alert.contentText}
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            {this.getAlertButtons(alert)}
+          </DialogActions>
+        </Dialog>
+    )
+  }
+
+  render() {
+    if (this.state.alerts != null) {
+      return (
+          <div>{this.state.alerts.map((alert) => this.getAlertDialog(alert))}</div>
+      )
+    } else {
+      return (
+          <div/>
+      )
     }
+  }
 
 }

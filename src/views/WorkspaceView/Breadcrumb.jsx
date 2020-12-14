@@ -12,58 +12,58 @@ import {NavigateNext} from "@material-ui/icons";
 export let breadcrumbSubject = new Subject();
 
 export class Breadcrumb extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            project: "",
-            component: ""
-        }
-
-        let handleBreadcrumbUpdate = this.handleBreadcrumbUpdate.bind(this);
-        this.breadcrumbSubjectSubscription = breadcrumbSubject.subscribe(handleBreadcrumbUpdate);
+  constructor(props) {
+    super(props);
+    this.state = {
+      project: "",
+      component: ""
     }
 
-    componentWillUnmount() {
-        this.breadcrumbSubjectSubscription.unsubscribe();
-    }
+    let handleBreadcrumbUpdate = this.handleBreadcrumbUpdate.bind(this);
+    this.breadcrumbSubjectSubscription = breadcrumbSubject.subscribe(handleBreadcrumbUpdate);
+  }
 
-    handleBreadcrumbUpdate(data) {
-        this.setState(data);
-    }
+  componentWillUnmount() {
+    this.breadcrumbSubjectSubscription.unsubscribe();
+  }
 
-    render() {
-        return (
-            <div style={{backgroundColor: "#e7e2e7", height: '24px', paddingLeft: '10px'}}>
+  handleBreadcrumbUpdate(data) {
+    this.setState(data);
+  }
 
-                <Breadcrumbs aria-label="breadcrumb" separator={<NavigateNext fontSize="small" />} >
+  render() {
+    return (
+        <div style={{backgroundColor: "#e7e2e7", height: '24px', paddingLeft: '10px'}}>
 
-                    <Link color="inherit" href="#">
-                        <Grid container spacing={1}>
-                            <Grid item>
-                                <FontAwesomeIcon icon={faHome}/>
-                            </Grid>
-                            <Grid item>
-                                <Typography variant="body1"
-                                            className={"BreadcrumbText-bold"}>
-                                    {this.state.project}
-                                </Typography>
-                            </Grid>
-                        </Grid>
-                    </Link>
+          <Breadcrumbs aria-label="breadcrumb" separator={<NavigateNext fontSize="small"/>}>
 
-                    <Link color="inherit" href="#">
-                        <Grid container spacing={1}>
-                            <Grid item>
-                                <Typography variant="body1"
-                                            className={"BreadcrumbText-bold"}>
-                                    {this.state.component}
-                                </Typography>
-                            </Grid>
-                        </Grid>
-                    </Link>
+            <Link color="inherit" href="#">
+              <Grid container spacing={1}>
+                <Grid item>
+                  <FontAwesomeIcon icon={faHome}/>
+                </Grid>
+                <Grid item>
+                  <Typography variant="body1"
+                              className={"BreadcrumbText-bold"}>
+                    {this.state.project}
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Link>
 
-                </Breadcrumbs>
-            </div>
-        )
-    }
+            <Link color="inherit" href="#">
+              <Grid container spacing={1}>
+                <Grid item>
+                  <Typography variant="body1"
+                              className={"BreadcrumbText-bold"}>
+                    {this.state.component}
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Link>
+
+          </Breadcrumbs>
+        </div>
+    )
+  }
 }
