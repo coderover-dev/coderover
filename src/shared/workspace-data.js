@@ -11,5 +11,6 @@ export let workspaceData = {
   selectedComponent: {
     key: "",
     text: ""
-  }
+  },
+  dataModels:[]
 }

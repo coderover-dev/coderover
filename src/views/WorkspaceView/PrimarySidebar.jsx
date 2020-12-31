@@ -10,9 +10,27 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 import {breadcrumbSubject} from "./Breadcrumb";
 import {workspaceData} from "../../shared/workspace-data";
 import {workspaceSubject} from "../../shared/workspace-events";
+import {getRenderer} from "../../renderer/renderer";
 
 export class PrimarySidebar extends React.Component {
-  createSidebarItem(icon, key, text) {
+
+  constructor(props) {
+    super(props);
+    this.renderer = getRenderer();
+  }
+
+  initMenuContent(key, metadata){
+    switch(key) {
+      case "DATA_MODELS":
+        this.renderer
+          .getDataModelHandler()
+          .fetchDataModels(metadata);
+        break;
+      default:
+    }
+  }
+
+  sidebarItem(icon, key, text) {
     return (
       <ListItem button style={{height: '32px', paddingLeft: '20px'}}
                 onClick={() => {
@@ -27,6 +45,7 @@ export class PrimarySidebar extends React.Component {
                   }
 
                   workspaceSubject.next(0);
+                  this.initMenuContent(key, workspaceData.project);
                 }}>
         <ListItemIcon style={{minWidth: '24px'}} className="sidebarMenuItem">
           <FontAwesomeIcon icon={icon}/>
@@ -52,11 +71,11 @@ export class PrimarySidebar extends React.Component {
                   Workspace
                 </ListSubheader>
               }>
-          {this.createSidebarItem(faDatabase, "DATA_MODELS", "Data Models")}
-          {this.createSidebarItem(faCube, "RESOURCES", "Resources")}
-          {this.createSidebarItem(faSlidersH, "PROFILES", "Profiles")}
-          {this.createSidebarItem(faCog, "SETTINGS", "Settings")}
-          {this.createSidebarItem(faFlask, "NA", "Console")}
+          {this.sidebarItem(faDatabase, "DATA_MODELS", "Data Models")}
+          {this.sidebarItem(faCube, "RESOURCES", "Resources")}
+          {this.sidebarItem(faSlidersH, "PROFILES", "Profiles")}
+          {this.sidebarItem(faCog, "SETTINGS", "Settings")}
+          {this.sidebarItem(faFlask, "NA", "Console")}
         </List>
       </Grid>
     )

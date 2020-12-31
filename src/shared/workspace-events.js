@@ -2,6 +2,12 @@ import {Subject} from "rxjs";
 import {workspaceData} from "./workspace-data";
 import {breadcrumbSubject} from "../views/WorkspaceView/Breadcrumb";
 
+export let secondarySidebarSubject = new Subject();
+
+export function loadSecondarySidebarItems(items){
+  secondarySidebarSubject.next(items);
+}
+
 export let workspaceSubject = new Subject();
 
 export function openWorkspace(projectMetadata) {

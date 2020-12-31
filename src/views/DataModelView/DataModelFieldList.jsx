@@ -18,7 +18,9 @@ export class DataModelFieldList extends React.Component {
     // need to handle default transient fields
     // when a new field is added it should take the value from this.transient
     this.transient = props.transient;
-    this.state = props.fields;
+    this.state = {
+      fields: props.fields
+    };
   }
 
 
@@ -27,7 +29,7 @@ export class DataModelFieldList extends React.Component {
   }
 
   handleAddField() {
-    let state = {};
+    let state = this.state.fields;
     let fieldId = uuidv4();
     state[fieldId] = {
       newField: true,
@@ -50,21 +52,19 @@ export class DataModelFieldList extends React.Component {
   }
 
   handleFieldUpdate(updatedField) {
-    let state = {};
+    let state = this.state.fields;
     let fieldId = updatedField.fieldId;
     state[fieldId] = updatedField;
     state[fieldId].newField = false;
     this.setState(state);
-    this.props.onUpdate(this.state);
   }
 
   handleFieldDelete(fieldId) {
-    let state = {};
+    let state = this.state.fields;
     state[fieldId] = this.state[fieldId];
     state[fieldId].deleted = true;
     this.fieldCount = this.fieldCount - 1;
     this.setState(state);
-    this.props.onUpdate(this.state);
   }
 
 
@@ -114,10 +114,10 @@ export class DataModelFieldList extends React.Component {
             </Grid>
           </Grid>
         </Grid>
-        <Grid containeitem xs={12}>
+        <Grid container item xs={12}>
           {
-            Object.keys(this.state)
-              .map(fieldId => this.state[fieldId])
+            Object.keys(this.state.fields)
+              .map(fieldId => this.state.fields[fieldId])
               .filter(field => !field.deleted)
               .map(field =>
                 (<DataModelField key={field.fieldId}

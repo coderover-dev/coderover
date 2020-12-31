@@ -37,6 +37,7 @@ class WorkspaceMainEventHandler extends MainProcessEventHandler {
         });
       } else if (result != null && result.length > 0 && workspace.validateProjectDir(result[0])) {
         let projectMetadata = workspace.loadProjectMetadata(result[0]);
+        projectMetadata.location = result[0];
         this.replyEventName = 'ProjectOpened';
         this.event.reply(this.replyEventName, {
           project: projectMetadata,
@@ -91,6 +92,7 @@ class WorkspaceMainEventHandler extends MainProcessEventHandler {
       });
     }
   }
+
 
 }
 

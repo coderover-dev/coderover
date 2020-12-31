@@ -12,12 +12,36 @@ import {IconButton} from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Tooltip from "@material-ui/core/Tooltip";
+import {workspaceData} from "../../shared/workspace-data";
+import {secondarySidebarSubject} from "../../shared/workspace-events";
 
 export class SecondarySidebar extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: []
+    }
+
+    this.secondarySidebarSubscription =
+      secondarySidebarSubject.subscribe(this.handleSidebarRefresh.bind(this));
+  }
+
+  componentWillUnmount() {
+    this.secondarySidebarSubscription.unsubscribe();
+  }
+
+  handleSidebarRefresh(items){
+    this.setState({
+      items: items
+    })
+  }
+
   createSidebarItem(text) {
     return (
-      <ListItem button style={{height: '32px'}} className="sidebarSubMenuItem">
+      <ListItem button style={{height: '32px'}}
+                key={text}
+                className="sidebarSubMenuItem">
         <ListItemText>
           <span className="sidebarSubMenuItemText">{text}</span>
         </ListItemText>
@@ -26,6 +50,14 @@ export class SecondarySidebar extends React.Component {
   }
 
   getItemList() {
+    switch (workspaceData.selectedComponent.key) {
+      case "DATA_MODELS":
+        this.items = workspaceData.dataModels;
+        break;
+      default:
+        break;
+    }
+
     return (
       <Grid container style={{
         flexDirection: "column",
@@ -33,7 +65,9 @@ export class SecondarySidebar extends React.Component {
         borderRightColor: "#cecece"
       }}>
         <List component="nav">
-
+          {
+            this.state.items.map((item) => this.createSidebarItem(item))
+          }
         </List>
       </Grid>
     )

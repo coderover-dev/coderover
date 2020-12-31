@@ -1,11 +1,11 @@
 const baseBlueprintGenerator = require('./base-blueprint-generator');
-const resourceGenerator = require('./resource-generator');
+const dataModelGenerator = require('./data-model-generator');
 
 module.exports = {
   getBaseBlueprintGenerator: () => {
     return baseBlueprintGenerator;
   },
-  getResourceGenerator: () => {
-    return resourceGenerator;
+  getDataModelGenerator: () => {
+    return dataModelGenerator;
   }
 }

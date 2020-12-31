@@ -10,7 +10,7 @@ class GeneratorFactory {
       case "NODE":
         switch (this.framework.toUpperCase()) {
           case "EXPRESSJS":
-            this.generator = require("./node/express-js/generator")
+            this.generator = require("./node-express/generator")
             break;
 
           default:

@@ -31,6 +31,9 @@ export class DataModelView extends React.Component {
   constructor(props) {
     super(props);
     this.renderer = getRenderer();
+    this.state = {
+      fields:{}
+    };
     this.reset();
   }
 
@@ -40,7 +43,7 @@ export class DataModelView extends React.Component {
       dataModelName: "",
       tableName: "",
       transient: false,
-      fields: [],
+      fields: {},
       resourceName: "",
       searchField: ""
     };
@@ -98,12 +101,9 @@ export class DataModelView extends React.Component {
         <Grid item>
           <Divider/>
         </Grid>
-        <Grid item direction="column" xs={12}>
+        <Grid item xs={12}>
           <DataModelFieldList fields={this.state.fields}
-                              transient={this.state.transient}
-                              onUpdate={(fields) => {
-                                this.setState({fields: fields});
-                              }}/>
+                              transient={this.state.transient}/>
         </Grid>
       </Grid>
     )
@@ -117,13 +117,13 @@ export class DataModelView extends React.Component {
     return (
       <Grid container direction="column" style={{padding: '15px', minWidth: '850px', maxWidth: '100%'}}>
         <Grid item container direction="row">
-          <Grid item direction={"row"} xs="9">
+          <Grid item xs={7}>
             <Typography variant="h6" style={{fontWeight: 'bold'}}>
               Create data model
             </Typography>
           </Grid>
-          <Grid item container direction={"row"}
-                xs="3" justify={"flex-end"}>
+          <Grid item xs={5} container direction={"row"}
+                justify={"flex-end"}>
             <Grid item style={{paddingRight: 10}}>
               <Tooltip title="Apply">
                 <Button
@@ -133,8 +133,8 @@ export class DataModelView extends React.Component {
                   onClick={() => {
                     let projectMetadata = workspaceData.project;
                     this.renderer
-                      .getResourceHandler()
-                      .persistResource(projectMetadata, this.state);
+                      .getDataModelHandler()
+                      .persistDataModel(projectMetadata, this.state);
                   }}
                   startIcon={
                     <FontAwesomeIcon style={{fontSize: '15pt'}}

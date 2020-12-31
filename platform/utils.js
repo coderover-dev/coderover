@@ -5,7 +5,9 @@ const handlebars = require("handlebars");
 module.exports = {
   mkdir,
   writeFile,
-  parseTemplate
+  writeFileSync,
+  parseTemplate,
+  listMetaFiles
 }
 
 function mkdir(dirLocation, dirName, callback) {
@@ -21,6 +23,15 @@ function mkdir(dirLocation, dirName, callback) {
   }
 }
 
+function writeFileSync(fileLocation, fileName, data) {
+  try {
+    fs.writeFileSync(path.join(fileLocation, fileName), data);
+    return true;
+  } catch (err) {
+    return false;
+  }
+}
+
 function writeFile(fileLocation, fileName, data, callback) {
   try {
     fs.writeFileSync(path.join(fileLocation, fileName), data);
@@ -32,6 +43,21 @@ function writeFile(fileLocation, fileName, data, callback) {
       callback(true);
     }
   }
+}
+
+function listMetaFiles(fileLocation, fileExt) {
+  let files = []
+  try {
+    fs.readdirSync(fileLocation).forEach(file=>{
+      if(file.endsWith(fileExt)){
+        let fileNameWithoutExt = file.replace(fileExt, "");
+        files.push(fileNameWithoutExt);
+      }
+    })
+  } catch (err) {
+  }
+
+  return files;
 }
 
 function parseTemplate(template, data) {

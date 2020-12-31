@@ -29,11 +29,11 @@ export class LandingView extends React.Component {
   handleProjectCreation(projectData) {
     showProgress("Creating project...");
     this.renderer
-        .getWorkspaceHandler()
-        .newProject(projectData, () => {
-          this.setState({createProject: false});
-          hideProgress();
-        });
+      .getWorkspaceHandler()
+      .newProject(projectData, () => {
+        this.setState({createProject: false});
+        hideProgress();
+      });
 
   }
 
@@ -43,101 +43,101 @@ export class LandingView extends React.Component {
 
   render() {
     return (
-        <div>
-          <Grid container style={{
-            flexDirection: "column",
-            justifyContent: "center",
-            paddingLeft: "calc((100% - 650px)/2)",
-            backgroundColor: "#E5E4E2",
-            height: window.innerHeight,
-            width: window.innerWidth
-          }}>
-            <Grid item>
-              <Card style={{
-                width: '650px',
-                height: '400px',
-                color: "#FFFFFF",
-                backgroundColor: "#1569C7",
-                borderRadius: 20
-              }}>
-                <CardContent style={{padding: 0}}>
-                  <Grid container>
-                    <Grid container item xs={6}
-                          style={{
-                            flexDirection: "column",
-                            backgroundColor: 'white',
-                            color: '#1569C7',
-                            padding: '20px',
-                            textAlign: "left",
-                            fontWeight: 'bold'
-                          }}>
-                      {/*<Typography style={{fontSize: '30pt', fontWeight: "bold"}}>*/}
-                      {/*    CodeRover*/}
-                      {/*</Typography>*/}
-                      <img src="images/logo.png" alt="" style={{width: '280px', paddingLeft: 5}}/>
+      <div>
+        <Grid container style={{
+          flexDirection: "column",
+          justifyContent: "center",
+          paddingLeft: "calc((100% - 650px)/2)",
+          backgroundColor: "#E5E4E2",
+          height: window.innerHeight,
+          width: window.innerWidth
+        }}>
+          <Grid item>
+            <Card style={{
+              width: '650px',
+              height: '400px',
+              color: "#FFFFFF",
+              backgroundColor: "#1569C7",
+              borderRadius: 20
+            }}>
+              <CardContent style={{padding: 0}}>
+                <Grid container>
+                  <Grid container item xs={6}
+                        style={{
+                          flexDirection: "column",
+                          backgroundColor: 'white',
+                          color: '#1569C7',
+                          padding: '20px',
+                          textAlign: "left",
+                          fontWeight: 'bold'
+                        }}>
+                    {/*<Typography style={{fontSize: '30pt', fontWeight: "bold"}}>*/}
+                    {/*    CodeRover*/}
+                    {/*</Typography>*/}
+                    <img src="images/logo.png" alt="" style={{width: '280px', paddingLeft: 5}}/>
 
-                      <span style={{
-                        fontSize: '11pt',
-                        paddingTop: '15px'
-                      }}> A low code platform for developing highly scalable, robust microservices super fast.</span>
+                    <span style={{
+                      fontSize: '11pt',
+                      paddingTop: '15px'
+                    }}> A low code platform for developing highly scalable, robust microservices super fast.</span>
 
-                      <span style={{
-                        fontSize: '8pt',
-                        paddingTop: '5px',
-                        color: '#000000'
-                      }}>
+                    <span style={{
+                      fontSize: '8pt',
+                      paddingTop: '5px',
+                      color: '#000000'
+                    }}>
                                         v1.0.0-beta
                                     </span>
+                  </Grid>
+                  <Grid container item xs={6}
+                        spacing={2}
+                        style={{
+                          flexDirection: "column",
+                          padding: '20px',
+                          borderLeft: '1px solid white',
+                          height: "420px",
+                          lineHeight: 1
+                        }}>
+                    <Grid item>
+                      <Link href="#"
+                            className="landingViewButton"
+                            size="small"
+                            onClick={() => {
+                              this.setState({createProject: true});
+                            }}>
+                        <FontAwesomeIcon icon={faPlus} style={{paddingRight: '5px'}}/>
+                        New Project
+                      </Link>
                     </Grid>
-                    <Grid container item xs={6}
-                          spacing={2}
-                          style={{
-                            flexDirection: "column",
-                            padding: '20px',
-                            borderLeft: '1px solid white',
-                            height: "420px",
-                            lineHeight: 1
-                          }}>
-                      <Grid item>
-                        <Link href="#"
-                              className="landingViewButton"
-                              size="small"
-                              onClick={() => {
-                                this.setState({createProject: true});
-                              }}>
-                          <FontAwesomeIcon icon={faPlus} style={{paddingRight: '5px'}}/>
-                          New Project
-                        </Link>
-                      </Grid>
-                      <Grid item>
-                        <Link href="#"
-                              className="landingViewButton"
-                              size="small"
-                              onClick={() => {
-                                this.renderer.getWorkspaceHandler().openProject();
-                              }}>
-                          <FontAwesomeIcon icon={faFolderOpen} style={{paddingRight: '5px'}}/>
-                          Open Existing Project
-                        </Link>
-                      </Grid>
+                    <Grid item>
+                      <Link href="#"
+                            className="landingViewButton"
+                            size="small"
+                            onClick={() => {
+                              this.renderer.getWorkspaceHandler().openProject();
+                            }}>
+                        <FontAwesomeIcon icon={faFolderOpen} style={{paddingRight: '5px'}}/>
+                        Open Existing Project
+                      </Link>
                     </Grid>
                   </Grid>
-                </CardContent>
-                <CardActions>
-                </CardActions>
-              </Card>
-            </Grid>
+                </Grid>
+              </CardContent>
+              <CardActions>
+              </CardActions>
+            </Card>
           </Grid>
-          <CreateProjectView open={this.state.createProject}
-                             onConfirm={(projectData) => {
-                               this.handleProjectCreation(projectData);
-                             }}
-                             onClose={() => {
-                               this.setState({
-                                 createProject: false
-                               })
-                             }}/>
-        </div>
+        </Grid>
+        <CreateProjectView open={this.state.createProject}
+                           onConfirm={(projectData) => {
+                             this.handleProjectCreation(projectData);
+                           }}
+                           onClose={() => {
+                             this.setState({
+                               createProject: false
+                             })
+                           }}/>
+      </div>
     );
   }
 }

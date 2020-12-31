@@ -1,5 +1,5 @@
-const constants = require('../../../constants');
-const utils = require('../../../utils');
+const constants = require('../../constants');
+const utils = require('../../utils');
 const template = require('./template');
 const path = require('path');
 
