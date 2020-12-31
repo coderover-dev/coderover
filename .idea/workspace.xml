@@ -20,10 +20,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07424044-891a-4bc7-8a83-ef9993154c32" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/platform/generators/node/express-js/resource-generator.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/DataModelView/DataModelField.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DataModelView/DataModelField.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/constants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform/generators/node/express-js/base-blueprint-generator.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/generators/node/express-js/base-blueprint-generator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform/generators/node/express-js/generator.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/generators/node/express-js/generator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform/generators/node/express-js/template.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/generators/node/express-js/template.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform/main/data-model-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/main/resource-event.handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform/main/events-registry.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/main/events-registry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform/main/workspace-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/main/workspace-event.handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/data-model-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/resource-renderer-event.handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/renderer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/renderer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/workspace-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/workspace-renderer-event.handler.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/DataModelView/DataModelFieldList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DataModelView/DataModelFieldList.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/DataModelView/DataModelView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DataModelView/DataModelView.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/ItemListView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/SecondarySidebar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/PrimarySidebar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/WorkspaceView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/WorkspaceView.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,27 +75,37 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="javascript.nodejs.core.library.configured.version" value="12.19.0" />
-    <property name="javascript.nodejs.core.library.typings.version" value="12.19.0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/shared" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="javascript.nodejs.core.library.configured.version" value="12.18.3" />
+    <property name="javascript.nodejs.core.library.typings.version" value="12.19.9" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/platform/generators/node/express-js" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/shared" />
-      <recent name="$PROJECT_DIR$/src/views/ManageDataModelView" />
-      <recent name="$PROJECT_DIR$/src/views" />
-      <recent name="$PROJECT_DIR$/src/renderer" />
-      <recent name="$PROJECT_DIR$/platform/main" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/shared" />
       <recent name="$PROJECT_DIR$/src/views" />
       <recent name="$PROJECT_DIR$/platform" />
       <recent name="$PROJECT_DIR$/platform/generators/shared" />
       <recent name="$PROJECT_DIR$/platform/generators" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/platform/generators/node/express-js" />
+      <recent name="$PROJECT_DIR$/src/shared" />
+      <recent name="$PROJECT_DIR$/src/views/ManageDataModelView" />
+      <recent name="$PROJECT_DIR$/src/views" />
+      <recent name="$PROJECT_DIR$/src/renderer" />
     </key>
   </component>
   <component name="RunManager">
@@ -119,6 +142,8 @@
       <workItem from="1606969841751" duration="22070000" />
       <workItem from="1607672798918" duration="751000" />
       <workItem from="1607948324447" duration="12963000" />
+      <workItem from="1608727060698" duration="863000" />
+      <workItem from="1609392937765" duration="9302000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1606071312677</created>
@@ -278,9 +303,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="refactored indentation with 2 spaces" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-815" y="655" key="#JavaScript" timestamp="1607961447194">
-      <screen x="-1080" y="25" width="1080" height="1895" />
+    <state x="-815" y="-553" key="#JavaScript" timestamp="1609405449583">
+      <screen x="-1080" y="-1183" width="1080" height="1895" />
     </state>
+    <state x="-815" y="-553" key="#JavaScript/-1080.-1183.1080.1895/0.25.2048.1179/0.-1055.1920.1055@-1080.-1183.1080.1895" timestamp="1609405449583" />
     <state x="-815" y="655" key="#JavaScript/-2461.552.1381.875/0.25.1080.1895/-1080.25.1080.1895@-1080.25.1080.1895" timestamp="1607961447194" />
     <state x="304" y="160" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606114196721">
       <screen x="0" y="25" width="1680" height="953" />
@@ -349,9 +375,14 @@
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state x="511" y="208" key="RollbackChangesDialog/0.25.1680.1025/-115.-1055.1920.983@0.25.1680.1025" timestamp="1606108337239" />
-    <state x="-994" y="520" key="SettingsEditor" timestamp="1607957860398">
-      <screen x="-1080" y="25" width="1080" height="1895" />
+    <state x="-1031" y="-634" key="SettingsEditor" timestamp="1609405400831">
+      <screen x="-1080" y="-1183" width="1080" height="1895" />
     </state>
+    <state x="-1031" y="-634" key="SettingsEditor/-1080.-1183.1080.1895/0.25.2048.1179/0.-1055.1920.1055@-1080.-1183.1080.1895" timestamp="1609405400831" />
+    <state x="-994" y="92" key="SettingsEditor/-1080.-403.1080.1895/0.25.1792.1019/-2160.-403.1080.1895@-1080.-403.1080.1895" timestamp="1608727116512" />
+    <state x="-983" y="334" key="SettingsEditor/-1080.-403.1080.1895/0.25.1792.1095/-2160.-403.1080.1827@-1080.-403.1080.1895" timestamp="1608802331406" />
+    <state x="-1031" y="-429" key="SettingsEditor/-1080.-978.1080.1895/0.25.2048.1179/0.-1055.1920.1055@-1080.-978.1080.1895" timestamp="1609396264203" />
+    <state x="184" y="476" key="SettingsEditor/-1080.-978.1080.1895/0.25.2048.1179/0.-1055.1920.1055@0.25.2048.1179" timestamp="1609393003012" />
     <state x="-994" y="520" key="SettingsEditor/-2461.552.1381.875/0.25.1080.1895/-1080.25.1080.1895@-1080.25.1080.1895" timestamp="1607957860398" />
     <state x="349" y="137" key="SettingsEditor/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606068298574" />
     <state x="-1521" y="149" key="SettingsEditor/0.25.1680.953/-1920.25.1920.1055@-1920.25.1920.1055" timestamp="1606553498572" />
@@ -376,9 +407,10 @@
     </state>
     <state x="-1807" y="128" width="1692" height="777" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606584072522" />
     <state x="99" y="125" width="1480" height="753" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606151600787" />
-    <state x="2028" y="-904" width="572" height="1462" key="find.popup" timestamp="1607673243280">
-      <screen x="1680" y="-1121" width="1080" height="1895" />
+    <state x="-732" y="-966" width="572" height="1462" key="find.popup" timestamp="1609403797855">
+      <screen x="-1080" y="-1183" width="1080" height="1895" />
     </state>
+    <state x="-732" y="-966" width="572" height="1462" key="find.popup/-1080.-1183.1080.1895/0.25.2048.1179/0.-1055.1920.1055@-1080.-1183.1080.1895" timestamp="1609403797855" />
     <state x="-1302" y="137" width="683" height="759" key="find.popup/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606928084870" />
     <state x="541" y="134" width="597" height="735" key="find.popup/0.25.1680.953/-110.-1055.1920.1055@0.25.1680.953" timestamp="1606745553341" />
     <state x="541" y="134" width="597" height="735" key="find.popup/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606154142486" />

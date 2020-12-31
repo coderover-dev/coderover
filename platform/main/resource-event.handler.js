@@ -4,7 +4,7 @@ const workspace = require('../workspace');
 const electron = require('electron');
 const MainProcessEventHandler = require('./main-process-event.handler');
 
-class DataModelMainEventHandler extends MainProcessEventHandler {
+class ResourceMainEventHandler extends MainProcessEventHandler {
 
   constructor(ipcMain) {
     super(ipcMain)
@@ -15,6 +15,9 @@ class DataModelMainEventHandler extends MainProcessEventHandler {
 
     const handleFetchDataModels = this.handleFetchDataModelsEvent.bind(this);
     this.ipcMain.on('FetchDataModels', handleFetchDataModels);
+
+    const handlePersistResource = this.handlePersistResourceEvent.bind(this);
+    this.ipcMain.on('PersistResource', handlePersistResource);
 
   }
 
@@ -29,9 +32,9 @@ class DataModelMainEventHandler extends MainProcessEventHandler {
         if (workspace.validateProjectDir(location)) {
           this.replyEventName = 'DataModelsFetched';
           this.event.reply(
-              this.replyEventName, {
-                success: true
-              });
+            this.replyEventName, {
+              success: true
+            });
         } else {
           error = true;
         }
@@ -54,10 +57,17 @@ class DataModelMainEventHandler extends MainProcessEventHandler {
     }
   }
 
+  handlePersistResourceEvent(event, args) {
+    this.event = event;
+    let error = false;
+    this.args = args;
+    console.log(this.args);
+  }
+
 
 }
 
 module.exports = function (ipcMain) {
-  return new DataModelMainEventHandler(ipcMain);
+  return new ResourceMainEventHandler(ipcMain);
 }
 

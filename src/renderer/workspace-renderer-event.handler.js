@@ -2,7 +2,7 @@ import {RendererProcessEventHandler} from "./renderer-process-event.handler";
 import {pushAlert, ALERT_OK} from "../components/alert/Alerts"
 import {openWorkspace} from "../shared/workspace-events";
 
-export class WorkspaceEventHandler extends RendererProcessEventHandler {
+export class WorkspaceRendererEventHandler extends RendererProcessEventHandler {
 
   constructor() {
     super();
@@ -29,17 +29,17 @@ export class WorkspaceEventHandler extends RendererProcessEventHandler {
       openWorkspace(args.project);
     } else {
       pushAlert('OpenProjectFailed', ALERT_OK,
-          args.message.summary, args.message.description,
-          () => {
-          }, () => {
-          });
+        args.message.summary, args.message.description,
+        () => {
+        }, () => {
+        });
     }
   }
 
   handleWorkspaceSelectedEvent(event, args) {
     let location = null;
     if (args !== undefined && args != null &&
-        args.filePaths != null && args.filePaths.length > 0) {
+      args.filePaths != null && args.filePaths.length > 0) {
       location = args.filePaths[0];
     }
 
@@ -57,10 +57,10 @@ export class WorkspaceEventHandler extends RendererProcessEventHandler {
 
   handleCreateProjectFailedEvent(event, args) {
     pushAlert('CreateProjectFailed', ALERT_OK,
-        args.message.summary, args.message.description,
-        () => {
-        }, () => {
-        });
+      args.message.summary, args.message.description,
+      () => {
+      }, () => {
+      });
     if (this.newProjectCallback != null) {
       this.newProjectCallback();
     }

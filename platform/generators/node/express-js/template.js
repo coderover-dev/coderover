@@ -7,6 +7,26 @@ const PROJECT_METADATA_JSON_TEMPLATE = `{
 }
 `
 
+const FIELD_METADATA_JSON_TEMPLATE = `{
+    "fieldName":"{{fieldName}}",
+    "dataType":"{{dataType}}",
+    "dbColumnName":"{{dbColumnName}}",
+    "defaultValue":"{{defaultValue}}",
+    "transient":"{{transient}}",
+    "nullable":"{{nullable}}",
+    "unique":"{{unique}}"
+}
+`
+const RESOURCE_METADATA_JSON_TEMPLATE = `{
+    "modelName":"{{modelName}}",
+    "transient":"{{transient}}",
+    "dbTableName":"{{dbTableName}}",
+    "resourceName":"{{resourceName}}",
+    "fields":[
+      "{{fieldsStr}}"
+    ]
+}
+`
 const PACKAGE_JSON_TEMPLATE = `{
     "name": "{{projectName}}",
     "version": "0.0.0",
@@ -70,5 +90,7 @@ module.exports = {
   PACKAGE_JSON_TEMPLATE,
   APP_JS_TEMPLATE,
   ROUTE_JS_TEMPLATE,
-  PROJECT_METADATA_JSON_TEMPLATE
+  PROJECT_METADATA_JSON_TEMPLATE,
+  FIELD_METADATA_JSON_TEMPLATE,
+  RESOURCE_METADATA_JSON_TEMPLATE
 }

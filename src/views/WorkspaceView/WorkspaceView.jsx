@@ -1,10 +1,10 @@
 import * as React from "react";
 import Grid from "@material-ui/core/Grid";
-import {Sidebar} from "./Sidebar";
+import {PrimarySidebar} from "./PrimarySidebar";
 import {Divider} from "@material-ui/core";
 import {Breadcrumb} from "./Breadcrumb";
 import {Toolbar} from "./Toolbar";
-import {ItemListView} from "./ItemListView";
+import {SecondarySidebar} from "./SecondarySidebar";
 import './Workspace.css'
 import {workspaceData} from "../../shared/workspace-data";
 import {DataModelView} from "../DataModelView/DataModelView";
@@ -19,23 +19,23 @@ export class WorkspaceView extends React.Component {
       component: ""
     }
     this.workspaceUpdateSubscription =
-        workspaceSubject.subscribe((data) => {
-          this.setState({component: workspaceData.selectedComponent.key});
-        })
+      workspaceSubject.subscribe((data) => {
+        this.setState({component: workspaceData.selectedComponent.key});
+      })
   }
 
   getSidebarContent() {
     if (this.sidebar) {
       return (
-          <Grid container item
-                style={{
-                  padding: 5,
-                  width: '200px',
-                  alignContent: "flex-start",
-                  backgroundColor: "#d3dce3"
-                }}>
-            <Sidebar/>
-          </Grid>
+        <Grid container item
+              style={{
+                padding: 5,
+                width: '200px',
+                alignContent: "flex-start",
+                backgroundColor: "#d3dce3"
+              }}>
+          <PrimarySidebar/>
+        </Grid>
       )
     }
   }
@@ -56,40 +56,40 @@ export class WorkspaceView extends React.Component {
   getContentContainer() {
     if (this.sidebar) {
       return (
-          <Grid container item style={{
-            width: 'calc(100% - 200px)',
-            alignContent: "flex-start"
-          }}>
-            <Grid item style={{width: '240px'}}>
-              <ItemListView/>
-            </Grid>
-            <Grid item style={{
-              width: 'calc(100% - 240px)',
-              height: 'calc(100vh - 68px)',
-              overflow: "auto"
-            }}>
-              {this.getContent()}
-            </Grid>
+        <Grid container item style={{
+          width: 'calc(100% - 200px)',
+          alignContent: "flex-start"
+        }}>
+          <Grid item style={{width: '240px'}}>
+            <SecondarySidebar/>
           </Grid>
+          <Grid item style={{
+            width: 'calc(100% - 240px)',
+            height: 'calc(100vh - 68px)',
+            overflow: "auto"
+          }}>
+            {this.getContent()}
+          </Grid>
+        </Grid>
       )
     } else {
       return (
-          <Grid container item
-                style={{
-                  width: '100%',
-                  alignContent: "flex-start"
-                }}>
-            <Grid item style={{width: '240px'}}>
-              <ItemListView/>
-            </Grid>
-            <Grid item style={{
-              width: 'calc(100% - 240px)',
-              height: 'calc(100vh - 68px)',
-              overflow: "auto"
-            }}>
-              {this.getContent()}
-            </Grid>
+        <Grid container item
+              style={{
+                width: '100%',
+                alignContent: "flex-start"
+              }}>
+          <Grid item style={{width: '240px'}}>
+            <SecondarySidebar/>
           </Grid>
+          <Grid item style={{
+            width: 'calc(100% - 240px)',
+            height: 'calc(100vh - 68px)',
+            overflow: "auto"
+          }}>
+            {this.getContent()}
+          </Grid>
+        </Grid>
       )
     }
   }
@@ -97,22 +97,22 @@ export class WorkspaceView extends React.Component {
 
   render() {
     return (
-        <Grid container style={{flexDirection: "row", height: '100vh', width: '100vw'}}>
-          <Grid item style={{height: '68px', width: '100%', flexDirection: "column", zIndex: 1}}>
-            <Toolbar onSidebarToggle={() => {
-              this.sidebar = !this.sidebar;
-              this.forceUpdate(() => {
-              });
-            }}/>
-            <Divider style={{backgroundColor: '#cecece'}}/>
-            <Breadcrumb/>
-            <Divider style={{backgroundColor: '#cecece'}}/>
-          </Grid>
-          <Grid container item style={{height: 'calc(100vh - 68px)'}}>
-            {this.getSidebarContent()}
-            {this.getContentContainer()}
-          </Grid>
+      <Grid container style={{flexDirection: "row", height: '100vh', width: '100vw'}}>
+        <Grid item style={{height: '68px', width: '100%', flexDirection: "column", zIndex: 1}}>
+          <Toolbar onSidebarToggle={() => {
+            this.sidebar = !this.sidebar;
+            this.forceUpdate(() => {
+            });
+          }}/>
+          <Divider style={{backgroundColor: '#cecece'}}/>
+          <Breadcrumb/>
+          <Divider style={{backgroundColor: '#cecece'}}/>
         </Grid>
+        <Grid container item style={{height: 'calc(100vh - 68px)'}}>
+          {this.getSidebarContent()}
+          {this.getContentContainer()}
+        </Grid>
+      </Grid>
 
     );
   }

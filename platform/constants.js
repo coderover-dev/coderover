@@ -1,6 +1,7 @@
 const constants = {
   APP_METADATA_FILE: 'coderover.json',
   APP_METADATA_DIR: 'metadata',
+  ROUTES_METADATA_FILE: 'routes.json',
   APP_MAIN_FILE: 'app.js',
   BIN_DIR: 'bin',
   CONFIG_DIR: 'config',

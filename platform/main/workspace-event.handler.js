@@ -65,8 +65,8 @@ class WorkspaceMainEventHandler extends MainProcessEventHandler {
     this.event = event;
     this.replyEventName = 'WorkspaceSelected';
     electron.dialog.showOpenDialog({properties: ["openDirectory"]})
-        .then(this.handleSuccess.bind(this))
-        .catch(this.handleError.bind(this))
+      .then(this.handleSuccess.bind(this))
+      .catch(this.handleError.bind(this))
   }
 
   handleCreateProjectEvent(event, args) {
@@ -75,9 +75,9 @@ class WorkspaceMainEventHandler extends MainProcessEventHandler {
     const result = workspace.createProject(this.args.location);
     if (result != null && result.success) {
       generatorFactory
-          .getGenerator()
-          .getBaseBlueprintGenerator()
-          .generate(args);
+        .getGenerator()
+        .getBaseBlueprintGenerator()
+        .generate(args);
       this.replyEventName = 'ProjectCreated';
       this.event.reply(this.replyEventName, {
         project: this.args,

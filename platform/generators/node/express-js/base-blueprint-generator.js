@@ -17,7 +17,7 @@ class BaseBlueprintGenerator {
     this.writeRoutesJs(projectMetadata);
 
     //write project metadata to coderover.json
-    this.writeMetadata(projectMetadata);
+    this.writeProjectMetadata(projectMetadata);
   }
 
   writePackageJson(projectMetadata) {
@@ -56,11 +56,11 @@ class BaseBlueprintGenerator {
 
   createDirectory(projectMetadata, dirName) {
     utils.mkdir(projectMetadata.location, dirName,
-        (error) => {
-          if (!error) {
-            console.log(dirName + " directory created.")
-          }
-        });
+      (error) => {
+        if (!error) {
+          console.log(dirName + " directory created.")
+        }
+      });
   }
 
   writeAppJs(projectMetadata) {
@@ -68,11 +68,11 @@ class BaseBlueprintGenerator {
       projectName: projectMetadata.name
     });
     utils.writeFile(projectMetadata.location, constants.APP_MAIN_FILE, content,
-        (error) => {
-          if (!error) {
-            console.log(constants.APP_MAIN_FILE + ' created.');
-          }
-        });
+      (error) => {
+        if (!error) {
+          console.log(constants.APP_MAIN_FILE + ' created.');
+        }
+      });
   }
 
   writeRoutesJs(projectMetadata) {
@@ -80,21 +80,21 @@ class BaseBlueprintGenerator {
       projectName: projectMetadata.name
     });
     utils.writeFile(path.join(projectMetadata.location, constants.ROUTES_DIR), constants.ROUTES_FILE, content,
-        (error) => {
-          if (!error) {
-            console.log(constants.ROUTES_FILE + ' created.');
-          }
-        });
+      (error) => {
+        if (!error) {
+          console.log(constants.ROUTES_FILE + ' created.');
+        }
+      });
   }
 
-  writeMetadata(projectMetadata) {
+  writeProjectMetadata(projectMetadata) {
     let content = utils.parseTemplate(template.PROJECT_METADATA_JSON_TEMPLATE, projectMetadata);
     utils.writeFile(projectMetadata.location, constants.APP_METADATA_FILE, content,
-        (error) => {
-          if (!error) {
-            console.log(constants.APP_METADATA_FILE + ' created.');
-          }
-        });
+      (error) => {
+        if (!error) {
+          console.log(constants.APP_METADATA_FILE + ' created.');
+        }
+      });
   }
 
 }
