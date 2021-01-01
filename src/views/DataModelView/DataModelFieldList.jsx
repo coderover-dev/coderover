@@ -1,13 +1,14 @@
 import * as React from "react";
 import Grid from "@material-ui/core/Grid";
-import {Typography} from "@material-ui/core";
+import {Button, Divider, Typography} from "@material-ui/core";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPlusCircle, faSearch} from "@fortawesome/free-solid-svg-icons";
+import {faPlusCircle, faSearch, faTimesCircle} from "@fortawesome/free-solid-svg-icons";
 import {DataModelField} from "./DataModelField";
 import {v4 as uuidv4} from "uuid";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
 export class DataModelFieldList extends React.Component {
 
@@ -25,40 +26,41 @@ export class DataModelFieldList extends React.Component {
   render() {
     return (
       <div>
-        <Grid item style={{textAlign: "left", paddingBottom: "10px"}}>
-          <Grid container spacing={1}>
-            <Grid item container direction={"row"} spacing={1} xs={2}>
-              <Grid item>
-                <Grid container direction={"row"}>
-                  <Grid item>
-                    <Typography variant="h6">Fields</Typography>
-                  </Grid>
-                  <Grid item style={{paddingLeft: '5px', paddingTop: '3px'}}>
-                    {/*<Typography*/}
-                    {/*  variant="subtitle1">*/}
-                    {/*  {'(' + this.getFieldCount() + ')'}*/}
-                    {/*</Typography>*/}
-                  </Grid>
-                </Grid>
-              </Grid>
-              <Grid item style={{paddingTop: '10px'}}>
-                <Tooltip title="Add a new field">
-                  <IconButton color="primary"
-                              style={{
-                                fontWeight: 'bold',
-                                fontSize: '14pt',
-                                padding: 0
-                              }}
-                              onClick={this.props.onAdd}>
-                    <FontAwesomeIcon className="iconButton" color="primary"
-                                     icon={faPlusCircle}/>
-                  </IconButton>
-                </Tooltip>
-              </Grid>
+        <Grid item container style={{
+          textAlign: "left",
+          paddingTop: "10px",
+          paddingBottom: "10px"
+        }}>
+          <Grid item container spacing={2} direction="row"
+                style={{
+                  borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
+                  margin: '1px'
+                }}>
+            <Grid item style={{
+              paddingTop: '10px',
+              marginLeft: 8,
+              border: '1px solid rgba(0, 0, 0, 0.12)',
+              borderBottom: '0px solid rgb(206, 206, 206)',
+              borderTopLeftRadius: '10px',
+              borderTopRightRadius: '10px',
+              backgroundColor: "rgb(249, 249, 249)"
+            }}>
+              <span style={{fontWeight: "bold", fontSize: "14pt"}}>Fields</span>
             </Grid>
-            <Grid item style={{paddingTop: '8px', paddingLeft: '35px'}}>
+            <Grid item style={{paddingLeft: '10px'}}>
+              <Tooltip title="Add a new field">
+                <Button variant={"outlined"}
+                        size={"small"}
+                        color="primary"
+                        style={{fontSize: '9pt'}}
+                        onClick={this.props.onAdd}
+                        startIcon={<FontAwesomeIcon style={{fontSize: '12pt'}}
+                                                    icon={faPlusCircle}/>}>Add</Button>
+              </Tooltip>
+            </Grid>
+            <Grid item style={{paddingLeft: '2px'}}>
               <OutlinedInput
-                style={{width: '155px'}}
+                style={{width: '155px', height: '30px', fontSize: '8pt'}}
                 id="dataModelName"
                 value={this.state.searchField}
                 onChange={(event) => {
@@ -68,13 +70,15 @@ export class DataModelFieldList extends React.Component {
                 }}
                 placeholder="filter"
                 startAdornment={
-                  <FontAwesomeIcon color="#3b444b" icon={faSearch}/>
+                  <FontAwesomeIcon color="#3b444b"
+                                   style={{fontSize: '12pt'}}
+                                   icon={faSearch}/>
                 }
                 margin="dense"/>
             </Grid>
           </Grid>
         </Grid>
-        <Grid container item xs={12}>
+        <Grid container item xs={12} style={{paddingLeft: '10px'}}>
           {
             Object.keys(this.props.fields)
               .map(fieldId => this.props.fields[fieldId])

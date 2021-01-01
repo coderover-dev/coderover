@@ -8,13 +8,14 @@ import {
 import ListItem from "@material-ui/core/ListItem";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import ListItemText from "@material-ui/core/ListItemText";
-import {IconButton} from "@material-ui/core";
+import {Button, IconButton} from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Tooltip from "@material-ui/core/Tooltip";
 import {workspaceData} from "../../shared/workspace-data";
 import {secondarySidebarSubject} from "../../shared/workspace-events";
 import {getRenderer} from "../../renderer/renderer";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
 
 export class SecondarySidebar extends React.Component {
 
@@ -70,6 +71,7 @@ export class SecondarySidebar extends React.Component {
       <Grid container style={{
         flexDirection: "column",
         borderRight: '2px',
+        paddingTop: '5px',
         borderRightColor: "#cecece"
       }}>
         <List component="nav">
@@ -83,36 +85,46 @@ export class SecondarySidebar extends React.Component {
 
   getFilterBar() {
     return (
-      <Grid container item style={{padding: 5, borderBottom: '1px solid #cecece'}}>
-        <Grid item xs={10} style={{paddingRight: '10px'}}>
-          <TextField
-            size="small"
-            id="outlined-full-width"
-            style={{margin: 8}}
-            placeholder="Filter"
-            fullWidth
-            margin="normal"
-            InputLabelProps={{
-              shrink: true,
+      <Grid container item
+            style={{
+              paddingLeft: 10,
+              paddingRight: 5,
+              paddingTop: 10,
+              paddingBottom: 5,
+              marginRight: 1,
+              borderBottom: '1px solid #cecece'
             }}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <FontAwesomeIcon icon={faSearch}/>
-                </InputAdornment>
-              )
+            spacing={1}>
+        <Grid item>
+          <OutlinedInput
+            style={{width: '135px', height: '30px', fontSize: '8pt'}}
+            id="dataModelName"
+            value={this.state.searchField}
+            onChange={(event) => {
+              this.setState({
+                searchField: event.target.value
+              })
             }}
-            variant="outlined"/>
+            placeholder="search"
+            startAdornment={
+              <FontAwesomeIcon color="#3b444b"
+                               style={{fontSize: '12pt'}}
+                               icon={faSearch}/>
+            }
+            margin="dense"/>
         </Grid>
-        <Grid item xs={2} style={{paddingLeft: '10px', marginTop: '10px'}}>
+        <Grid item>
           <Tooltip title="Add new component">
-            <IconButton color="primary"
-                        style={{fontWeight: 'bold', fontSize: '14pt', padding: 0}}
-                        onClick={() => {
-                        }}>
-              <FontAwesomeIcon className="iconButton" color="primary"
-                               icon={faPlusCircle}/>
-            </IconButton>
+            <Button variant={"outlined"}
+                    size={"small"}
+                    color="primary"
+                    style={{height: '30px', fontSize: '9pt'}}
+                    onClick={() => {
+                    }}
+                    startIcon={
+                      <FontAwesomeIcon style={{fontSize: '12pt'}}
+                                       icon={faPlusCircle}/>
+                    }>Add</Button>
           </Tooltip>
         </Grid>
       </Grid>

@@ -87,6 +87,10 @@ export class DataModelView extends React.Component {
     this.setState(state);
   }
 
+  allowSave() {
+
+  }
+
   reset() {
     let state = {
       dataModelName: "",
@@ -151,7 +155,7 @@ export class DataModelView extends React.Component {
               margin="dense"/>
           </Grid>
         </Grid>
-        <Grid item>
+        <Grid item style={{paddingTop: '5px', paddingBottom: '5px'}}>
           <Divider/>
         </Grid>
         <Grid item xs={12}>
@@ -165,17 +169,13 @@ export class DataModelView extends React.Component {
     )
   }
 
-  getActionButtons() {
-    return (<div/>)
-  }
-
   render() {
     return (
       <Grid container direction="column" style={{padding: '15px', minWidth: '850px', maxWidth: '100%'}}>
         <Grid item container direction="row">
           <Grid item xs={7}>
             <Typography variant="h6" style={{fontWeight: 'bold'}}>
-              Create data model
+              Data Model : <span style={{fontWeight: "bolder", color: "#1569C7"}}>{this.state.dataModelName}</span>
             </Typography>
           </Grid>
           <Grid item xs={5} container direction={"row"}
@@ -204,6 +204,7 @@ export class DataModelView extends React.Component {
                         size={"small"}
                         color="primary"
                         onClick={() => {
+                          this.reset();
                         }}
                         startIcon={
                           <FontAwesomeIcon style={{fontSize: '15pt'}}
@@ -218,9 +219,6 @@ export class DataModelView extends React.Component {
         </Grid>
         <Grid item style={{paddingTop: 10}}>
           {this.getForm()}
-        </Grid>
-        <Grid item>
-          {this.getActionButtons()}
         </Grid>
       </Grid>
     )

@@ -55,14 +55,15 @@ export class DataModelField extends React.Component {
     return (
       <Grid container direction="row" style={{height: '35px', width: '100%'}}
             key={'field_' + this.props.field.fieldId}>
-        <Grid item style={{paddingRight: '20px', paddingTop: '5px'}}>
+        <Grid item style={{paddingRight: '10px', paddingTop: '5px', minWidth: '150px'}}>
           <Typography variant={"body1"}
                       style={{fontWeight: 'bolder'}}>{this.props.field.fieldName}</Typography>
         </Grid>
         <Grid item style={{paddingRight: '10px', paddingTop: '5px'}}>
           <Typography variant={"body2"} style={{
             fontWeight: "bolder",
-            fontStyle: "italic"
+            fontStyle: "italic",
+            color:"gray"
           }}>{this.props.field.fieldDataType}</Typography>
         </Grid>
         <Grid item style={{paddingRight: '10px', paddingTop: '5px'}}>
@@ -82,9 +83,9 @@ export class DataModelField extends React.Component {
             variant={"body2"}>
             {(this.props.field.unique != null && this.props.field.unique) ? 'unique' : ''}</Typography>
         </Grid>
-        <Grid item style={{paddingRight: '10px', paddingTop: '2px'}}>
+        <Grid item style={{paddingRight: '10px', paddingTop: '5px'}}>
           <Tooltip title="Edit">
-            <IconButton style={{fontSize: '15pt', height: '10px'}}
+            <IconButton style={{fontSize: '14pt', height: '10px'}}
                         color="primary"
                         onClick={() => {
                           this.setFieldValue(this.props.field.fieldId, 'editMode', true);
@@ -93,7 +94,7 @@ export class DataModelField extends React.Component {
             </IconButton>
           </Tooltip>
           <Tooltip title="Delete">
-            <IconButton style={{fontSize: '15pt', height: '10px'}}
+            <IconButton style={{fontSize: '14pt', height: '10px'}}
                         color="primary"
                         onClick={() => {
                           this.setFieldValue(this.props.field.fieldId, 'deleted', true);
