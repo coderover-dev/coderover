@@ -7,12 +7,13 @@ const PROJECT_METADATA_JSON_TEMPLATE = `{
 }
 `
 const DATA_MODEL_METADATA_JSON_TEMPLATE = `{
-    "modelName":"{{modelName}}",
-    "transient":"{{transient}}",
+    "dataModelName":"{{dataModelName}}",
+    "transient":{{transient}},
     "dbTableName":"{{dbTableName}}",
     "fields":[
       {{#each fieldList}}
       {
+        "fieldId":"{{fieldId}}",
         "fieldName":"{{fieldName}}",
         "fieldDataType":"{{fieldDataType}}",
         "dbColumnName":"{{dbColumnName}}",

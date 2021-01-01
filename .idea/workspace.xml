@@ -20,26 +20,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07424044-891a-4bc7-8a83-ef9993154c32" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/platform/generators/node-express/data-model-generator.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/generators/generator-factory.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/generators/generator-factory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/generators/node/express-js/base-blueprint-generator.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/generators/node-express/base-blueprint-generator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/generators/node/express-js/generator.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/generators/node-express/generator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/generators/node/express-js/resource-generator.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/generators/node/express-js/template.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/generators/node-express/template.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/main/events-registry.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/main/events-registry.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/main/resource-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/main/data-model-main-event.handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/main/workspace-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/main/workspace-main-event.handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/renderer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/renderer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/resource-renderer-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/data-model-renderer-event.handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform/generators/node-express/data-model-generator.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/generators/node-express/data-model-generator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform/generators/node-express/template.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/generators/node-express/template.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform/main/data-model-main-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/main/data-model-main-event.handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/data-model-renderer-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/data-model-renderer-event.handler.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shared/workspace-data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/workspace-data.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shared/workspace-events.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/workspace-events.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/ContentView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ContentView.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/DataModelView/DataModelField.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DataModelView/DataModelField.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/DataModelView/DataModelFieldList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DataModelView/DataModelFieldList.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/DataModelView/DataModelView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DataModelView/DataModelView.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/LandingView/LandingView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LandingView/LandingView.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/Breadcrumb.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/Breadcrumb.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/PrimarySidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/PrimarySidebar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/SecondarySidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/SecondarySidebar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/Toolbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/Toolbar.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +142,7 @@
       <workItem from="1607672798918" duration="751000" />
       <workItem from="1607948324447" duration="12963000" />
       <workItem from="1608727060698" duration="863000" />
-      <workItem from="1609392937765" duration="27754000" />
+      <workItem from="1609392937765" duration="47127000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1606071312677</created>
@@ -275,7 +270,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609405533784</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="added data model generator and loader functionality.">
+      <created>1609433622216</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1609433622216</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -312,7 +314,8 @@
     <MESSAGE value="refactored data model view" />
     <MESSAGE value="refactored indentation with 2 spaces" />
     <MESSAGE value="refactored" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored" />
+    <MESSAGE value="added data model generator and loader functionality." />
+    <option name="LAST_COMMIT_MESSAGE" value="added data model generator and loader functionality." />
   </component>
   <component name="WindowStateProjectService">
     <state x="-815" y="-553" key="#JavaScript" timestamp="1609405449583">
@@ -320,9 +323,10 @@
     </state>
     <state x="-815" y="-553" key="#JavaScript/-1080.-1183.1080.1895/0.25.2048.1179/0.-1055.1920.1055@-1080.-1183.1080.1895" timestamp="1609405449583" />
     <state x="-815" y="655" key="#JavaScript/-2461.552.1381.875/0.25.1080.1895/-1080.25.1080.1895@-1080.25.1080.1895" timestamp="1607961447194" />
-    <state x="304" y="160" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606114196721">
-      <screen x="0" y="25" width="1680" height="953" />
+    <state x="-1071" y="-915" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1609488779908">
+      <screen x="-1080" y="-1183" width="1080" height="1895" />
     </state>
+    <state x="-1071" y="-915" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1080.-1183.1080.1895/0.25.2048.1179/0.-1055.1920.1055@-1080.-1183.1080.1895" timestamp="1609488779908" />
     <state x="304" y="160" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606114196721" />
     <state x="-1270" y="316" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606576472875">
       <screen x="-1920" y="25" width="1920" height="983" />
@@ -336,9 +340,10 @@
     <state x="-708" y="-748" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609423162907" />
     <state x="-1259" y="259" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606916405922" />
     <state x="578" y="252" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606049503244" />
-    <state x="-989" y="-1149" key="CommitChangelistDialog2" timestamp="1609405533583">
-      <screen x="-1080" y="-1183" width="1080" height="1895" />
+    <state x="-1038" y="-1150" key="CommitChangelistDialog2" timestamp="1609433622043">
+      <screen x="-1080" y="-1183" width="1080" height="1827" />
     </state>
+    <state x="-1038" y="-1150" key="CommitChangelistDialog2/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609433622043" />
     <state x="-989" y="-1149" key="CommitChangelistDialog2/-1080.-1183.1080.1895/0.25.2048.1179/0.-1055.1920.1055@-1080.-1183.1080.1895" timestamp="1609405533583" />
     <state x="-813" y="59" key="CommitChangelistDialog2/-2461.552.1381.875/0.25.1080.1895/-1080.25.1080.1895@-1080.25.1080.1895" timestamp="1607961882307" />
     <state x="-1435" y="43" key="CommitChangelistDialog2/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606588342802" />
@@ -406,9 +411,10 @@
       <screen x="-1920" y="25" width="1920" height="1055" />
     </state>
     <state width="500" height="445" key="SwitcherDM/0.25.1680.953/-1920.25.1920.1055@-1920.25.1920.1055" timestamp="1606984701704" />
-    <state x="-800" y="-785" key="Vcs.Push.Dialog.v2" timestamp="1609405535971">
-      <screen x="-1080" y="-1183" width="1080" height="1895" />
+    <state x="-800" y="-799" key="Vcs.Push.Dialog.v2" timestamp="1609433623712">
+      <screen x="-1080" y="-1183" width="1080" height="1827" />
     </state>
+    <state x="-800" y="-799" key="Vcs.Push.Dialog.v2/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609433623712" />
     <state x="-800" y="-785" key="Vcs.Push.Dialog.v2/-1080.-1183.1080.1895/0.25.2048.1179/0.-1055.1920.1055@-1080.-1183.1080.1895" timestamp="1609405535971" />
     <state x="-800" y="423" key="Vcs.Push.Dialog.v2/-2461.552.1381.875/0.25.1080.1895/-1080.25.1080.1895@-1080.25.1080.1895" timestamp="1607961884405" />
     <state x="-1417" y="231" key="Vcs.Push.Dialog.v2/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606588344764" />
@@ -423,11 +429,11 @@
     <state x="-1016" y="-992" width="952" height="1445" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609429288719" />
     <state x="-1807" y="128" width="1692" height="777" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606584072522" />
     <state x="99" y="125" width="1480" height="753" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606151600787" />
-    <state x="-732" y="-974" width="572" height="1411" key="find.popup" timestamp="1609432287187">
+    <state x="-732" y="-974" width="572" height="1411" key="find.popup" timestamp="1609513205671">
       <screen x="-1080" y="-1183" width="1080" height="1827" />
     </state>
     <state x="-732" y="-974" width="572" height="1411" key="find.popup/-1080.-1183.1080.1824/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1824" timestamp="1609431700343" />
-    <state x="-732" y="-974" width="572" height="1411" key="find.popup/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609432287187" />
+    <state x="-732" y="-974" width="572" height="1411" key="find.popup/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609513205671" />
     <state x="-732" y="-974" width="572" height="1412" key="find.popup/-1080.-1183.1080.1829/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1829" timestamp="1609415254320" />
     <state x="-732" y="-966" width="572" height="1462" key="find.popup/-1080.-1183.1080.1895/0.25.2048.1179/0.-1055.1920.1055@-1080.-1183.1080.1895" timestamp="1609410948574" />
     <state x="-1302" y="137" width="683" height="759" key="find.popup/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606928084870" />
@@ -441,9 +447,10 @@
       <screen x="-1920" y="25" width="1920" height="1055" />
     </state>
     <state x="-1576" y="212" key="new project wizard/0.25.1680.953/-1920.25.1920.1055@-1920.25.1920.1055" timestamp="1606551415505" />
-    <state x="450" y="-824" width="767" height="751" key="search.everywhere.popup" timestamp="1606839429804">
-      <screen x="-127" y="-1055" width="1920" height="1055" />
+    <state x="-755" y="-768" width="670" height="1349" key="search.everywhere.popup" timestamp="1609490124177">
+      <screen x="-1080" y="-1183" width="1080" height="1895" />
     </state>
+    <state x="-755" y="-768" width="670" height="1349" key="search.everywhere.popup/-1080.-1183.1080.1895/0.25.2048.1179/0.-1055.1920.1055@-1080.-1183.1080.1895" timestamp="1609490124177" />
     <state x="505" y="250" width="670" height="728" key="search.everywhere.popup/0.25.1680.1025/-115.-1055.1920.983@0.25.1680.1025" timestamp="1606108520374" />
     <state x="-1343" y="241" width="766" height="699" key="search.everywhere.popup/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606578076303" />
     <state x="505" y="234" width="671" height="678" key="search.everywhere.popup/0.25.1680.953/-110.-1055.1920.1055@0.25.1680.953" timestamp="1606740134188" />

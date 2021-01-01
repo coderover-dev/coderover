@@ -33,37 +33,37 @@ export class Breadcrumb extends React.Component {
 
   render() {
     return (
-        <div style={{backgroundColor: "#e7e2e7", height: '24px', paddingLeft: '10px'}}>
+      <div style={{backgroundColor: "#e7e2e7", height: '24px', paddingLeft: '10px'}}>
 
-          <Breadcrumbs aria-label="breadcrumb" separator={<NavigateNext fontSize="small"/>}>
+        <Breadcrumbs aria-label="breadcrumb" separator={<NavigateNext fontSize="small"/>}>
 
-            <Link color="inherit" href="#">
-              <Grid container spacing={1}>
-                <Grid item>
-                  <FontAwesomeIcon icon={faHome}/>
-                </Grid>
-                <Grid item>
-                  <Typography variant="body1"
-                              className={"BreadcrumbText-bold"}>
-                    {this.state.project}
-                  </Typography>
-                </Grid>
+          <Link color="inherit" href="#">
+            <Grid container spacing={1}>
+              <Grid item>
+                <FontAwesomeIcon icon={faHome}/>
               </Grid>
-            </Link>
-
-            <Link color="inherit" href="#">
-              <Grid container spacing={1}>
-                <Grid item>
-                  <Typography variant="body1"
-                              className={"BreadcrumbText-bold"}>
-                    {this.state.component}
-                  </Typography>
-                </Grid>
+              <Grid item>
+                <Typography variant="body1"
+                            className={"BreadcrumbText-bold"}>
+                  {this.state.project}
+                </Typography>
               </Grid>
-            </Link>
+            </Grid>
+          </Link>
 
-          </Breadcrumbs>
-        </div>
+          <Link color="inherit" href="#">
+            <Grid container spacing={1}>
+              <Grid item>
+                <Typography variant="body1"
+                            className={"BreadcrumbText-bold"}>
+                  {this.state.component}
+                </Typography>
+              </Grid>
+            </Grid>
+          </Link>
+
+        </Breadcrumbs>
+      </div>
     )
   }
 }

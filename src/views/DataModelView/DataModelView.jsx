@@ -7,41 +7,90 @@ import {Divider, Typography} from "@material-ui/core";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import Checkbox from "@material-ui/core/Checkbox";
 import Tooltip from "@material-ui/core/Tooltip";
-import IconButton from "@material-ui/core/IconButton";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
-  faCheckCircle,
-  faFolderOpen,
-  faPlusCircle,
   faSave,
-  faSearch,
   faTimesCircle
 } from "@fortawesome/free-solid-svg-icons";
-import TextField from "@material-ui/core/TextField";
-import MenuItem from "@material-ui/core/MenuItem";
 import {camelCaseToSnakeCase} from "../../shared/string-utils";
-import {DataModelField} from "./DataModelField";
-import {v4 as uuidv4} from 'uuid';
 import {DataModelFieldList} from "./DataModelFieldList";
 import Button from "@material-ui/core/Button";
 import {workspaceData} from "../../shared/workspace-data";
+import {dataModelSubject} from "../../shared/workspace-events";
+import {v4 as uuidv4} from "uuid";
 
 export class DataModelView extends React.Component {
 
   constructor(props) {
     super(props);
     this.renderer = getRenderer();
+    this.dataModelSubscription =
+      dataModelSubject.subscribe(this.loadDataModel.bind(this));
     this.state = {
-      fields:{}
+      transient: false,
+      fields: {}
     };
     this.reset();
   }
 
-  reset() {
+  componentWillUnmount() {
+    this.dataModelSubscription.unsubscribe();
+  }
 
+  loadDataModel(metadata) {
+    if (this.state !== undefined) {
+      this.setState(metadata);
+    }
+  }
+
+  handleAddField() {
+    let state = this.state.fields;
+    let transient = this.transient;
+    if (transient === undefined || transient == null) {
+      transient = false;
+    }
+
+    let fieldId = uuidv4();
+    state[fieldId] = {
+      newField: true,
+      editMode: true,
+      fieldId: fieldId,
+      fieldName: "",
+      fieldDataType: "",
+      dbColumnName: "",
+      defaultValue: "",
+      transient: transient,
+      nullable: true,
+      unique: false,
+      refDataModelName: "",
+      refFieldName: "",
+      refKeyName: "",
+      deleted: false
+    };
+    this.fieldCount = this.fieldCount + 1;
+    this.setState(state);
+  }
+
+  handleFieldUpdate(updatedField) {
+    let state = this.state.fields;
+    let fieldId = updatedField.fieldId;
+    state[fieldId] = updatedField;
+    state[fieldId].newField = false;
+    this.setState(state);
+  }
+
+  handleFieldDelete(fieldId) {
+    let state = this.state.fields;
+    state[fieldId] = this.state[fieldId];
+    state[fieldId].deleted = true;
+    this.fieldCount = this.fieldCount - 1;
+    this.setState(state);
+  }
+
+  reset() {
     let state = {
       dataModelName: "",
-      tableName: "",
+      dbTableName: "",
       transient: false,
       fields: {},
       resourceName: "",
@@ -56,6 +105,10 @@ export class DataModelView extends React.Component {
   }
 
   getForm() {
+    let handleAdd = this.handleAddField.bind(this);
+    let handleUpdate = this.handleFieldUpdate.bind(this);
+    let handleDelete = this.handleFieldDelete.bind(this);
+
     return (
       <Grid container direction={"column"} spacing={2}>
         <Grid item container direction="row" style={{paddingTop: "10px"}} xs={12} spacing={2}>
@@ -69,7 +122,7 @@ export class DataModelView extends React.Component {
               onChange={(event) => {
                 this.setState({
                   dataModelName: event.target.value,
-                  tableName: camelCaseToSnakeCase(event.target.value)
+                  dbTableName: camelCaseToSnakeCase(event.target.value)
                 })
               }}
               margin="dense"/>
@@ -89,10 +142,10 @@ export class DataModelView extends React.Component {
           </Grid>
           <Grid item>
             <OutlinedInput
-              id="tableName"
-              value={this.state.tableName}
+              id="dbTableName"
+              value={this.state.dbTableName}
               onChange={(event) => {
-                this.setState({tableName: event.target.value});
+                this.setState({dbTableName: event.target.value});
               }}
               disabled={this.state.transient}
               margin="dense"/>
@@ -103,7 +156,10 @@ export class DataModelView extends React.Component {
         </Grid>
         <Grid item xs={12}>
           <DataModelFieldList fields={this.state.fields}
-                              transient={this.state.transient}/>
+                              transient={this.state.transient}
+                              onAdd={handleAdd}
+                              onUpdate={handleUpdate}
+                              onDelete={handleDelete}/>
         </Grid>
       </Grid>
     )

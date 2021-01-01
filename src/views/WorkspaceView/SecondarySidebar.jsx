@@ -14,11 +14,14 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Tooltip from "@material-ui/core/Tooltip";
 import {workspaceData} from "../../shared/workspace-data";
 import {secondarySidebarSubject} from "../../shared/workspace-events";
+import {getRenderer} from "../../renderer/renderer";
 
 export class SecondarySidebar extends React.Component {
 
   constructor(props) {
     super(props);
+    this.renderer = getRenderer();
+
     this.state = {
       items: []
     }
@@ -31,7 +34,7 @@ export class SecondarySidebar extends React.Component {
     this.secondarySidebarSubscription.unsubscribe();
   }
 
-  handleSidebarRefresh(items){
+  handleSidebarRefresh(items) {
     this.setState({
       items: items
     })
@@ -41,6 +44,11 @@ export class SecondarySidebar extends React.Component {
     return (
       <ListItem button style={{height: '32px'}}
                 key={text}
+                onClick={() => {
+                  this.renderer
+                    .getDataModelHandler()
+                    .fetchDataModel(workspaceData.project, text);
+                }}
                 className="sidebarSubMenuItem">
         <ListItemText>
           <span className="sidebarSubMenuItemText">{text}</span>

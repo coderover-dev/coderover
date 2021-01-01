@@ -5,6 +5,7 @@ const electron = require('electron');
 const MainProcessEventHandler = require('./main-process-event.handler');
 const path = require('path');
 const constants = require("../constants");
+const fs = require('fs');
 
 class DataModelMainEventHandler extends MainProcessEventHandler {
 
@@ -18,9 +19,71 @@ class DataModelMainEventHandler extends MainProcessEventHandler {
     const handleFetchDataModels = this.handleFetchDataModelsEvent.bind(this);
     this.ipcMain.on('FetchDataModels', handleFetchDataModels);
 
+    const handleLoadDataModel = this.handleLoadDataModelEvent.bind(this);
+    this.ipcMain.on('LoadDataModel', handleLoadDataModel);
+
     const handlePersistDataModel = this.handlePersistDataModelEvent.bind(this);
     this.ipcMain.on('PersistDataModel', handlePersistDataModel);
 
+  }
+
+
+  prepareFields(resourceMetadata) {
+    if (resourceMetadata.fields === undefined ||
+      resourceMetadata.fields == null) {
+      return {};
+    }
+
+    let fieldList = resourceMetadata.fields;
+    let fieldCount = fieldList.length;
+    let fields = {};
+    for (let i = 0; i < fieldCount; i++) {
+      let field = fieldList[i];
+      if (field.deleted === undefined ||
+        (field.deleted != null && !field.deleted)) {
+        fields[field.fieldId] = field;
+      }
+    }
+
+    return fields;
+  }
+
+  handleLoadDataModelEvent(event, args) {
+    this.event = event;
+    this.args = args;
+    let projectMetadata = args.projectMetadata;
+    let dataModelName = args.dataModelName;
+    let metadataFileName = dataModelName + ".data.json";
+    let content = fs.readFileSync(path.join(
+      projectMetadata.location, constants.APP_METADATA_DIR, metadataFileName), 'utf8');
+    let jsonContent = null;
+    let error = false;
+
+    try {
+      jsonContent = JSON.parse(content.toString());
+      jsonContent.fields = this.prepareFields(jsonContent);
+      this.replyEventName = 'DataModelLoaded';
+      this.event.reply(
+        this.replyEventName, {
+          data: jsonContent,
+          success: true
+        });
+    } catch (err) {
+      error = true;
+      console.log(err);
+    }
+
+    if (error) {
+      this.replyEventName = 'LoadDataModelFailed';
+      this.event.reply(this.replyEventName, {
+        dataModels: [],
+        message: {
+          summary: "Invalid metadata",
+          description: "Could not read the data model metadata."
+        },
+        success: false
+      });
+    }
   }
 
   handleFetchDataModelsEvent(event, args) {

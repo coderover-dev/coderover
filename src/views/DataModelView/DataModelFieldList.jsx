@@ -11,7 +11,6 @@ import {v4 as uuidv4} from "uuid";
 
 export class DataModelFieldList extends React.Component {
 
-
   constructor(props) {
     super(props);
     this.fieldCount = 0;
@@ -19,54 +18,9 @@ export class DataModelFieldList extends React.Component {
     // when a new field is added it should take the value from this.transient
     this.transient = props.transient;
     this.state = {
-      fields: props.fields
-    };
+      searchField: ""
+    }
   }
-
-
-  getFieldCount() {
-    return this.fieldCount;
-  }
-
-  handleAddField() {
-    let state = this.state.fields;
-    let fieldId = uuidv4();
-    state[fieldId] = {
-      newField: true,
-      editMode: true,
-      fieldId: fieldId,
-      fieldName: "",
-      fieldDataType: "",
-      dbColumnName: "",
-      defaultValue: "",
-      transient: this.transient,
-      nullable: true,
-      unique: false,
-      refDataModelName: "",
-      refFieldName: "",
-      refKeyName: "",
-      deleted: false
-    };
-    this.fieldCount = this.fieldCount + 1;
-    this.setState(state);
-  }
-
-  handleFieldUpdate(updatedField) {
-    let state = this.state.fields;
-    let fieldId = updatedField.fieldId;
-    state[fieldId] = updatedField;
-    state[fieldId].newField = false;
-    this.setState(state);
-  }
-
-  handleFieldDelete(fieldId) {
-    let state = this.state.fields;
-    state[fieldId] = this.state[fieldId];
-    state[fieldId].deleted = true;
-    this.fieldCount = this.fieldCount - 1;
-    this.setState(state);
-  }
-
 
   render() {
     return (
@@ -80,16 +34,22 @@ export class DataModelFieldList extends React.Component {
                     <Typography variant="h6">Fields</Typography>
                   </Grid>
                   <Grid item style={{paddingLeft: '5px', paddingTop: '3px'}}>
-                    <Typography
-                      variant="subtitle1">{'(' + this.getFieldCount() + ')'}</Typography>
+                    {/*<Typography*/}
+                    {/*  variant="subtitle1">*/}
+                    {/*  {'(' + this.getFieldCount() + ')'}*/}
+                    {/*</Typography>*/}
                   </Grid>
                 </Grid>
               </Grid>
               <Grid item style={{paddingTop: '10px'}}>
                 <Tooltip title="Add a new field">
                   <IconButton color="primary"
-                              style={{fontWeight: 'bold', fontSize: '14pt', padding: 0}}
-                              onClick={() => this.handleAddField()}>
+                              style={{
+                                fontWeight: 'bold',
+                                fontSize: '14pt',
+                                padding: 0
+                              }}
+                              onClick={this.props.onAdd}>
                     <FontAwesomeIcon className="iconButton" color="primary"
                                      icon={faPlusCircle}/>
                   </IconButton>
@@ -116,14 +76,14 @@ export class DataModelFieldList extends React.Component {
         </Grid>
         <Grid container item xs={12}>
           {
-            Object.keys(this.state.fields)
-              .map(fieldId => this.state.fields[fieldId])
+            Object.keys(this.props.fields)
+              .map(fieldId => this.props.fields[fieldId])
               .filter(field => !field.deleted)
               .map(field =>
                 (<DataModelField key={field.fieldId}
                                  field={field}
-                                 onUpdate={(updatedField) => this.handleFieldUpdate(updatedField)}
-                                 onDelete={(fieldId) => this.handleFieldDelete(fieldId)}/>)
+                                 onUpdate={this.props.onUpdate}
+                                 onDelete={this.props.onDelete}/>)
               )
           }
         </Grid>

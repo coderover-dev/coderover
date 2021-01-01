@@ -12,9 +12,9 @@ export class ContentView extends React.Component {
       init: false
     }
     this.workspaceUpdateSubscription =
-        workspaceSubject.subscribe(value => {
-          this.setState({init: workspaceData.init});
-        });
+      workspaceSubject.subscribe(value => {
+        this.setState({init: workspaceData.init});
+      });
   }
 
   componentWillUnmount() {

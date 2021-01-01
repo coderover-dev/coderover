@@ -19,12 +19,12 @@ export class PrimarySidebar extends React.Component {
     this.renderer = getRenderer();
   }
 
-  initMenuContent(key, metadata){
-    switch(key) {
+  initMenuContent(key, metadata) {
+    switch (key) {
       case "DATA_MODELS":
         this.renderer
           .getDataModelHandler()
-          .fetchDataModels(metadata);
+          .fetchDataModels(workspaceData.project);
         break;
       default:
     }

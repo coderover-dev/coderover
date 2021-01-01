@@ -1,5 +1,7 @@
 export let workspaceData = {
+
   init: false,
+
   project: {
     name: "",
     workspace: "",
@@ -8,9 +10,13 @@ export let workspaceData = {
     platform: "",
     framework: ""
   },
+
   selectedComponent: {
     key: "",
     text: ""
   },
-  dataModels:[]
+
+  dataModels:[],
+  openDataModels:{}
+
 }

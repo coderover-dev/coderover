@@ -6,8 +6,8 @@ const path = require('path');
 class DataModelGenerator {
 
   generate(metadata) {
-    console.log("creating resource blueprint..");
-    return this.writeResourceMetadata(metadata.projectMetadata, metadata.resourceMetadata);
+    console.log("creating data model blueprint..");
+    return this.writeMetadata(metadata.projectMetadata, metadata.resourceMetadata);
   }
 
   prepareFieldList(resourceMetadata) {
@@ -21,13 +21,17 @@ class DataModelGenerator {
     let fieldList = [];
     for (let i = 0; i < fieldCount; i++) {
       let field = resourceMetadata.fields[fieldIds[i]];
-      fieldList.push(field);
+      if (field.deleted === undefined ||
+        (field.deleted != null && !field.deleted)) {
+        field["fieldId"] = fieldIds[i];
+        fieldList.push(field);
+      }
     }
 
     return fieldList;
   }
 
-  writeResourceMetadata(projectMetadata, resourceMetadata) {
+  writeMetadata(projectMetadata, resourceMetadata) {
     resourceMetadata.fieldList = this.prepareFieldList(resourceMetadata);
     let metadataFileName = resourceMetadata.dataModelName + ".data.json";
     let content = utils.parseTemplate(template.DATA_MODEL_METADATA_JSON_TEMPLATE, resourceMetadata);
