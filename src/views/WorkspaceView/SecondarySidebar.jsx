@@ -43,7 +43,7 @@ export class SecondarySidebar extends React.Component {
 
   createSidebarItem(text, index) {
     return (
-      <ListItem button style={{height: '32px', backgroundColor: '#F4F6F7'}}
+      <ListItem button style={{height: '32px'}}
                 key={text}
                 onClick={() => {
                   this.renderer
@@ -104,7 +104,7 @@ export class SecondarySidebar extends React.Component {
               marginRight: 1,
               marginLeft: 1,
               borderBottom: '1px solid #cecece',
-              backgroundColor: '#F4F6F7'
+              backgroundColor: 'rgb(231, 226, 231)'
             }}
             spacing={1}>
         <Grid item>

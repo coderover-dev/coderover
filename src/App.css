@@ -72,3 +72,7 @@
 .MuiTypography-root{
   font-weight: 500 !important;
 }
+
+.MuiOutlinedInput-adornedStart{
+  padding-left: 5px !important;
+}
