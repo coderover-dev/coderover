@@ -13,7 +13,7 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Tooltip from "@material-ui/core/Tooltip";
 import {workspaceData} from "../../shared/workspace-data";
-import {secondarySidebarSubject} from "../../shared/workspace-events";
+import {dataModelSubject, secondarySidebarSubject} from "../../shared/workspace-events";
 import {getRenderer} from "../../renderer/renderer";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 
@@ -41,9 +41,9 @@ export class SecondarySidebar extends React.Component {
     })
   }
 
-  createSidebarItem(text) {
+  createSidebarItem(text, index) {
     return (
-      <ListItem button style={{height: '32px'}}
+      <ListItem button style={{height: '32px', backgroundColor: '#F4F6F7'}}
                 key={text}
                 onClick={() => {
                   this.renderer
@@ -76,11 +76,21 @@ export class SecondarySidebar extends React.Component {
       }}>
         <List component="nav">
           {
-            this.state.items.map((item) => this.createSidebarItem(item))
+            this.state.items.map((item, index) => this.createSidebarItem(item, index))
           }
         </List>
       </Grid>
     )
+  }
+
+  triggerNewAction() {
+    switch (workspaceData.selectedComponent.key) {
+      case "DATA_MODELS":
+        dataModelSubject.next(null);
+        break;
+      default:
+        break;
+    }
   }
 
   getFilterBar() {
@@ -92,7 +102,9 @@ export class SecondarySidebar extends React.Component {
               paddingTop: 10,
               paddingBottom: 5,
               marginRight: 1,
-              borderBottom: '1px solid #cecece'
+              marginLeft: 1,
+              borderBottom: '1px solid #cecece',
+              backgroundColor: '#F4F6F7'
             }}
             spacing={1}>
         <Grid item>
@@ -119,8 +131,7 @@ export class SecondarySidebar extends React.Component {
                     size={"small"}
                     color="primary"
                     style={{height: '30px', fontSize: '9pt'}}
-                    onClick={() => {
-                    }}
+                    onClick={() => this.triggerNewAction()}
                     startIcon={
                       <FontAwesomeIcon style={{fontSize: '12pt'}}
                                        icon={faPlusCircle}/>

@@ -52,10 +52,10 @@ export class DataModelRendererEventHandler extends RendererProcessEventHandler {
       });
   }
 
-  persistDataModel(projectMetadata, resourceMetadata) {
+  persistDataModel(projectMetadata, dataModelMetadata) {
     window.ipcRenderer.send('PersistDataModel', {
       projectMetadata: projectMetadata,
-      resourceMetadata: resourceMetadata
+      dataModelMetadata: dataModelMetadata
     });
   }
 

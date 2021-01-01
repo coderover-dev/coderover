@@ -9,7 +9,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import {breadcrumbSubject} from "./Breadcrumb";
 import {workspaceData} from "../../shared/workspace-data";
-import {workspaceSubject} from "../../shared/workspace-events";
+import {secondarySidebarSubject, workspaceSubject} from "../../shared/workspace-events";
 import {getRenderer} from "../../renderer/renderer";
 
 export class PrimarySidebar extends React.Component {
@@ -27,6 +27,8 @@ export class PrimarySidebar extends React.Component {
           .fetchDataModels(workspaceData.project);
         break;
       default:
+        secondarySidebarSubject.next([]);
+        break;
     }
   }
 

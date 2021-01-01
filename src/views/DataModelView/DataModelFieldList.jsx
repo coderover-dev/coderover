@@ -38,12 +38,7 @@ export class DataModelFieldList extends React.Component {
                 }}>
             <Grid item style={{
               paddingTop: '10px',
-              marginLeft: 8,
-              border: '1px solid rgba(0, 0, 0, 0.12)',
-              borderBottom: '0px solid rgb(206, 206, 206)',
-              borderTopLeftRadius: '10px',
-              borderTopRightRadius: '10px',
-              backgroundColor: "rgb(249, 249, 249)"
+              marginLeft: 8
             }}>
               <span style={{fontWeight: "bold", fontSize: "14pt"}}>Fields</span>
             </Grid>

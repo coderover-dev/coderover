@@ -53,7 +53,7 @@ class DataModelMainEventHandler extends MainProcessEventHandler {
     this.args = args;
     let projectMetadata = args.projectMetadata;
     let dataModelName = args.dataModelName;
-    let metadataFileName = dataModelName + ".data.json";
+    let metadataFileName = dataModelName.toLowerCase() + ".data.json";
     let content = fs.readFileSync(path.join(
       projectMetadata.location, constants.APP_METADATA_DIR, metadataFileName), 'utf8');
     let jsonContent = null;

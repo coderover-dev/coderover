@@ -21,9 +21,12 @@
   <component name="ChangeListManager">
     <list default="true" id="07424044-891a-4bc7-8a83-ef9993154c32" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/DataModelView/DataModelField.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DataModelView/DataModelField.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform/generators/node-express/data-model-generator.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/generators/node-express/data-model-generator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform/main/data-model-main-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/main/data-model-main-event.handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/data-model-renderer-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/data-model-renderer-event.handler.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/DataModelView/DataModelFieldList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DataModelView/DataModelFieldList.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/DataModelView/DataModelView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DataModelView/DataModelView.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/PrimarySidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/PrimarySidebar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/SecondarySidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/SecondarySidebar.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -132,7 +135,7 @@
       <workItem from="1607672798918" duration="751000" />
       <workItem from="1607948324447" duration="12963000" />
       <workItem from="1608727060698" duration="863000" />
-      <workItem from="1609392937765" duration="53763000" />
+      <workItem from="1609392937765" duration="56262000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1606071312677</created>
@@ -274,7 +277,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609517887133</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="fixed issues with data model view">
+      <created>1609525109116</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1609525109116</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -313,7 +323,8 @@
     <MESSAGE value="refactored" />
     <MESSAGE value="added data model generator and loader functionality." />
     <MESSAGE value="fixed data model state transition issue" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed data model state transition issue" />
+    <MESSAGE value="fixed issues with data model view" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed issues with data model view" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-815" y="-553" key="#JavaScript" timestamp="1609405449583">
@@ -338,10 +349,10 @@
     <state x="-708" y="-748" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609423162907" />
     <state x="-1259" y="259" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606916405922" />
     <state x="578" y="252" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606049503244" />
-    <state x="-1038" y="-1150" key="CommitChangelistDialog2" timestamp="1609517886997">
+    <state x="-1038" y="-1150" key="CommitChangelistDialog2" timestamp="1609525108987">
       <screen x="-1080" y="-1183" width="1080" height="1827" />
     </state>
-    <state x="-1038" y="-1150" key="CommitChangelistDialog2/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609517886997" />
+    <state x="-1038" y="-1150" key="CommitChangelistDialog2/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609525108987" />
     <state x="-989" y="-1149" key="CommitChangelistDialog2/-1080.-1183.1080.1895/0.25.2048.1179/0.-1055.1920.1055@-1080.-1183.1080.1895" timestamp="1609405533583" />
     <state x="-813" y="59" key="CommitChangelistDialog2/-2461.552.1381.875/0.25.1080.1895/-1080.25.1080.1895@-1080.25.1080.1895" timestamp="1607961882307" />
     <state x="-1435" y="43" key="CommitChangelistDialog2/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606588342802" />
@@ -409,10 +420,10 @@
       <screen x="-1920" y="25" width="1920" height="1055" />
     </state>
     <state width="500" height="445" key="SwitcherDM/0.25.1680.953/-1920.25.1920.1055@-1920.25.1920.1055" timestamp="1606984701704" />
-    <state x="-800" y="-799" key="Vcs.Push.Dialog.v2" timestamp="1609517888911">
+    <state x="-800" y="-799" key="Vcs.Push.Dialog.v2" timestamp="1609525110768">
       <screen x="-1080" y="-1183" width="1080" height="1827" />
     </state>
-    <state x="-800" y="-799" key="Vcs.Push.Dialog.v2/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609517888911" />
+    <state x="-800" y="-799" key="Vcs.Push.Dialog.v2/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609525110768" />
     <state x="-800" y="-785" key="Vcs.Push.Dialog.v2/-1080.-1183.1080.1895/0.25.2048.1179/0.-1055.1920.1055@-1080.-1183.1080.1895" timestamp="1609405535971" />
     <state x="-800" y="423" key="Vcs.Push.Dialog.v2/-2461.552.1381.875/0.25.1080.1895/-1080.25.1080.1895@-1080.25.1080.1895" timestamp="1607961884405" />
     <state x="-1417" y="231" key="Vcs.Push.Dialog.v2/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606588344764" />

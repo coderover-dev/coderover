@@ -39,7 +39,11 @@ export class DataModelView extends React.Component {
 
   loadDataModel(metadata) {
     if (this.state !== undefined) {
-      this.setState(metadata);
+      if(metadata!=null) {
+        this.setState(metadata);
+      }else{
+        this.reset();
+      }
     }
   }
 
