@@ -25,6 +25,13 @@ export class DataModelRendererEventHandler extends RendererProcessEventHandler {
 
     const handleDataModelLoaded = this.handleDataModelLoadedEvent.bind(this);
     this.ipcRenderer.on('DataModelLoaded', handleDataModelLoaded);
+
+    const handleDataModelFieldsRetrieved = this.handleDataModelFieldsRetrievedEvent.bind(this);
+    this.ipcRenderer.on('DataModelFieldsRetrieved', handleDataModelFieldsRetrieved);
+
+    const handleFetchDataModelFieldsFailed = this.handleFetchDataModelFieldsFailedEvent.bind(this);
+    this.ipcRenderer.on('FetchDataModelFieldsFailed', handleFetchDataModelFieldsFailed);
+
   }
 
   fetchDataModels(projectMetadata) {
@@ -57,6 +64,18 @@ export class DataModelRendererEventHandler extends RendererProcessEventHandler {
       projectMetadata: projectMetadata,
       dataModelMetadata: dataModelMetadata
     });
+  }
+
+  handleDataModelFieldsRetrievedEvent(event, args) {
+
+  }
+
+  handleFetchDataModelFieldsFailedEvent(event, args) {
+    pushAlert('FetchDataModelFieldsFailed', ALERT_OK,
+      args.message.summary, args.message.description,
+      () => {
+      }, () => {
+      });
   }
 
   handleDataModelPersistedEvent(event, args) {

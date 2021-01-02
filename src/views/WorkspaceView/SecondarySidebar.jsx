@@ -37,7 +37,7 @@ export class SecondarySidebar extends React.Component {
 
   handleSidebarRefresh(items) {
     this.setState({
-      items: items
+      items: Object.keys(items)
     })
   }
 
@@ -61,7 +61,7 @@ export class SecondarySidebar extends React.Component {
   getItemList() {
     switch (workspaceData.selectedComponent.key) {
       case "DATA_MODELS":
-        this.items = workspaceData.dataModels;
+        this.items = Object.keys(workspaceData.dataModels);
         break;
       default:
         break;

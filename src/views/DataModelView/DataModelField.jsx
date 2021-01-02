@@ -83,14 +83,14 @@ export class DataModelField extends React.Component {
             variant={"body2"}>
             {(this.props.field.unique != null && this.props.field.unique) ? 'unique' : ''}</Typography>
         </Grid>
-        <Grid item style={{paddingRight: '10px', paddingTop: '5px'}}>
+        <Grid item style={{paddingRight: '10px', paddingTop: '4px'}}>
           <Tooltip title="Edit">
             <IconButton style={{fontSize: '14pt', height: '10px'}}
                         color="primary"
                         onClick={() => {
                           this.setFieldValue(this.props.field.fieldId, 'editMode', true);
                         }}>
-              <FontAwesomeIcon icon={faEdit}/>
+              <FontAwesomeIcon icon={faEdit} style={{fontSize:'10pt'}}/><span style={{fontSize:'10pt'}}>&nbsp;Edit</span>
             </IconButton>
           </Tooltip>
           <Tooltip title="Delete">
@@ -99,7 +99,7 @@ export class DataModelField extends React.Component {
                         onClick={() => {
                           this.setFieldValue(this.props.field.fieldId, 'deleted', true);
                         }}>
-              <FontAwesomeIcon icon={faTimesCircle}/>
+              <FontAwesomeIcon icon={faTimesCircle} style={{fontSize:'10pt'}}/><span style={{fontSize:'10pt'}}>&nbsp;Delete</span>
             </IconButton>
           </Tooltip>
         </Grid>
@@ -254,7 +254,8 @@ export class DataModelField extends React.Component {
                 onClick={() => {
                   this.props.field.editMode = false;
                   this.props.onUpdate(this.props.field);
-                }}><FontAwesomeIcon style={{fontSize: '15pt'}} icon={faCheckCircle}/>
+                }}>
+                <FontAwesomeIcon icon={faCheckCircle} style={{fontSize:'12pt'}}/><span style={{fontSize:'12pt'}}>&nbsp;Save</span>
               </IconButton>
             </Tooltip>
           </Grid>
@@ -270,7 +271,7 @@ export class DataModelField extends React.Component {
                   }
                   this.setFieldValue(this.props.field.fieldId, 'editMode', false);
                 }}>
-                <FontAwesomeIcon style={{fontSize: '15pt'}} icon={faTimesCircle}/>
+                <FontAwesomeIcon icon={faTimesCircle} style={{fontSize:'12pt'}}/><span style={{fontSize:'12pt'}}>&nbsp;Discard</span>
               </IconButton>
             </Tooltip>
           </Grid>

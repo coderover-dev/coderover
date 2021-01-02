@@ -1,23 +1,18 @@
 import * as React from "react";
 import Grid from "@material-ui/core/Grid";
-import {Button, Divider, Typography} from "@material-ui/core";
+import {Button} from "@material-ui/core";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import Tooltip from "@material-ui/core/Tooltip";
-import IconButton from "@material-ui/core/IconButton";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPlusCircle, faSearch, faTimesCircle} from "@fortawesome/free-solid-svg-icons";
+import {faPlusCircle, faSearch} from "@fortawesome/free-solid-svg-icons";
 import {DataModelField} from "./DataModelField";
-import {v4 as uuidv4} from "uuid";
-import InputAdornment from "@material-ui/core/InputAdornment";
+import {DataModelRelation} from "./DataModelRelation";
 
-export class DataModelFieldList extends React.Component {
+export class DataModelRelations extends React.Component {
 
   constructor(props) {
     super(props);
     this.fieldCount = 0;
-    // need to handle default transient fields
-    // when a new field is added it should take the value from this.transient
-    this.transient = props.transient;
     this.state = {
       searchField: ""
     }
@@ -37,10 +32,10 @@ export class DataModelFieldList extends React.Component {
                   margin: '1px'
                 }}>
             <Grid item style={{
-              paddingTop: '10px',
+              paddingTop: '8px',
               marginLeft: 2
             }}>
-              <span style={{fontWeight: "bold", fontSize: "14pt"}}>Fields</span>
+              <span style={{fontWeight: "bold", fontSize: "14pt"}}>Relations</span>
             </Grid>
             <Grid item style={{paddingLeft: '10px'}}>
               <Tooltip title="Add a new field">
@@ -55,7 +50,7 @@ export class DataModelFieldList extends React.Component {
             </Grid>
             <Grid item style={{paddingLeft: '2px'}}>
               <OutlinedInput
-                style={{width: '155px', height: '30px', fontSize: '8pt'}}
+                style={{width: '155px', height: '24px', fontSize: '8pt'}}
                 id="dataModelName"
                 value={this.state.searchField}
                 onChange={(event) => {
@@ -75,12 +70,14 @@ export class DataModelFieldList extends React.Component {
         </Grid>
         <Grid container item xs={12} style={{paddingLeft: '10px'}}>
           {
-            Object.keys(this.props.fields)
-              .map(fieldId => this.props.fields[fieldId])
-              .filter(field => !field.deleted)
-              .map(field =>
-                (<DataModelField key={field.fieldId}
-                                 field={field}
+            Object.keys(this.props.relations)
+              .map(fieldId => this.props.relations[fieldId])
+              .filter(relation => !relation.deleted)
+              .map(relation =>
+                (<DataModelRelation
+                                 dataModelName={this.props.dataModelName}
+                                 key={relation.fieldId}
+                                 relation={relation}
                                  onUpdate={this.props.onUpdate}
                                  onDelete={this.props.onDelete}/>)
               )

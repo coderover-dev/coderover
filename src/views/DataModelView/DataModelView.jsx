@@ -13,11 +13,12 @@ import {
   faTimesCircle
 } from "@fortawesome/free-solid-svg-icons";
 import {camelCaseToSnakeCase} from "../../shared/string-utils";
-import {DataModelFieldList} from "./DataModelFieldList";
+import {DataModelFields} from "./DataModelFields";
 import Button from "@material-ui/core/Button";
 import {workspaceData} from "../../shared/workspace-data";
 import {dataModelSubject} from "../../shared/workspace-events";
 import {v4 as uuidv4} from "uuid";
+import {DataModelRelations} from "./DataModelRelations";
 
 export class DataModelView extends React.Component {
 
@@ -27,8 +28,10 @@ export class DataModelView extends React.Component {
     this.dataModelSubscription =
       dataModelSubject.subscribe(this.loadDataModel.bind(this));
     this.state = {
+      dirty: false,
       transient: false,
-      fields: {}
+      fields: {},
+      relations: {}
     };
     this.reset();
   }
@@ -37,25 +40,30 @@ export class DataModelView extends React.Component {
     this.dataModelSubscription.unsubscribe();
   }
 
+  componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
+    console.log("dirty :: " + this.state.dirty);
+  }
+
   loadDataModel(metadata) {
     if (this.state !== undefined) {
-      if(metadata!=null) {
+      if (metadata != null) {
+        metadata.dirty = false;
         this.setState(metadata);
-      }else{
+      } else {
         this.reset();
       }
     }
   }
 
   handleAddField() {
-    let state = this.state.fields;
+    let fields = this.state.fields;
     let transient = this.transient;
     if (transient === undefined || transient == null) {
       transient = false;
     }
 
     let fieldId = uuidv4();
-    state[fieldId] = {
+    fields[fieldId] = {
       newField: true,
       editMode: true,
       fieldId: fieldId,
@@ -72,35 +80,71 @@ export class DataModelView extends React.Component {
       deleted: false
     };
     this.fieldCount = this.fieldCount + 1;
-    this.setState(state);
+    this.setState({fields: fields, dirty: true});
   }
 
   handleFieldUpdate(updatedField) {
-    let state = this.state.fields;
+    let fields = this.state.fields;
     let fieldId = updatedField.fieldId;
-    state[fieldId] = updatedField;
-    state[fieldId].newField = false;
-    this.setState(state);
+    fields[fieldId] = updatedField;
+    fields[fieldId].newField = false;
+    this.setState({fields: fields, dirty: true});
   }
 
   handleFieldDelete(fieldId) {
-    let state = this.state.fields;
-    state[fieldId] = this.state[fieldId];
-    state[fieldId].deleted = true;
+    let fields = this.state.fields;
+    fields[fieldId] = this.state[fieldId];
+    fields[fieldId].deleted = true;
     this.fieldCount = this.fieldCount - 1;
-    this.setState(state);
+    this.setState({fields: fields, dirty: true});
   }
 
-  allowSave() {
+  handleAddRelation() {
+    let relations = this.state.relations;
+    let fieldId = uuidv4();
+    relations[fieldId] = {
+      newField: true,
+      editMode: true,
+      fieldId: fieldId,
+      fieldName: "",
+      refDataModelName: "",
+      refFieldName: "",
+      deleteAction: "",
+      updateAction: "",
+      deleted: false
+    };
+    this.fieldCount = this.fieldCount + 1;
+    this.setState({relations: relations, dirty: true});
+  }
+
+  handleRelationUpdate(updatedRelation) {
+    let relations = this.state.relations;
+    let fieldId = updatedRelation.fieldId;
+    relations[fieldId] = updatedRelation;
+    relations[fieldId].newField = false;
+    this.setState({relations: relations, dirty: true});
+  }
+
+  handleRelationDelete(fieldId) {
+    let relations = this.state.relations;
+    relations[fieldId] = this.state[fieldId];
+    relations[fieldId].deleted = true;
+    this.fieldCount = this.fieldCount - 1;
+    this.setState({relations: relations, dirty: true});
+  }
+
+  isDirty() {
 
   }
 
   reset() {
     let state = {
+      dirty: false,
       dataModelName: "",
       dbTableName: "",
       transient: false,
       fields: {},
+      relations: {},
       resourceName: "",
       searchField: ""
     };
@@ -113,9 +157,13 @@ export class DataModelView extends React.Component {
   }
 
   getForm() {
-    let handleAdd = this.handleAddField.bind(this);
-    let handleUpdate = this.handleFieldUpdate.bind(this);
-    let handleDelete = this.handleFieldDelete.bind(this);
+    let handleAddField = this.handleAddField.bind(this);
+    let handleFieldUpdate = this.handleFieldUpdate.bind(this);
+    let handleFieldDelete = this.handleFieldDelete.bind(this);
+
+    let handleAddRelation = this.handleAddRelation.bind(this);
+    let handleRelationUpdate = this.handleRelationUpdate.bind(this);
+    let handleRelationDelete = this.handleRelationDelete.bind(this);
 
     return (
       <Grid container direction={"column"} spacing={2}>
@@ -130,7 +178,8 @@ export class DataModelView extends React.Component {
               onChange={(event) => {
                 this.setState({
                   dataModelName: event.target.value,
-                  dbTableName: camelCaseToSnakeCase(event.target.value)
+                  dbTableName: camelCaseToSnakeCase(event.target.value),
+                  dirty: true
                 })
               }}
               margin="dense"/>
@@ -140,7 +189,7 @@ export class DataModelView extends React.Component {
               color="primary"
               checked={this.state.transient}
               onChange={(event, checked) => {
-                this.setState({transient: checked});
+                this.setState({transient: checked, dirty: true});
               }}
               inputProps={{'aria-label': 'secondary checkbox'}}/>
             <Typography variant={"caption"}>Data transfer only &nbsp;&nbsp;</Typography>
@@ -153,7 +202,7 @@ export class DataModelView extends React.Component {
               id="dbTableName"
               value={this.state.dbTableName}
               onChange={(event) => {
-                this.setState({dbTableName: event.target.value});
+                this.setState({dbTableName: event.target.value, dirty: true});
               }}
               disabled={this.state.transient}
               margin="dense"/>
@@ -163,11 +212,18 @@ export class DataModelView extends React.Component {
           <Divider/>
         </Grid>
         <Grid item xs={12}>
-          <DataModelFieldList fields={this.state.fields}
-                              transient={this.state.transient}
-                              onAdd={handleAdd}
-                              onUpdate={handleUpdate}
-                              onDelete={handleDelete}/>
+          <DataModelFields fields={this.state.fields}
+                           transient={this.state.transient}
+                           onAdd={handleAddField}
+                           onUpdate={handleFieldUpdate}
+                           onDelete={handleFieldDelete}/>
+        </Grid>
+        <Grid item xs={12}>
+          <DataModelRelations dataModelName={this.state.dataModelName}
+                              relations={this.state.relations}
+                              onAdd={handleAddRelation}
+                              onUpdate={handleRelationUpdate}
+                              onDelete={handleRelationDelete}/>
         </Grid>
       </Grid>
     )
@@ -189,12 +245,15 @@ export class DataModelView extends React.Component {
                 <Button
                   variant={"contained"}
                   size={"small"}
+                  style={{height:'24px'}}
                   color="primary"
+                  disabled={!this.state.dirty}
                   onClick={() => {
                     let projectMetadata = workspaceData.project;
                     this.renderer
                       .getDataModelHandler()
                       .persistDataModel(projectMetadata, this.state);
+                    this.setState({dirty: false});
                   }}
                   startIcon={
                     <FontAwesomeIcon style={{fontSize: '15pt'}}
@@ -206,6 +265,7 @@ export class DataModelView extends React.Component {
               <Tooltip title="Cancel">
                 <Button variant={"outlined"}
                         size={"small"}
+                        style={{height:'24px'}}
                         color="primary"
                         onClick={() => {
                           this.reset();

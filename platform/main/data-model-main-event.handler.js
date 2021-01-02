@@ -19,6 +19,9 @@ class DataModelMainEventHandler extends MainProcessEventHandler {
     const handleFetchDataModels = this.handleFetchDataModelsEvent.bind(this);
     this.ipcMain.on('FetchDataModels', handleFetchDataModels);
 
+    const handleFetchDataModelFields = this.handleFetchDataModelFieldsEvent.bind(this);
+    this.ipcMain.on('FetchDataModelFields', handleFetchDataModelFields);
+
     const handleLoadDataModel = this.handleLoadDataModelEvent.bind(this);
     this.ipcMain.on('LoadDataModel', handleLoadDataModel);
 
@@ -28,52 +31,86 @@ class DataModelMainEventHandler extends MainProcessEventHandler {
   }
 
 
-  prepareFields(resourceMetadata) {
-    if (resourceMetadata.fields === undefined ||
-      resourceMetadata.fields == null) {
+  prepareObjectFromList(list) {
+    if (list === undefined || list == null) {
       return {};
     }
 
-    let fieldList = resourceMetadata.fields;
-    let fieldCount = fieldList.length;
-    let fields = {};
-    for (let i = 0; i < fieldCount; i++) {
-      let field = fieldList[i];
-      if (field.deleted === undefined ||
-        (field.deleted != null && !field.deleted)) {
-        fields[field.fieldId] = field;
+    let listCount = list.length;
+    let finalObj = {};
+    for (let i = 0; i < listCount; i++) {
+      let object = list[i];
+      if (object.deleted === undefined ||
+        (object.deleted != null && !object.deleted)) {
+        finalObj[object.fieldId] = object;
       }
     }
 
-    return fields;
+    return finalObj;
   }
 
-  handleLoadDataModelEvent(event, args) {
-    this.event = event;
-    this.args = args;
-    let projectMetadata = args.projectMetadata;
-    let dataModelName = args.dataModelName;
+  loadDataModel(onComplete, onError) {
+    let projectMetadata = this.args.projectMetadata;
+    let dataModelName = this.args.dataModelName;
     let metadataFileName = dataModelName.toLowerCase() + ".data.json";
     let content = fs.readFileSync(path.join(
       projectMetadata.location, constants.APP_METADATA_DIR, metadataFileName), 'utf8');
-    let jsonContent = null;
+    let jsonDataModel = null;
     let error = false;
 
     try {
-      jsonContent = JSON.parse(content.toString());
-      jsonContent.fields = this.prepareFields(jsonContent);
-      this.replyEventName = 'DataModelLoaded';
-      this.event.reply(
-        this.replyEventName, {
-          data: jsonContent,
-          success: true
-        });
+      jsonDataModel = JSON.parse(content.toString());
+      onComplete(jsonDataModel);
     } catch (err) {
       error = true;
       console.log(err);
     }
 
     if (error) {
+      onError();
+    }
+  }
+
+  handleFetchDataModelFieldsEvent(event, args) {
+    this.event = event;
+    this.args = args;
+    this.loadDataModel((jsonDataModel) => {
+      let fields = [];
+      for(let i=0;i<jsonDataModel.fields.length;i++){
+        fields.push(jsonDataModel.fields[i].fieldName);
+      }
+      this.replyEventName = 'DataModelFieldsRetrieved';
+      this.event.reply(
+        this.replyEventName, {
+          data: fields,
+          success: true
+        });
+    }, () => {
+      this.replyEventName = 'FetchDataModelFieldsFailed';
+      this.event.reply(this.replyEventName, {
+        dataModels: [],
+        message: {
+          summary: "Invalid metadata",
+          description: "Could not read the data model metadata."
+        },
+        success: false
+      });
+    })
+  }
+
+  handleLoadDataModelEvent(event, args) {
+    this.event = event;
+    this.args = args;
+    this.loadDataModel((jsonDataModel) => {
+      jsonDataModel.fields = this.prepareObjectFromList(jsonDataModel.fields);
+      jsonDataModel.relations = this.prepareObjectFromList(jsonDataModel.relations);
+      this.replyEventName = 'DataModelLoaded';
+      this.event.reply(
+        this.replyEventName, {
+          data: jsonDataModel,
+          success: true
+        });
+    }, () => {
       this.replyEventName = 'LoadDataModelFailed';
       this.event.reply(this.replyEventName, {
         dataModels: [],
@@ -83,7 +120,7 @@ class DataModelMainEventHandler extends MainProcessEventHandler {
         },
         success: false
       });
-    }
+    })
   }
 
   handleFetchDataModelsEvent(event, args) {
@@ -91,8 +128,18 @@ class DataModelMainEventHandler extends MainProcessEventHandler {
     this.args = args;
     let location = path.join(args.location, constants.APP_METADATA_DIR);
     let error = false;
-    const dataModels = utils.listMetaFiles(location, ".data.json");
-    if (dataModels != null && dataModels.length > 0) {
+    const dataModelNames = utils.listMetaFiles(location, ".data.json");
+    if (dataModelNames != null && dataModelNames.length > 0) {
+      let dataModels = {};
+      for(let i=0;i<dataModelNames.length;i++){
+        let metadataFileName = dataModelNames[i].toLowerCase() + ".data.json";
+        let content = fs.readFileSync(path.join(location, metadataFileName), 'utf8');
+        let jsonDataModel = {};
+        try {
+          jsonDataModel = JSON.parse(content.toString());
+        } catch (err) {}
+        dataModels[dataModelNames[i]] = jsonDataModel;
+      }
       this.replyEventName = 'DataModelsFetched';
       this.event.reply(
         this.replyEventName, {

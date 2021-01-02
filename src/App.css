@@ -63,7 +63,13 @@
   padding: 0px !important;
 }
 
-.MuiMenuItem-root, .MuiInputBase-input {
+.MuiMenuItem-root{
+  font-size: 10pt !important;
+  height: 20px !important;
+  background-color: white !important;
+}
+
+.MuiInputBase-input {
   font-size: 10pt !important;
   height: 15px !important;
   background-color: white !important;
@@ -75,4 +81,8 @@
 
 .MuiOutlinedInput-adornedStart{
   padding-left: 5px !important;
+}
+
+Button{
+  height: 24px;
 }

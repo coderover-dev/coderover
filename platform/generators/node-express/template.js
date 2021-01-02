@@ -23,6 +23,18 @@ const DATA_MODEL_METADATA_JSON_TEMPLATE = `{
         "unique":{{unique}}
       }{{#if @last}}{{else}},{{/if}}
      {{/each}}
+    ],
+    "relations":[
+      {{#each relationList}}
+      {
+        "fieldId":"{{fieldId}}",
+        "fieldName":"{{fieldName}}",
+        "refDataModelName":"{{refDataModelName}}",
+        "refFieldName":"{{refFieldName}}",
+        "deleteAction":"{{deleteAction}}",
+        "updateAction":"{{updateAction}}"
+      }{{#if @last}}{{else}},{{/if}}
+     {{/each}}
     ]
 }
 `

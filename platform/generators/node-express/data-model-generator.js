@@ -9,29 +9,30 @@ class DataModelGenerator {
     return this.writeMetadata(metadata.projectMetadata, metadata.dataModelMetadata);
   }
 
-  prepareFieldList(metadata) {
-    if (metadata.fields === undefined ||
-      metadata.fields == null) {
+  prepareListFromObject(object) {
+    if (object === undefined ||
+      object == null) {
       return [];
     }
 
-    let fieldIds = Object.keys(metadata.fields);
-    let fieldCount = fieldIds.length;
-    let fieldList = [];
-    for (let i = 0; i < fieldCount; i++) {
-      let field = metadata.fields[fieldIds[i]];
-      if (field.deleted === undefined ||
-        (field.deleted != null && !field.deleted)) {
-        field["fieldId"] = fieldIds[i];
-        fieldList.push(field);
+    let idList = Object.keys(object);
+    let idCount = idList.length;
+    let list = [];
+    for (let i = 0; i < idCount; i++) {
+      let finalObj = object[idList[i]];
+      if (finalObj.deleted === undefined ||
+        (finalObj.deleted != null && !finalObj.deleted)) {
+        finalObj["fieldId"] = idList[i];
+        list.push(finalObj);
       }
     }
 
-    return fieldList;
+    return list;
   }
 
   writeMetadata(projectMetadata, dataModelMetadata) {
-    dataModelMetadata.fieldList = this.prepareFieldList(dataModelMetadata);
+    dataModelMetadata.fieldList = this.prepareListFromObject(dataModelMetadata.fields);
+    dataModelMetadata.relationList = this.prepareListFromObject(dataModelMetadata.relations);
     let metadataFileName = dataModelMetadata.dataModelName.toLowerCase() + ".data.json";
     console.log(metadataFileName)
     let content = utils.parseTemplate(template.DATA_MODEL_METADATA_JSON_TEMPLATE, dataModelMetadata);
