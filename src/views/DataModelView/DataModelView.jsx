@@ -273,7 +273,7 @@ export class DataModelView extends React.Component {
                         startIcon={
                           <FontAwesomeIcon style={{fontSize: '15pt'}}
                                            icon={faTimesCircle}/>
-                        }>Cancel</Button>
+                        }>Close</Button>
               </Tooltip>
             </Grid>
           </Grid>
