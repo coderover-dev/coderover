@@ -20,14 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07424044-891a-4bc7-8a83-ef9993154c32" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/componentTab/ComponentTab.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/DataModelView/DataModelField.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DataModelView/DataModelField.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/DataModelView/DataModelRelation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DataModelView/DataModelRelation.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/DataModelView/DataModelView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DataModelView/DataModelView.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/PrimarySidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/PrimarySidebar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/SecondarySidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/SecondarySidebar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/Workspace.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/Workspace.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/Breadcrumb.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/Breadcrumb.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/Toolbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/Toolbar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/WorkspaceView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/WorkspaceView.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -136,7 +133,7 @@
       <workItem from="1607672798918" duration="751000" />
       <workItem from="1607948324447" duration="12963000" />
       <workItem from="1608727060698" duration="863000" />
-      <workItem from="1609392937765" duration="77119000" />
+      <workItem from="1609392937765" duration="82226000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1606071312677</created>
@@ -327,7 +324,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609663965957</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="refactored sidebar">
+      <created>1609668095785</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1609668095785</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -368,7 +372,8 @@
     <MESSAGE value="fixed data model state transition issue" />
     <MESSAGE value="fixed issues with data model view" />
     <MESSAGE value="refactored data model view.&#10;added support for data model indexing." />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored data model view.&#10;added support for data model indexing." />
+    <MESSAGE value="refactored sidebar" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored sidebar" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-815" y="-553" key="#JavaScript" timestamp="1609405449583">
@@ -381,9 +386,10 @@
     </state>
     <state x="-1071" y="-915" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1080.-1183.1080.1895/0.25.2048.1179/0.-1055.1920.1055@-1080.-1183.1080.1895" timestamp="1609488779908" />
     <state x="304" y="160" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606114196721" />
-    <state x="-1270" y="316" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606576472875">
-      <screen x="-1920" y="25" width="1920" height="983" />
+    <state x="-714" y="-642" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1609692557659">
+      <screen x="-1080" y="-1183" width="1080" height="1827" />
     </state>
+    <state x="-714" y="-642" key="#com.intellij.fileTypes.FileTypeChooser/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609692557659" />
     <state x="-1270" y="316" key="#com.intellij.fileTypes.FileTypeChooser/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606576472875" />
     <state x="569" y="307" key="#com.intellij.fileTypes.FileTypeChooser/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606152067199" />
     <state x="569" y="307" key="#com.intellij.fileTypes.FileTypeChooser/0.25.1680.953@0.25.1680.953" timestamp="1605789452999" />
@@ -393,10 +399,10 @@
     <state x="-708" y="-748" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609423162907" />
     <state x="-1259" y="259" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606916405922" />
     <state x="578" y="252" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606049503244" />
-    <state x="-989" y="-1149" key="CommitChangelistDialog2" timestamp="1609663965843">
-      <screen x="-1080" y="-1183" width="1080" height="1895" />
+    <state x="-1038" y="-1150" key="CommitChangelistDialog2" timestamp="1609668095640">
+      <screen x="-1080" y="-1183" width="1080" height="1827" />
     </state>
-    <state x="-1038" y="-1150" key="CommitChangelistDialog2/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609529461248" />
+    <state x="-1038" y="-1150" key="CommitChangelistDialog2/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609668095640" />
     <state x="-989" y="-1149" key="CommitChangelistDialog2/-1080.-1183.1080.1895/0.25.2048.1179/0.-1055.1920.1055@-1080.-1183.1080.1895" timestamp="1609663965843" />
     <state x="-813" y="59" key="CommitChangelistDialog2/-2461.552.1381.875/0.25.1080.1895/-1080.25.1080.1895@-1080.25.1080.1895" timestamp="1607961882307" />
     <state x="-1435" y="43" key="CommitChangelistDialog2/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606588342802" />
@@ -466,10 +472,10 @@
       <screen x="-1920" y="25" width="1920" height="1055" />
     </state>
     <state width="500" height="445" key="SwitcherDM/0.25.1680.953/-1920.25.1920.1055@-1920.25.1920.1055" timestamp="1606984701704" />
-    <state x="-800" y="-785" key="Vcs.Push.Dialog.v2" timestamp="1609663968173">
-      <screen x="-1080" y="-1183" width="1080" height="1895" />
+    <state x="-800" y="-799" key="Vcs.Push.Dialog.v2" timestamp="1609668096932">
+      <screen x="-1080" y="-1183" width="1080" height="1827" />
     </state>
-    <state x="-800" y="-799" key="Vcs.Push.Dialog.v2/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609529466516" />
+    <state x="-800" y="-799" key="Vcs.Push.Dialog.v2/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609668096932" />
     <state x="-800" y="-785" key="Vcs.Push.Dialog.v2/-1080.-1183.1080.1895/0.25.2048.1179/0.-1055.1920.1055@-1080.-1183.1080.1895" timestamp="1609663968173" />
     <state x="-800" y="423" key="Vcs.Push.Dialog.v2/-2461.552.1381.875/0.25.1080.1895/-1080.25.1080.1895@-1080.25.1080.1895" timestamp="1607961884405" />
     <state x="-1417" y="231" key="Vcs.Push.Dialog.v2/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606588344764" />
@@ -484,11 +490,15 @@
     <state x="-1016" y="-992" width="952" height="1445" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609429288719" />
     <state x="-1807" y="128" width="1692" height="777" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606584072522" />
     <state x="99" y="125" width="1480" height="753" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606151600787" />
-    <state x="-732" y="-974" width="572" height="1411" key="find.popup" timestamp="1609666732828">
+    <state x="-894" y="-655" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1609695554157">
+      <screen x="-1080" y="-1183" width="1080" height="1827" />
+    </state>
+    <state x="-894" y="-655" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609695554157" />
+    <state x="-732" y="-974" width="572" height="1411" key="find.popup" timestamp="1609695912890">
       <screen x="-1080" y="-1183" width="1080" height="1827" />
     </state>
     <state x="-732" y="-974" width="572" height="1411" key="find.popup/-1080.-1183.1080.1824/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1824" timestamp="1609431700343" />
-    <state x="-732" y="-974" width="572" height="1411" key="find.popup/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609666732828" />
+    <state x="-732" y="-974" width="572" height="1411" key="find.popup/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609695912890" />
     <state x="-732" y="-974" width="572" height="1412" key="find.popup/-1080.-1183.1080.1829/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1829" timestamp="1609415254320" />
     <state x="-732" y="-966" width="572" height="1462" key="find.popup/-1080.-1183.1080.1895/0.25.2048.1179/0.-1055.1920.1055@-1080.-1183.1080.1895" timestamp="1609664976437" />
     <state x="-1302" y="137" width="683" height="759" key="find.popup/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606928084870" />

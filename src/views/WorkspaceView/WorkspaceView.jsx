@@ -9,6 +9,7 @@ import './Workspace.css'
 import {workspaceData} from "../../shared/workspace-data";
 import {DataModelView} from "../DataModelView/DataModelView";
 import {workspaceSubject} from "../../shared/workspace-events";
+import {ComponentTab, ComponentTabs} from "../../components/componentTab/ComponentTab";
 
 export class WorkspaceView extends React.Component {
 
@@ -16,6 +17,7 @@ export class WorkspaceView extends React.Component {
     super(props);
     this.sidebar = true;
     this.state = {
+      currentTab: "",
       component: ""
     }
     this.workspaceUpdateSubscription =
@@ -52,6 +54,58 @@ export class WorkspaceView extends React.Component {
     }
   }
 
+  getTab(componentType, componentId, componentName) {
+    return (
+      <ComponentTab componentType={componentType}
+                    componentId={componentId}
+                    componentName={componentName}/>
+    )
+  }
+
+  getTabBar() {
+    return (
+      <Grid item container
+            style={{
+              height: "50px",
+              paddingTop: "5px",
+              paddingLeft: "2px",
+              borderBottom: "1px solid #cecece",
+              backgroundColor: "var(--bg-primary--shade--two)"
+            }}>
+        <Grid item xs={12}>
+          <ComponentTabs value={this.state.currentTab}
+                         onChange={() => {
+                         }}>
+            {this.getTab("Data Model", "customer","Customer")}
+            {this.getTab("Data Model", "user","User")}
+            {this.getTab("Data Model", "user","User")}
+            {this.getTab("Data Model", "user","User")}
+            {this.getTab("Data Model", "user","User")}
+            {this.getTab("Data Model", "user","User")}
+            {this.getTab("Data Model", "user","User")}
+            {this.getTab("Data Model", "user","User")}
+            {this.getTab("Data Model", "user","User")}
+            {this.getTab("Data Model", "user","User")}
+            {this.getTab("Data Model", "user","User")}
+            {this.getTab("Data Model", "user","User")}
+            {this.getTab("Data Model", "user","User")}
+            {this.getTab("Data Model", "user","User")}
+            {this.getTab("Data Model", "user","User")}
+            {this.getTab("Data Model", "user","User")}
+            {this.getTab("Data Model", "user","User")}
+            {this.getTab("Data Model", "user","User")}
+            {this.getTab("Data Model", "user","User")}
+            {this.getTab("Data Model", "user","User")}
+            {this.getTab("Data Model", "user","User")}
+            {this.getTab("Data Model", "user","User")}
+            {this.getTab("Data Model", "user","User")}
+
+          </ComponentTabs>
+        </Grid>
+      </Grid>
+    )
+  }
+
   getContentContainer() {
     if (this.sidebar) {
       return (
@@ -67,6 +121,7 @@ export class WorkspaceView extends React.Component {
             height: 'calc(100vh - 68px)',
             overflow: "auto"
           }}>
+            {this.getTabBar()}
             {this.getContent()}
           </Grid>
         </Grid>
@@ -86,6 +141,7 @@ export class WorkspaceView extends React.Component {
             height: 'calc(100vh - 68px)',
             overflow: "auto"
           }}>
+            {this.getTabBar()}
             {this.getContent()}
           </Grid>
         </Grid>

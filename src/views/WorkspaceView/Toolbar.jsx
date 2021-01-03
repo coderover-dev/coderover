@@ -75,7 +75,12 @@ export class Toolbar extends React.Component {
 
   render() {
     return (
-      <Grid container style={{backgroundColor: "#e7e2e7", height: '44px', padding: 8}}>
+      <Grid container
+            style={{
+              backgroundColor: "var(--bg-primary--shade--two)",
+              height: '44px',
+              padding: 8
+            }}>
         <Grid container item xs={12}>
           {this.getSidebarToggle()}
           <span style={{padding: 12}}/>

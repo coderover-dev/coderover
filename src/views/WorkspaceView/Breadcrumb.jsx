@@ -33,7 +33,7 @@ export class Breadcrumb extends React.Component {
 
   render() {
     return (
-      <div style={{backgroundColor: "#e7e2e7", height: '24px', paddingLeft: '10px'}}>
+      <div style={{backgroundColor: "var(--bg-primary--shade--two)", height: '24px', paddingLeft: '10px'}}>
 
         <Breadcrumbs aria-label="breadcrumb" separator={<NavigateNext fontSize="small"/>}>
 

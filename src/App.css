@@ -49,6 +49,7 @@
   --bg-secondary--shade--two: #e6e6e6;
   --bg-secondary--shade--three: #d4d4d4;
   --bg-secondary--shade--four: #bababa;
+  --fg-primary--shade--one: #1569C7;
 }
 
 .MuiButton-label {
@@ -102,4 +103,8 @@ Button{
 
 .MuiTypography-body1, .MuiTypography-body2{
   font-size: 10pt !important;
+}
+
+.MuiTab-wrapper{
+  align-items: flex-start !important;
 }
