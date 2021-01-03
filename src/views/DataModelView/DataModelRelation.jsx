@@ -74,8 +74,8 @@ export class DataModelRelation extends React.Component {
           <Typography variant={"body1"}
                       style={{fontWeight: 'bolder'}}>{this.props.relation.fieldName}</Typography>
         </Grid>
-        <Grid item style={{paddingRight: '10px', paddingTop: '5px'}}>
-          <span style={{fontWeight: "bolder", fontStyle: "italic"}}>
+        <Grid item style={{paddingRight: '10px', paddingTop: '4px'}}>
+          <span style={{fontWeight: "bolder", fontStyle: "italic", fontSize: '10pt'}}>
             {this.props.relation.refDataModelName}
             <span style={{fontWeight: "normal"}}>({this.props.relation.refFieldName})</span>
           </span>

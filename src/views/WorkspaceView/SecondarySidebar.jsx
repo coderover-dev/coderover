@@ -103,8 +103,7 @@ export class SecondarySidebar extends React.Component {
               paddingBottom: 5,
               marginRight: 1,
               marginLeft: 1,
-              borderBottom: '1px solid #cecece',
-              backgroundColor: 'rgb(231, 226, 231)'
+              borderBottom: '1px solid #cecece'
             }}
             spacing={1}>
         <Grid item>

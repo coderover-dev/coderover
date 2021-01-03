@@ -59,7 +59,7 @@ export class DataModelField extends React.Component {
           <Typography variant={"body1"}
                       style={{fontWeight: 'bolder'}}>{this.props.field.fieldName}</Typography>
         </Grid>
-        <Grid item style={{paddingRight: '10px', paddingTop: '5px'}}>
+        <Grid item style={{paddingRight: '10px', paddingTop: '4px'}}>
           <Typography variant={"body2"} style={{
             fontWeight: "bolder",
             fontStyle: "italic",

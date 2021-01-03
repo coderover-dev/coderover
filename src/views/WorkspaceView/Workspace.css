@@ -14,9 +14,10 @@
 }
 
 .sidebarMenuItem {
-    font-size: 10pt !important;
+    font-size: 7pt !important;
     font-weight: 500 !important;
     color: #3b444b !important;
+    white-space: nowrap !important;
 }
 
 
@@ -25,7 +26,7 @@
 }
 
 .sidebarSubMenuItemText {
-    font-size: 10pt !important;
+    font-size: 9pt !important;
     font-weight: 500 !important;
     color: #3b444b !important;
 }

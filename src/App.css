@@ -38,6 +38,19 @@
   url('./assets/fonts/montserrat/montserrat-v15-latin-600.svg#Montserrat') format('svg'); /* Legacy iOS */
 }
 
+:root{
+  --bg-primary: #FFFFFF;
+  --bg-primary--shade--one: #f5f5f5;
+  --bg-primary--shade--two: #ebebeb;
+  --bg-primary--shade--three: #d9d9d9;
+  --bg-primary--shade--four: #bfbfbf;
+  --bg-secondary: #FAFAFA;
+  --bg-secondary--shade--one: #f0f0f0;
+  --bg-secondary--shade--two: #e6e6e6;
+  --bg-secondary--shade--three: #d4d4d4;
+  --bg-secondary--shade--four: #bababa;
+}
+
 .MuiButton-label {
   text-transform: none;
 }
@@ -85,4 +98,8 @@
 
 Button{
   height: 24px;
+}
+
+.MuiTypography-body1, .MuiTypography-body2{
+  font-size: 10pt !important;
 }

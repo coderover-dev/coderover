@@ -265,7 +265,6 @@ export class DataModelView extends React.Component {
               <Tooltip title="Cancel">
                 <Button variant={"outlined"}
                         size={"small"}
-                        style={{height:'24px'}}
                         color="primary"
                         onClick={() => {
                           this.reset();
@@ -273,7 +272,7 @@ export class DataModelView extends React.Component {
                         startIcon={
                           <FontAwesomeIcon style={{fontSize: '15pt'}}
                                            icon={faTimesCircle}/>
-                        }>Close</Button>
+                        }>Cancel</Button>
               </Tooltip>
             </Grid>
           </Grid>

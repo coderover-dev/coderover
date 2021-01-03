@@ -34,26 +34,33 @@ export class PrimarySidebar extends React.Component {
 
   sidebarItem(icon, key, text) {
     return (
-      <ListItem button style={{height: '32px', paddingLeft: '20px'}}
-                onClick={() => {
-                  breadcrumbSubject.next({
-                    project: workspaceData.project.name,
-                    component: text
-                  });
+      <ListItem button style={{
+        minHeight: '60px', maxHeight: '60px',
+        justifyContent: "center",
+        paddingLeft: 0, paddingRight: 0
+      }} onClick={() => {
+        breadcrumbSubject.next({
+          project: workspaceData.project.name,
+          component: text
+        });
 
-                  workspaceData.selectedComponent = {
-                    key: key,
-                    text: text
-                  }
+        workspaceData.selectedComponent = {
+          key: key,
+          text: text
+        }
 
-                  workspaceSubject.next(0);
-                  this.initMenuContent(key, workspaceData.project);
-                }}>
-        <ListItemIcon style={{minWidth: '24px'}} className="sidebarMenuItem">
-          <FontAwesomeIcon icon={icon}/>
-        </ListItemIcon>
-        <ListItemText>
-          <span className="sidebarMenuItem">{text}</span>
+        workspaceSubject.next(0);
+        this.initMenuContent(key, workspaceData.project);
+      }}>
+        <ListItemText style={{textAlign: "center"}}>
+          <Grid container direction={"row"}>
+            <Grid item xs={12} style={{textAlign: "center"}}>
+              <FontAwesomeIcon style={{fontSize: '12pt'}} icon={icon}/>
+            </Grid>
+            <Grid item xs={12} style={{textAlign: "center", lineHeight: 0.8}}>
+              <span className="sidebarMenuItem">{text}</span>
+            </Grid>
+          </Grid>
         </ListItemText>
       </ListItem>
     )
@@ -63,21 +70,20 @@ export class PrimarySidebar extends React.Component {
     return (
       <Grid container style={{
         flexDirection: "column",
-        paddingTop: '5px',
-        borderRight: '2px',
         borderRightColor: "#cecece"
       }}>
         <List component="nav"
+              style={{width: '100%'}}
               subheader={
-                <ListSubheader component="div" id="nested-list-subheader">
-                  Workspace
+                <ListSubheader
+                  component="div" id="nested-list-subheader">
                 </ListSubheader>
               }>
           {this.sidebarItem(faDatabase, "DATA_MODELS", "Data Models")}
           {this.sidebarItem(faCube, "RESOURCES", "Resources")}
           {this.sidebarItem(faSlidersH, "PROFILES", "Profiles")}
           {this.sidebarItem(faCog, "SETTINGS", "Settings")}
-          {this.sidebarItem(faFlask, "NA", "Console")}
+          {/*{this.sidebarItem(faFlask, "NA", "Console")}*/}
         </List>
       </Grid>
     )
