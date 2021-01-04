@@ -13,7 +13,7 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Tooltip from "@material-ui/core/Tooltip";
 import {workspaceData} from "../../shared/workspace-data";
-import {dataModelSubject, openTab, secondarySidebarSubject, tabBarSubject} from "../../shared/workspace-events";
+import {dataModelSubject, secondarySidebarSubject, tabBarSubject} from "../../shared/workspace-events";
 import {getRenderer} from "../../renderer/renderer";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 
@@ -43,11 +43,10 @@ export class SecondarySidebar extends React.Component {
 
   handleSidebarItemClick(itemType, itemId, itemName, itemIdx) {
     switch (itemType) {
-      case "DATA_MODELS":
+      case "DATA_MODEL":
         this.renderer
           .getDataModelHandler()
           .fetchDataModel(workspaceData.project, itemId);
-        openTab(itemType, itemId, itemName, itemIdx)
         break;
       default:
         break;
@@ -68,9 +67,9 @@ export class SecondarySidebar extends React.Component {
   }
 
   getItemList() {
-    switch (workspaceData.selectedComponent.key) {
-      case "DATA_MODELS":
-        this.items = Object.keys(workspaceData.dataModels);
+    switch (this.props.componentType) {
+      case "DATA_MODEL":
+        this.items = Object.keys(this.props.components);
         break;
       default:
         break;
@@ -94,7 +93,7 @@ export class SecondarySidebar extends React.Component {
 
   handleAddNewComponent() {
     switch (workspaceData.selectedComponent.key) {
-      case "DATA_MODELS":
+      case "DATA_MODEL":
         dataModelSubject.next(null);
         break;
       default:

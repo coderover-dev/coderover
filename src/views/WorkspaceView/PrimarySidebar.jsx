@@ -21,7 +21,7 @@ export class PrimarySidebar extends React.Component {
 
   initMenuContent(key, metadata) {
     switch (key) {
-      case "DATA_MODELS":
+      case "DATA_MODEL":
         this.renderer
           .getDataModelHandler()
           .fetchDataModels(workspaceData.project);
@@ -79,7 +79,7 @@ export class PrimarySidebar extends React.Component {
                   component="div" id="nested-list-subheader">
                 </ListSubheader>
               }>
-          {this.sidebarItem(faDatabase, "DATA_MODELS", "Data Models")}
+          {this.sidebarItem(faDatabase, "DATA_MODEL", "Data Models")}
           {this.sidebarItem(faCube, "RESOURCES", "Resources")}
           {this.sidebarItem(faSlidersH, "PROFILES", "Profiles")}
           {this.sidebarItem(faCog, "SETTINGS", "Settings")}

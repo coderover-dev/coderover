@@ -46,8 +46,6 @@ export class DataModelRendererEventHandler extends RendererProcessEventHandler {
   handleDataModelsFetchedEvent(event, args) {
     if (args.success) {
       dataModelListSubject.next(args.dataModels);
-      secondarySidebarSubject.next(args.dataModels);
-      workspaceData.dataModels = args.dataModels;
     } else {
       pushAlert('FetchDataModelsFailed', ALERT_OK,
         args.message.summary, args.message.description,

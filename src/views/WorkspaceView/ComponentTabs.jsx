@@ -14,7 +14,7 @@ export const ComponentTabs = withStyles({
     minHeight: '45px'
   },
   indicator: {
-    borderTop: '1px solid rgb(206, 206, 206)'
+    height: 0
   },
 })(Tabs);
 
@@ -53,8 +53,12 @@ export const ComponentTab =
     selected: {},
   }))((props) =>
     <Tab disableRipple {...props}
-         className={getTabClassName(props.data.tabId, props.selectedTab)}
-         onClick={() => props.onTabSelection(props.data)}
+         className={getTabClassName(props.data.tabId, props.selectedtab)}
+         onClick={() => {
+           if(props.onTabSelection!==undefined) {
+             props.onTabSelection()
+           }
+         }}
          label={
            <React.Fragment>
              <Grid container direction={"row"} justify={"space-evenly"}
@@ -90,13 +94,13 @@ export const ComponentTab =
 
 function getTabTypeLabel(tabType) {
   switch (tabType.toUpperCase()) {
-    case "DATA_MODELS":
+    case "DATA_MODEL":
       return "Data Models";
     default:
       return "";
   }
 }
 
-function getTabClassName(currentTab, selectedTab) {
-  return selectedTab === currentTab ? 'SelectedTab' : '';
+function getTabClassName(currentTab, selectedtab) {
+  return selectedtab === currentTab ? 'SelectedTab' : '';
 }

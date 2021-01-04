@@ -8,8 +8,15 @@ import {SecondarySidebar} from "./SecondarySidebar";
 import './Workspace.css'
 import {workspaceData} from "../../shared/workspace-data";
 import {DataModelView} from "../DataModelView/DataModelView";
-import {dataModelSubject, tabBarSubject, workspaceSubject} from "../../shared/workspace-events";
+import {
+  dataModelListSubject,
+  dataModelSubject,
+  secondarySidebarSubject,
+  tabBarSubject,
+  workspaceSubject
+} from "../../shared/workspace-events";
 import {ComponentTab, ComponentTabs} from "./ComponentTabs";
+import {v4 as uuidv4} from "uuid";
 
 export class WorkspaceView extends React.Component {
 
@@ -20,41 +27,73 @@ export class WorkspaceView extends React.Component {
       tabs: {},
       dataModels: {},
       currentTab: null,
+      currentTabIdx: 0,
       component: ""
     }
+    this.initSubscriptions();
+  }
+
+  initSubscriptions() {
     this.workspaceUpdateSubscription =
       workspaceSubject.subscribe((data) => {
         this.setState({component: workspaceData.selectedComponent.key});
-      })
-    this.tabBarSubscription =
-      tabBarSubject.subscribe((tabConfig) => {
-        // check if the tab already exists in the open tabs
-        // if exists then get the tab id from the open tabs object
-        let currentTabId = this.getOpenTabId(tabConfig);
-        // if currentId is null then the tab is not open yet
-        // else the tab is already open, set the currentTab to the currentTabId to focus the tab
-        if (currentTabId == null) {
-          let tabs = this.state.tabs;
-          tabs[tabConfig.tabId] = tabConfig;
-          this.setState({tabs: tabs, currentTab: tabConfig.tabId});
-        } else {
-          this.setState({currentTab: currentTabId});
-        }
       });
+
+    this.tabBarSubscription = tabBarSubject.subscribe(this.openTab.bind(this));
+    this.dataModelSubscription = dataModelSubject.subscribe(this.loadDataModel.bind(this));
+    this.dataModelListSubscription = dataModelListSubject.subscribe((dataModels) => {
+      this.setState({dataModels: dataModels})
+      secondarySidebarSubject.next(dataModels);
+    })
   }
 
   componentWillUnmount() {
     this.workspaceUpdateSubscription.unsubscribe();
     this.tabBarSubscription.unsubscribe();
+    this.dataModelSubscription.unsubscribe();
+    this.dataModelListSubscription.unsubscribe();
+  }
+
+  openTab(tabConfig) {
+    // check if the tab already exists in the open tabs
+    // if exists then get the tab id from the open tabs object
+    let currentTabId = this.getOpenTabId(tabConfig);
+    // if currentId is null then the tab is not open yet
+    // else the tab is already open, set the currentTab to the currentTabId to focus the tab
+    if (currentTabId == null) {
+      let tabs = this.state.tabs;
+      tabs[tabConfig.tabId] = tabConfig;
+      this.setState({tabs: tabs, currentTab: tabConfig.tabId});
+    } else {
+      this.setState({currentTab: currentTabId});
+    }
+  }
+
+  loadDataModel(metadata) {
+    if (this.state !== undefined && metadata != null) {
+      tabBarSubject.next({
+        data: metadata,
+        componentType: "DATA_MODEL",
+        componentId: metadata.dataModelName,
+        componentName: metadata.dataModelName,
+        tabId: uuidv4()
+      })
+    } else {
+      tabBarSubject.next({
+        data: {},
+        componentType: "DATA_MODEL",
+        componentId: "",
+        componentName: "",
+        tabId: uuidv4()
+      })
+    }
   }
 
   getOpenTabId(tabConfig) {
-    console.log(tabConfig)
     if (tabConfig.componentId == null)
       return false;
 
     let openTabIds = Object.keys(this.state.tabs);
-    console.log(openTabIds)
     for (let i = 0; i < openTabIds.length; i++) {
       let tab = this.state.tabs[openTabIds[i]];
       if (tab.componentType === tabConfig.componentType && tab.componentId === tabConfig.componentId) {
@@ -86,46 +125,6 @@ export class WorkspaceView extends React.Component {
     }
   }
 
-  getTab(tab) {
-    return (
-      <ComponentTab selectedTab={this.state.currentTab}
-                    data={tab}
-                    onTabSelection={(selectedTab) => {
-                      this.setState({currentTab: selectedTab.tabId})
-                    }}
-                    onClose={(tab) => this.removeTab(tab)}/>
-    )
-  }
-
-  getTabContent(tab) {
-    console.log(tab)
-    let content = null;
-    switch (tab.componentType.toUpperCase()) {
-      case "DATA_MODELS":
-        content = (
-          <DataModelView dataModelName={tab.componentName}
-                         content={dataModelSubject}
-                         onClose={() => this.removeTab(tab)}/>
-        );
-        break;
-      default:
-        content = (<div/>);
-        break;
-    }
-
-    console.log("tabContent", this.state.currentTab, tab.tabId)
-    return (
-      <div
-        role="tabpanel"
-        hidden={this.state.currentTab !== tab.tabId}
-        id={`componentTab-panel-${this.state.currentTab}`}
-        aria-labelledby={`componentTab-panel-${this.state.currentTab}`}>
-        {content}
-      </div>
-    );
-  }
-
-
   getTabs() {
     return (
       <Grid item container
@@ -137,14 +136,13 @@ export class WorkspaceView extends React.Component {
               backgroundColor: "var(--bg-primary--shade--two)"
             }}>
         <Grid item xs={12}>
-          <ComponentTabs value={this.state.currentTab}>
+          <ComponentTabs value={this.state.currentTabIdx}>
             {
               Object
                 .keys(this.state.tabs)
                 .map((tabKey, tabIndex) => {
-                  console.log(tabKey)
                   let tab = this.state.tabs[tabKey];
-                  return this.getTab(tab);
+                  return this.getTab(tab, tabIndex);
                 })
             }
           </ComponentTabs>
@@ -162,6 +160,44 @@ export class WorkspaceView extends React.Component {
     )
   }
 
+  getTab(tab, idx) {
+    return (
+      <ComponentTab selectedtab={this.state.currentTab}
+                    data={tab}
+                    onTabSelection={() => {
+                      this.setState({currentTab: tab.tabId, currentTabIdx: idx})
+                    }}
+                    onClose={(tab) => this.removeTab(tab)}/>
+    )
+  }
+
+  getTabContent(tab) {
+    let content = null;
+    switch (tab.componentType.toUpperCase()) {
+      case "DATA_MODEL":
+        content = (
+          <DataModelView data={tab.data}
+                         onClose={() => this.removeTab(tab)}/>
+        );
+        break;
+      default:
+        content = (<div/>);
+        break;
+    }
+
+    console.log(this.state.currentTab, tab.tabId, (this.state.currentTab !== tab.tabId), tab.componentName)
+    console.log(tab.data)
+    return (
+      <div
+        role="tabpanel"
+        hidden={this.state.currentTab !== tab.tabId}
+        id={`componentTab-panel-${this.state.currentTab}`}
+        aria-labelledby={`componentTab-panel-${this.state.currentTab}`}>
+        {content}
+      </div>
+    );
+  }
+
   getContentContainer() {
     if (this.sidebar) {
       return (
@@ -170,7 +206,7 @@ export class WorkspaceView extends React.Component {
           alignContent: "flex-start"
         }}>
           <Grid item style={{width: '240px'}}>
-            <SecondarySidebar/>
+            <SecondarySidebar componentType={"DATA_MODEL"} components={this.state.dataModels}/>
           </Grid>
           <Grid item style={{
             width: 'calc(100% - 240px)',
@@ -189,7 +225,7 @@ export class WorkspaceView extends React.Component {
                 alignContent: "flex-start"
               }}>
           <Grid item style={{width: '240px'}}>
-            <SecondarySidebar/>
+            <SecondarySidebar componentType={"DATA_MODEL"} components={this.state.dataModels}/>
           </Grid>
           <Grid item style={{
             width: 'calc(100% - 240px)',

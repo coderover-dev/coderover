@@ -1,17 +1,14 @@
-import {Subject} from "rxjs";
+import {ReplaySubject, Subject} from "rxjs";
 import {workspaceData} from "./workspace-data";
 import {breadcrumbSubject} from "../views/WorkspaceView/Breadcrumb";
-import {v4 as uuidv4} from "uuid";
 
-export let secondarySidebarSubject = new Subject();
-export let workspaceSubject = new Subject();
-export let dataModelListSubject = new Subject();
-export let dataModelSubject = new Subject();
-export let tabBarSubject = new Subject();
+export let secondarySidebarSubject = new ReplaySubject(1);
+export let workspaceSubject = new ReplaySubject(1);
 
-export function loadSecondarySidebarItems(items){
-  secondarySidebarSubject.next(items);
-}
+export let dataModelListSubject = new ReplaySubject(1);
+export let dataModelSubject = new ReplaySubject(1);
+
+export let tabBarSubject = new ReplaySubject(1);
 
 export function openWorkspace(projectMetadata) {
   workspaceData.init = true;
@@ -27,14 +24,4 @@ export function closeWorkspace() {
   workspaceData.init = false;
   workspaceData.project = {};
   workspaceSubject.next(0);
-}
-
-export function openTab(componentType, componentId, componentName, tabIndex) {
-  tabBarSubject.next({
-    tabId: uuidv4(),
-    tabIndex: tabIndex,
-    componentType: componentType,
-    componentId: componentId,
-    componentName: componentName
-  });
 }

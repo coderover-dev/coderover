@@ -25,36 +25,11 @@ export class DataModelView extends React.Component {
   constructor(props) {
     super(props);
     this.renderer = getRenderer();
-    this.contentSubscription =
-      props.content.subscribe(this.loadContent.bind(this));
     this.state = {
-      dataModelName: props.dataModelName,
-      dirty: false,
-      transient: false,
-      fields: {},
-      relations: {}
+      ...props.data,
+      dirty: false
     };
     this.reset();
-  }
-
-  componentWillUnmount() {
-    console.log("data model view unmounted")
-    this.contentSubscription.unsubscribe();
-  }
-
-  componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
-    console.log("dirty :: " + this.state.dirty);
-  }
-
-  loadContent(metadata) {
-    if (this.state !== undefined) {
-      if (metadata != null && metadata.dataModelName === this.props.dataModelName) {
-        metadata.dirty = false;
-        this.setState(metadata);
-      } else if (metadata == null && this.props.dataModelName === "") {
-        this.reset();
-      }
-    }
   }
 
   handleAddField() {
