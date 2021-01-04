@@ -108,3 +108,7 @@ Button{
 .MuiTab-wrapper{
   align-items: flex-start !important;
 }
+
+.MuiTabs-scroller{
+  overflow: scroll !important;
+}

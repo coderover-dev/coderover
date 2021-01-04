@@ -16,6 +16,6 @@ export let workspaceData = {
     text: ""
   },
 
-  dataModels:{},
+  dataModels: {}
 
 }

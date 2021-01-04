@@ -25,9 +25,10 @@ export class DataModelView extends React.Component {
   constructor(props) {
     super(props);
     this.renderer = getRenderer();
-    this.dataModelSubscription =
-      dataModelSubject.subscribe(this.loadDataModel.bind(this));
+    this.contentSubscription =
+      props.content.subscribe(this.loadContent.bind(this));
     this.state = {
+      dataModelName: props.dataModelName,
       dirty: false,
       transient: false,
       fields: {},
@@ -37,19 +38,20 @@ export class DataModelView extends React.Component {
   }
 
   componentWillUnmount() {
-    this.dataModelSubscription.unsubscribe();
+    console.log("data model view unmounted")
+    this.contentSubscription.unsubscribe();
   }
 
   componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
     console.log("dirty :: " + this.state.dirty);
   }
 
-  loadDataModel(metadata) {
+  loadContent(metadata) {
     if (this.state !== undefined) {
-      if (metadata != null) {
+      if (metadata != null && metadata.dataModelName === this.props.dataModelName) {
         metadata.dirty = false;
         this.setState(metadata);
-      } else {
+      } else if (metadata == null && this.props.dataModelName === "") {
         this.reset();
       }
     }
@@ -241,39 +243,35 @@ export class DataModelView extends React.Component {
           <Grid item xs={5} container direction={"row"}
                 justify={"flex-end"}>
             <Grid item style={{paddingRight: 10}}>
-              <Tooltip title="Apply">
-                <Button
-                  variant={"contained"}
-                  size={"small"}
-                  style={{height:'24px'}}
-                  color="primary"
-                  disabled={!this.state.dirty}
-                  onClick={() => {
-                    let projectMetadata = workspaceData.project;
-                    this.renderer
-                      .getDataModelHandler()
-                      .persistDataModel(projectMetadata, this.state);
-                    this.setState({dirty: false});
-                  }}
-                  startIcon={
-                    <FontAwesomeIcon style={{fontSize: '15pt'}}
-                                     icon={faSave}/>
-                  }>Save</Button>
-              </Tooltip>
+              <Button
+                variant={"contained"}
+                size={"small"}
+                style={{height: '24px'}}
+                color="primary"
+                disabled={!this.state.dirty}
+                onClick={() => {
+                  let projectMetadata = workspaceData.project;
+                  this.renderer
+                    .getDataModelHandler()
+                    .persistDataModel(projectMetadata, this.state);
+                  this.setState({dirty: false});
+                }}
+                startIcon={
+                  <FontAwesomeIcon style={{fontSize: '15pt'}}
+                                   icon={faSave}/>
+                }>Save</Button>
             </Grid>
             <Grid item>
-              <Tooltip title="Cancel">
-                <Button variant={"outlined"}
-                        size={"small"}
-                        color="primary"
-                        onClick={() => {
-                          this.reset();
-                        }}
-                        startIcon={
-                          <FontAwesomeIcon style={{fontSize: '15pt'}}
-                                           icon={faTimesCircle}/>
-                        }>Cancel</Button>
-              </Tooltip>
+              <Button variant={"outlined"}
+                      size={"small"}
+                      color="primary"
+                      onClick={() => {
+                        this.props.onClose();
+                      }}
+                      startIcon={
+                        <FontAwesomeIcon style={{fontSize: '15pt'}}
+                                         icon={faTimesCircle}/>
+                      }>Close</Button>
             </Grid>
           </Grid>
         </Grid>

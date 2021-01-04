@@ -13,7 +13,7 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Tooltip from "@material-ui/core/Tooltip";
 import {workspaceData} from "../../shared/workspace-data";
-import {dataModelSubject, secondarySidebarSubject} from "../../shared/workspace-events";
+import {dataModelSubject, openTab, secondarySidebarSubject, tabBarSubject} from "../../shared/workspace-events";
 import {getRenderer} from "../../renderer/renderer";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 
@@ -41,18 +41,27 @@ export class SecondarySidebar extends React.Component {
     })
   }
 
-  createSidebarItem(text, index) {
+  handleSidebarItemClick(itemType, itemId, itemName, itemIdx) {
+    switch (itemType) {
+      case "DATA_MODELS":
+        this.renderer
+          .getDataModelHandler()
+          .fetchDataModel(workspaceData.project, itemId);
+        openTab(itemType, itemId, itemName, itemIdx)
+        break;
+      default:
+        break;
+    }
+  }
+
+  createSidebarItem(itemType, itemId, itemName, itemIdx) {
     return (
       <ListItem button style={{height: '32px'}}
-                key={text}
-                onClick={() => {
-                  this.renderer
-                    .getDataModelHandler()
-                    .fetchDataModel(workspaceData.project, text);
-                }}
+                key={itemId}
+                onClick={() => this.handleSidebarItemClick(itemType, itemId, itemName, itemIdx)}
                 className="sidebarSubMenuItem">
         <ListItemText>
-          <span className="sidebarSubMenuItemText">{text}</span>
+          <span className="sidebarSubMenuItemText">{itemName}</span>
         </ListItemText>
       </ListItem>
     )
@@ -76,14 +85,14 @@ export class SecondarySidebar extends React.Component {
       }}>
         <List component="nav">
           {
-            this.state.items.map((item, index) => this.createSidebarItem(item, index))
+            this.state.items.map((item, index) => this.createSidebarItem(workspaceData.selectedComponent.key, item, item, index))
           }
         </List>
       </Grid>
     )
   }
 
-  triggerNewAction() {
+  handleAddNewComponent() {
     switch (workspaceData.selectedComponent.key) {
       case "DATA_MODELS":
         dataModelSubject.next(null);
@@ -130,7 +139,7 @@ export class SecondarySidebar extends React.Component {
                     size={"small"}
                     color="primary"
                     style={{height: '30px', fontSize: '9pt'}}
-                    onClick={() => this.triggerNewAction()}
+                    onClick={() => this.handleAddNewComponent()}
                     startIcon={
                       <FontAwesomeIcon style={{fontSize: '12pt'}}
                                        icon={faPlusCircle}/>

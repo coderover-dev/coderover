@@ -20,11 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07424044-891a-4bc7-8a83-ef9993154c32" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/componentTab/ComponentTab.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/WorkspaceView/ComponentTabs.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/Breadcrumb.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/Breadcrumb.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/Toolbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/Toolbar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/componentTab/ComponentTab.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/data-model-renderer-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/data-model-renderer-event.handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/workspace-data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/workspace-data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/workspace-events.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/workspace-events.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/DataModelView/DataModelView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DataModelView/DataModelView.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/SecondarySidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/SecondarySidebar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/Workspace.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/Workspace.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/WorkspaceView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/WorkspaceView.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,6 +63,7 @@
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="GO_FMT" value="true" />
@@ -79,17 +85,10 @@
     <property name="node.js.selected.package.standard" value="" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/platform/generators/node-express" />
-      <recent name="$PROJECT_DIR$/src/shared" />
-      <recent name="$PROJECT_DIR$/src/views" />
-      <recent name="$PROJECT_DIR$/platform" />
-      <recent name="$PROJECT_DIR$/platform/generators/shared" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/views/DataModelView" />
       <recent name="$PROJECT_DIR$/platform/loaders" />
@@ -97,15 +96,24 @@
       <recent name="$PROJECT_DIR$/src/shared" />
       <recent name="$PROJECT_DIR$/src/views/ManageDataModelView" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/views/WorkspaceView" />
+      <recent name="$PROJECT_DIR$/platform/generators/node-express" />
+      <recent name="$PROJECT_DIR$/src/shared" />
+      <recent name="$PROJECT_DIR$/src/views" />
+      <recent name="$PROJECT_DIR$/platform" />
+    </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -133,7 +141,8 @@
       <workItem from="1607672798918" duration="751000" />
       <workItem from="1607948324447" duration="12963000" />
       <workItem from="1608727060698" duration="863000" />
-      <workItem from="1609392937765" duration="82226000" />
+      <workItem from="1609392937765" duration="82575000" />
+      <workItem from="1609750146968" duration="17731000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1606071312677</created>
@@ -331,7 +340,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609668095785</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="added custom tab bar">
+      <created>1609696451317</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1609696451317</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -373,7 +389,8 @@
     <MESSAGE value="fixed issues with data model view" />
     <MESSAGE value="refactored data model view.&#10;added support for data model indexing." />
     <MESSAGE value="refactored sidebar" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored sidebar" />
+    <MESSAGE value="added custom tab bar" />
+    <option name="LAST_COMMIT_MESSAGE" value="added custom tab bar" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-815" y="-553" key="#JavaScript" timestamp="1609405449583">
@@ -399,10 +416,10 @@
     <state x="-708" y="-748" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609423162907" />
     <state x="-1259" y="259" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606916405922" />
     <state x="578" y="252" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606049503244" />
-    <state x="-1038" y="-1150" key="CommitChangelistDialog2" timestamp="1609668095640">
+    <state x="-1038" y="-1150" key="CommitChangelistDialog2" timestamp="1609696451173">
       <screen x="-1080" y="-1183" width="1080" height="1827" />
     </state>
-    <state x="-1038" y="-1150" key="CommitChangelistDialog2/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609668095640" />
+    <state x="-1038" y="-1150" key="CommitChangelistDialog2/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609696451173" />
     <state x="-989" y="-1149" key="CommitChangelistDialog2/-1080.-1183.1080.1895/0.25.2048.1179/0.-1055.1920.1055@-1080.-1183.1080.1895" timestamp="1609663965843" />
     <state x="-813" y="59" key="CommitChangelistDialog2/-2461.552.1381.875/0.25.1080.1895/-1080.25.1080.1895@-1080.25.1080.1895" timestamp="1607961882307" />
     <state x="-1435" y="43" key="CommitChangelistDialog2/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606588342802" />
@@ -455,8 +472,8 @@
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state x="511" y="208" key="RollbackChangesDialog/0.25.1680.1025/-115.-1055.1920.983@0.25.1680.1025" timestamp="1606108337239" />
-    <state x="-1031" y="-634" key="SettingsEditor" timestamp="1609405400831">
-      <screen x="-1080" y="-1183" width="1080" height="1895" />
+    <state x="93" y="367" key="SettingsEditor" timestamp="1609750209991">
+      <screen x="0" y="25" width="2048" height="1179" />
     </state>
     <state x="-1031" y="-634" key="SettingsEditor/-1080.-1183.1080.1895/0.25.2048.1179/0.-1055.1920.1055@-1080.-1183.1080.1895" timestamp="1609405400831" />
     <state x="-994" y="92" key="SettingsEditor/-1080.-403.1080.1895/0.25.1792.1019/-2160.-403.1080.1895@-1080.-403.1080.1895" timestamp="1608727116512" />
@@ -468,14 +485,15 @@
     <state x="-1521" y="149" key="SettingsEditor/0.25.1680.953/-1920.25.1920.1055@-1920.25.1920.1055" timestamp="1606553498572" />
     <state x="698" y="91" key="SettingsEditor/0.25.1680.953@0.25.1680.953" timestamp="1606724498008" />
     <state x="1766" y="-626" key="SettingsEditor/0.25.1680.965/-240.-1055.1920.1055/1680.-1121.1080.1895@1680.-1121.1080.1895" timestamp="1607673408183" />
+    <state x="93" y="367" key="SettingsEditor/0.25.2048.1179@0.25.2048.1179" timestamp="1609750209991" />
     <state width="500" height="445" key="SwitcherDM" timestamp="1606984701704">
       <screen x="-1920" y="25" width="1920" height="1055" />
     </state>
     <state width="500" height="445" key="SwitcherDM/0.25.1680.953/-1920.25.1920.1055@-1920.25.1920.1055" timestamp="1606984701704" />
-    <state x="-800" y="-799" key="Vcs.Push.Dialog.v2" timestamp="1609668096932">
+    <state x="-800" y="-799" key="Vcs.Push.Dialog.v2" timestamp="1609696453877">
       <screen x="-1080" y="-1183" width="1080" height="1827" />
     </state>
-    <state x="-800" y="-799" key="Vcs.Push.Dialog.v2/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609668096932" />
+    <state x="-800" y="-799" key="Vcs.Push.Dialog.v2/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609696453877" />
     <state x="-800" y="-785" key="Vcs.Push.Dialog.v2/-1080.-1183.1080.1895/0.25.2048.1179/0.-1055.1920.1055@-1080.-1183.1080.1895" timestamp="1609663968173" />
     <state x="-800" y="423" key="Vcs.Push.Dialog.v2/-2461.552.1381.875/0.25.1080.1895/-1080.25.1080.1895@-1080.25.1080.1895" timestamp="1607961884405" />
     <state x="-1417" y="231" key="Vcs.Push.Dialog.v2/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606588344764" />
@@ -484,18 +502,19 @@
     <state x="-1417" y="246" key="Vcs.Push.Dialog.v2/0.25.1680.953/-1920.25.1920.1055@-1920.25.1920.1055" timestamp="1606929666934" />
     <state x="440" y="225" key="Vcs.Push.Dialog.v2/0.25.1680.953@0.25.1680.953" timestamp="1607009593123" />
     <state x="2200" y="311" key="Vcs.Push.Dialog.v2/0.25.1920.995/1920.-87.1080.1895@1920.-87.1080.1895" timestamp="1607955582404" />
-    <state x="-1016" y="-992" width="952" height="1445" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1609429288719">
-      <screen x="-1080" y="-1183" width="1080" height="1827" />
+    <state x="121" y="148" width="1806" height="933" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1609778831535">
+      <screen x="0" y="25" width="2048" height="1179" />
     </state>
     <state x="-1016" y="-992" width="952" height="1445" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609429288719" />
     <state x="-1807" y="128" width="1692" height="777" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606584072522" />
     <state x="99" y="125" width="1480" height="753" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606151600787" />
+    <state x="121" y="148" width="1806" height="933" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.2048.1179@0.25.2048.1179" timestamp="1609778831535" />
     <state x="-894" y="-655" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1609695554157">
       <screen x="-1080" y="-1183" width="1080" height="1827" />
     </state>
     <state x="-894" y="-655" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609695554157" />
-    <state x="-732" y="-974" width="572" height="1411" key="find.popup" timestamp="1609695912890">
-      <screen x="-1080" y="-1183" width="1080" height="1827" />
+    <state x="660" y="160" width="1085" height="911" key="find.popup" timestamp="1609771589365">
+      <screen x="0" y="25" width="2048" height="1179" />
     </state>
     <state x="-732" y="-974" width="572" height="1411" key="find.popup/-1080.-1183.1080.1824/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1824" timestamp="1609431700343" />
     <state x="-732" y="-974" width="572" height="1411" key="find.popup/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609695912890" />
@@ -508,12 +527,13 @@
     <state x="-1302" y="145" width="683" height="815" key="find.popup/0.25.1680.953/-1920.25.1920.1055@-1920.25.1920.1055" timestamp="1606986361001" />
     <state x="541" y="134" width="597" height="735" key="find.popup/0.25.1680.953@0.25.1680.953" timestamp="1607009113699" />
     <state x="2028" y="-904" width="572" height="1462" key="find.popup/0.25.1680.965/-240.-1055.1920.1055/1680.-1121.1080.1895@1680.-1121.1080.1895" timestamp="1607673243280" />
+    <state x="660" y="160" width="1085" height="911" key="find.popup/0.25.2048.1179@0.25.2048.1179" timestamp="1609771589365" />
     <state x="-1576" y="212" key="new project wizard" timestamp="1606551415505">
       <screen x="-1920" y="25" width="1920" height="1055" />
     </state>
     <state x="-1576" y="212" key="new project wizard/0.25.1680.953/-1920.25.1920.1055@-1920.25.1920.1055" timestamp="1606551415505" />
-    <state x="-755" y="-768" width="670" height="1349" key="search.everywhere.popup" timestamp="1609490124177">
-      <screen x="-1080" y="-1183" width="1080" height="1895" />
+    <state x="616" y="283" width="1271" height="840" key="search.everywhere.popup" timestamp="1609769800861">
+      <screen x="0" y="25" width="2048" height="1179" />
     </state>
     <state x="-755" y="-768" width="670" height="1349" key="search.everywhere.popup/-1080.-1183.1080.1895/0.25.2048.1179/0.-1055.1920.1055@-1080.-1183.1080.1895" timestamp="1609490124177" />
     <state x="505" y="250" width="670" height="728" key="search.everywhere.popup/0.25.1680.1025/-115.-1055.1920.983@0.25.1680.1025" timestamp="1606108520374" />
@@ -522,6 +542,7 @@
     <state x="450" y="-824" width="767" height="751" key="search.everywhere.popup/0.25.1680.953/-127.-1055.1920.1055@-127.-1055.1920.1055" timestamp="1606839429804" />
     <state x="-1343" y="257" width="766" height="750" key="search.everywhere.popup/0.25.1680.953/-1920.25.1920.1055@-1920.25.1920.1055" timestamp="1606565372267" />
     <state x="505" y="234" width="670" height="676" key="search.everywhere.popup/0.25.1680.953@0.25.1680.953" timestamp="1605844291236" />
+    <state x="616" y="283" width="1271" height="840" key="search.everywhere.popup/0.25.2048.1179@0.25.2048.1179" timestamp="1609769800861" />
     <state x="620" y="190" key="svn.repositoryBrowser" timestamp="1606070822477">
       <screen x="0" y="25" width="1680" height="953" />
     </state>

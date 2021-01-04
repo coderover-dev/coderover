@@ -1,6 +1,11 @@
 import {RendererProcessEventHandler} from "./renderer-process-event.handler";
 import {pushAlert, ALERT_OK} from "../components/alert/Alerts"
-import {dataModelSubject, openWorkspace, secondarySidebarSubject} from "../shared/workspace-events";
+import {
+  dataModelListSubject,
+  dataModelSubject,
+  openWorkspace,
+  secondarySidebarSubject
+} from "../shared/workspace-events";
 import {workspaceData} from "../shared/workspace-data";
 
 export class DataModelRendererEventHandler extends RendererProcessEventHandler {
@@ -40,8 +45,9 @@ export class DataModelRendererEventHandler extends RendererProcessEventHandler {
 
   handleDataModelsFetchedEvent(event, args) {
     if (args.success) {
+      dataModelListSubject.next(args.dataModels);
+      secondarySidebarSubject.next(args.dataModels);
       workspaceData.dataModels = args.dataModels;
-      secondarySidebarSubject.next(workspaceData.dataModels);
     } else {
       pushAlert('FetchDataModelsFailed', ALERT_OK,
         args.message.summary, args.message.description,
