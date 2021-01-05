@@ -76,6 +76,7 @@ export class DataModelRelations extends React.Component {
               .map(relation =>
                 (<DataModelRelation
                                  dataModelName={this.props.dataModelName}
+                                 dataModelFieldMap={this.props.dataModelFieldMap}
                                  key={relation.fieldId}
                                  relation={relation}
                                  onUpdate={this.props.onUpdate}

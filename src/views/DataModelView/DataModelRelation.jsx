@@ -1,16 +1,14 @@
 import * as React from "react";
 import Grid from "@material-ui/core/Grid";
-import {Divider, Typography} from "@material-ui/core";
+import {Typography} from "@material-ui/core";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
-import Checkbox from "@material-ui/core/Checkbox";
 import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheckCircle, faEdit, faPlusCircle, faTimesCircle} from "@fortawesome/free-solid-svg-icons";
-import {camelCaseToSnakeCase} from "../../shared/string-utils";
-import {workspaceData} from "../../shared/workspace-data";
+
 
 export class DataModelRelation extends React.Component {
 
@@ -47,7 +45,7 @@ export class DataModelRelation extends React.Component {
   }
 
   getDataModelNames() {
-    let dataModelNames = Object.keys(workspaceData.dataModels);
+    let dataModelNames = Object.keys(this.props.dataModelFieldMap);
     return dataModelNames.filter(dataModelName =>
       dataModelName.toLowerCase() !== this.props.dataModelName.toLowerCase());
   }
@@ -57,11 +55,10 @@ export class DataModelRelation extends React.Component {
       return [];
     }
 
-    let dataModel = workspaceData.dataModels[dataModelName];
     let fields = [];
-    let fieldIds = Object.keys(dataModel.fields);
+    let fieldIds = this.props.dataModelFieldMap[dataModelName]
     for (let i = 0; i < fieldIds.length; i++) {
-      fields.push(dataModel.fields[fieldIds[i]].fieldName);
+      fields.push(fieldIds[i]);
     }
     return fields;
   }

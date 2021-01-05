@@ -46,7 +46,7 @@ export class ComponentTabBar extends React.Component {
   }
 
   getTab(tabId) {
-    let tab = this.props.tabs[tabId]
+    let tab = this.props.tabs[tabId];
     return (
       <ComponentTab key={tabId}
                     value={this.props.currentTab}

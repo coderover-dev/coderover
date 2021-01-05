@@ -57,19 +57,54 @@ export class WorkspaceView extends React.Component {
     this.dataModelListSubscription.unsubscribe();
   }
 
-  openTab(tabConfig) {
+  openTab(tab) {
+    // populate the tab props such as component id and name
+    this.fillTabComponentProps(tab);
+
     // check if the tab already exists in the open tabs
     // if exists then get the tab id from the open tabs object
-    let currentTabId = this.getOpenTabId(tabConfig);
+    let currentTabId = this.getOpenTabId(tab);
+
     // if currentId is null then the tab is not open yet
     // else the tab is already open, set the currentTab to the currentTabId to focus the tab
     if (currentTabId == null) {
       let tabs = this.state.tabs;
-      tabs[tabConfig.tabId] = tabConfig;
-      this.setState({tabs: tabs, currentTab: tabConfig.tabId});
+      tabs[tab.tabId] = tab;
+      this.setState({tabs: tabs, currentTab: tab.tabId});
     } else {
       this.setState({currentTab: currentTabId});
     }
+  }
+
+  fillTabComponentProps(tab) {
+    let tabType = tab.componentType;
+    if (tab.data == null || Object.keys(tab.data).length === 0) {
+      return;
+    }
+
+    switch (tabType.toUpperCase()) {
+      case "DATA_MODEL":
+        tab.componentId = tab.data.dataModelName;
+        tab.componentName = tab.data.dataModelName;
+        break;
+      default:
+        break;
+    }
+  }
+
+  getDataModelFieldMapping() {
+    let dataModelFieldMapping = {}
+    Object
+      .keys(this.state.dataModels)
+      .map(dataModel => {
+        let fields = this.state.dataModels[dataModel].fields;
+        let fieldNameList = [];
+        for (let i = 0; i < fields.length; i++) {
+          fieldNameList.push(fields[i].fieldName);
+        }
+        dataModelFieldMapping[dataModel] = fieldNameList;
+      })
+    return dataModelFieldMapping;
   }
 
   loadDataModel(metadata) {
@@ -77,29 +112,25 @@ export class WorkspaceView extends React.Component {
       tabBarSubject.next({
         data: metadata,
         componentType: "DATA_MODEL",
-        componentId: metadata.dataModelName,
-        componentName: metadata.dataModelName,
         tabId: uuidv4()
       })
     } else {
       tabBarSubject.next({
         data: {},
         componentType: "DATA_MODEL",
-        componentId: "",
-        componentName: "",
         tabId: uuidv4()
       })
     }
   }
 
-  getOpenTabId(tabConfig) {
-    if (tabConfig.componentId == null)
-      return false;
+  getOpenTabId(openTab) {
+    if (openTab == null || Object.keys(openTab.data).length === 0)
+      return null;
 
     let openTabIds = Object.keys(this.state.tabs);
     for (let i = 0; i < openTabIds.length; i++) {
       let tab = this.state.tabs[openTabIds[i]];
-      if (tab.componentType === tabConfig.componentType && tab.componentId === tabConfig.componentId) {
+      if (tab.componentType === openTab.componentType && tab.componentId === openTab.componentId) {
         return tab.tabId;
       }
     }
@@ -165,12 +196,21 @@ export class WorkspaceView extends React.Component {
     return 0;
   }
 
+  onTabUpdate(tabId, data) {
+    let tabs = this.state.tabs;
+    tabs[tabId].data = data;
+    this.fillTabComponentProps(tabs[tabId]);
+    this.setState({tabs: tabs});
+  }
+
   getTabContent(tab) {
     let content = null;
     switch (tab.componentType.toUpperCase()) {
       case "DATA_MODEL":
         content = (
           <DataModelView data={tab.data}
+                         dataModelFieldMap={this.getDataModelFieldMapping()}
+                         onUpdate={(data) => this.onTabUpdate(tab.tabId, data)}
                          onClose={() => this.removeTab(tab)}/>
         );
         break;

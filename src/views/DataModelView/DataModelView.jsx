@@ -25,15 +25,14 @@ export class DataModelView extends React.Component {
     super(props);
     this.renderer = getRenderer();
     this.state = props.data;
+    if (this.state == null || Object.keys(this.state).length === 0) {
+      this.reset();
+    }
     this.state.dirty = false;
   }
 
-  componentDidMount() {
-    console.log("DataModelView :: mounted")
-  }
-
-  componentWillUnmount() {
-    console.log("DataModelView :: unmounted")
+  stateUpdated(){
+    this.props.onUpdate(this.state);
   }
 
   handleAddField() {
@@ -61,7 +60,8 @@ export class DataModelView extends React.Component {
       deleted: false
     };
     this.fieldCount = this.fieldCount + 1;
-    this.setState({fields: fields, dirty: true});
+    this.setState({fields: fields, dirty: true}, this.stateUpdated.bind(this));
+    //this.props.onUpdate(this.state);
   }
 
   handleFieldUpdate(updatedField) {
@@ -69,7 +69,8 @@ export class DataModelView extends React.Component {
     let fieldId = updatedField.fieldId;
     fields[fieldId] = updatedField;
     fields[fieldId].newField = false;
-    this.setState({fields: fields, dirty: true});
+    this.setState({fields: fields, dirty: true}, this.stateUpdated.bind(this));
+    //this.props.onUpdate(this.state);
   }
 
   handleFieldDelete(fieldId) {
@@ -77,7 +78,8 @@ export class DataModelView extends React.Component {
     fields[fieldId] = this.state[fieldId];
     fields[fieldId].deleted = true;
     this.fieldCount = this.fieldCount - 1;
-    this.setState({fields: fields, dirty: true});
+    this.setState({fields: fields, dirty: true}, this.stateUpdated.bind(this));
+    //this.props.onUpdate(this.state);
   }
 
   handleAddRelation() {
@@ -95,7 +97,8 @@ export class DataModelView extends React.Component {
       deleted: false
     };
     this.fieldCount = this.fieldCount + 1;
-    this.setState({relations: relations, dirty: true});
+    this.setState({relations: relations, dirty: true}, this.stateUpdated.bind(this));
+    //this.props.onUpdate(this.state);
   }
 
   handleRelationUpdate(updatedRelation) {
@@ -103,7 +106,8 @@ export class DataModelView extends React.Component {
     let fieldId = updatedRelation.fieldId;
     relations[fieldId] = updatedRelation;
     relations[fieldId].newField = false;
-    this.setState({relations: relations, dirty: true});
+    this.setState({relations: relations, dirty: true}, this.stateUpdated.bind(this));
+    //this.props.onUpdate(this.state);
   }
 
   handleRelationDelete(fieldId) {
@@ -111,7 +115,8 @@ export class DataModelView extends React.Component {
     relations[fieldId] = this.state[fieldId];
     relations[fieldId].deleted = true;
     this.fieldCount = this.fieldCount - 1;
-    this.setState({relations: relations, dirty: true});
+    this.setState({relations: relations, dirty: true}, this.stateUpdated.bind(this));
+    //this.props.onUpdate(this.state);
   }
 
   isDirty() {
@@ -130,10 +135,10 @@ export class DataModelView extends React.Component {
       searchField: ""
     };
 
-    if (this.state == null) {
+    if (this.state == null || Object.keys(this.state).length === 0) {
       this.state = state;
     } else {
-      this.setState(state)
+      this.setState(state, this.stateUpdated.bind(this))
     }
   }
 
@@ -161,7 +166,8 @@ export class DataModelView extends React.Component {
                   dataModelName: event.target.value,
                   dbTableName: camelCaseToSnakeCase(event.target.value),
                   dirty: true
-                })
+                }, this.stateUpdated.bind(this))
+                //this.props.onUpdate(this.state);
               }}
               margin="dense"/>
           </Grid>
@@ -170,7 +176,8 @@ export class DataModelView extends React.Component {
               color="primary"
               checked={this.state.transient}
               onChange={(event, checked) => {
-                this.setState({transient: checked, dirty: true});
+                this.setState({transient: checked, dirty: true}, this.stateUpdated.bind(this));
+                //this.props.onUpdate(this.state);
               }}
               inputProps={{'aria-label': 'secondary checkbox'}}/>
             <Typography variant={"caption"}>Data transfer only &nbsp;&nbsp;</Typography>
@@ -183,7 +190,8 @@ export class DataModelView extends React.Component {
               id="dbTableName"
               value={this.state.dbTableName}
               onChange={(event) => {
-                this.setState({dbTableName: event.target.value, dirty: true});
+                this.setState({dbTableName: event.target.value, dirty: true}, this.stateUpdated.bind(this));
+                //this.props.onUpdate(this.state);
               }}
               disabled={this.state.transient}
               margin="dense"/>
@@ -202,6 +210,7 @@ export class DataModelView extends React.Component {
         <Grid item xs={12}>
           <DataModelRelations dataModelName={this.state.dataModelName}
                               relations={this.state.relations}
+                              dataModelFieldMap={this.props.dataModelFieldMap}
                               onAdd={handleAddRelation}
                               onUpdate={handleRelationUpdate}
                               onDelete={handleRelationDelete}/>

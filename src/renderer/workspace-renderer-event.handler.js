@@ -24,7 +24,6 @@ export class WorkspaceRendererEventHandler extends RendererProcessEventHandler {
   }
 
   handleProjectOpenedEvent(event, args) {
-    console.log(args)
     if (args.success) {
       openWorkspace(args.project);
     } else {

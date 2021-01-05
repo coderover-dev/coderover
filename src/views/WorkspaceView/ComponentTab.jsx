@@ -11,6 +11,9 @@ export class ComponentTab extends React.Component {
     super(props);
   }
 
+  componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
+  }
+
   render() {
     let tabClassName = (this.props.data.tabId === this.props.value) ? 'SelectedTab' : 'OtherTab';
     return (
