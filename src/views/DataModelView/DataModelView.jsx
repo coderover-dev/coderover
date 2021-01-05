@@ -16,7 +16,6 @@ import {camelCaseToSnakeCase} from "../../shared/string-utils";
 import {DataModelFields} from "./DataModelFields";
 import Button from "@material-ui/core/Button";
 import {workspaceData} from "../../shared/workspace-data";
-import {dataModelSubject} from "../../shared/workspace-events";
 import {v4 as uuidv4} from "uuid";
 import {DataModelRelations} from "./DataModelRelations";
 
@@ -25,11 +24,16 @@ export class DataModelView extends React.Component {
   constructor(props) {
     super(props);
     this.renderer = getRenderer();
-    this.state = {
-      ...props.data,
-      dirty: false
-    };
-    this.reset();
+    this.state = props.data;
+    this.state.dirty = false;
+  }
+
+  componentDidMount() {
+    console.log("DataModelView :: mounted")
+  }
+
+  componentWillUnmount() {
+    console.log("DataModelView :: unmounted")
   }
 
   handleAddField() {

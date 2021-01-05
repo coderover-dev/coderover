@@ -15,7 +15,7 @@ import {
   tabBarSubject,
   workspaceSubject
 } from "../../shared/workspace-events";
-import {ComponentTab, ComponentTabs} from "./ComponentTabs";
+import {ComponentTabBar} from "./ComponentTabBar";
 import {v4 as uuidv4} from "uuid";
 
 export class WorkspaceView extends React.Component {
@@ -30,6 +30,9 @@ export class WorkspaceView extends React.Component {
       currentTabIdx: 0,
       component: ""
     }
+  }
+
+  componentDidMount() {
     this.initSubscriptions();
   }
 
@@ -104,12 +107,6 @@ export class WorkspaceView extends React.Component {
     return null;
   }
 
-  removeTab(tabConfig) {
-    let tabs = this.state.tabs;
-    delete tabs[tabConfig.tabId];
-    this.setState({tabs: this.state.tabs});
-  }
-
   getSidebarContent() {
     if (this.sidebar) {
       return (
@@ -136,39 +133,36 @@ export class WorkspaceView extends React.Component {
               backgroundColor: "var(--bg-primary--shade--two)"
             }}>
         <Grid item xs={12}>
-          <ComponentTabs value={this.state.currentTabIdx}>
-            {
-              Object
-                .keys(this.state.tabs)
-                .map((tabKey, tabIndex) => {
-                  let tab = this.state.tabs[tabKey];
-                  return this.getTab(tab, tabIndex);
-                })
-            }
-          </ComponentTabs>
+          <ComponentTabBar currentTab={this.state.currentTab}
+                           value={this.state.currentTabIdx}
+                           onTabSelection={(tabId) => {
+                             this.setState({currentTab: tabId, currentTabIndex: this.getTabIdx(tabId)});
+                           }}
+                           tabs={this.state.tabs}/>
           {
-            Object
-              .keys(this.state.tabs)
-              .map((tabKey, tabIndex) => {
-                let tab = this.state.tabs[tabKey];
-                return this.getTabContent(tab);
+            Object.keys(this.state.tabs)
+              .map((tabId) => {
+                let tab = this.state.tabs[tabId];
+                if (Object.keys(tab).length > 0) {
+                  return this.getTabContent(tab);
+                } else {
+                  return (<div/>);
+                }
               })
           }
-
         </Grid>
       </Grid>
     )
   }
 
-  getTab(tab, idx) {
-    return (
-      <ComponentTab selectedtab={this.state.currentTab}
-                    data={tab}
-                    onTabSelection={() => {
-                      this.setState({currentTab: tab.tabId, currentTabIdx: idx})
-                    }}
-                    onClose={(tab) => this.removeTab(tab)}/>
-    )
+
+  getTabIdx(tabId) {
+    for (let i = 0; i < this.state.tabs.length; i++) {
+      if (this.state.tabs[i].tabId === tabId)
+        return i;
+    }
+
+    return 0;
   }
 
   getTabContent(tab) {
@@ -185,14 +179,12 @@ export class WorkspaceView extends React.Component {
         break;
     }
 
-    console.log(this.state.currentTab, tab.tabId, (this.state.currentTab !== tab.tabId), tab.componentName)
-    console.log(tab.data)
     return (
       <div
         role="tabpanel"
         hidden={this.state.currentTab !== tab.tabId}
-        id={`componentTab-panel-${this.state.currentTab}`}
-        aria-labelledby={`componentTab-panel-${this.state.currentTab}`}>
+        id={`tab-content-${tab.tabId}`}
+        aria-labelledby={`tab-content-${tab.tabId}`}>
         {content}
       </div>
     );

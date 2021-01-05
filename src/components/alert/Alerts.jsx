@@ -86,7 +86,7 @@ export class Alerts extends React.Component {
     return (
         <Dialog
             id={'alert_' + alert.key}
-            maxWidth="sm" disableEscapeKeyDown="false" disableBackdropClick="false"
+            maxWidth="sm" disableEscapeKeyDown={false} disableBackdropClick={false}
             open={true}
             onClose={() => {
               this.dismiss(alert.key);

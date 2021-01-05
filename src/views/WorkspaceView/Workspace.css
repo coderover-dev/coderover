@@ -60,4 +60,11 @@
     border-right: 1px solid var(--fg-primary--shade--one) !important;
     background-color: white !important;
     opacity: 1 !important;
+    border-bottom: 0 solid !important;
+    padding-top: 3px !important;
+}
+.OtherTab{
+    font-weight: normal !important;
+    background-color: var(--bg-primary--shade--one) !important;
+    padding-top: 5px !important;
 }
