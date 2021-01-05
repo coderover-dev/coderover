@@ -197,6 +197,7 @@ export class WorkspaceView extends React.Component {
   }
 
   onTabUpdate(tabId, data) {
+    console.log("onTabUpdate",tabId);
     let tabs = this.state.tabs;
     tabs[tabId].data = data;
     this.fillTabComponentProps(tabs[tabId]);

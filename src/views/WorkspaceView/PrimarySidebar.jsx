@@ -1,6 +1,6 @@
 import * as React from "react";
 import Grid from "@material-ui/core/Grid";
-import {faCube, faDatabase, faSlidersH, faCog, faFlask} from "@fortawesome/free-solid-svg-icons";
+import {faCube, faDatabase, faSlidersH, faCog, faFlask, faTable, faServer} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -80,8 +80,9 @@ export class PrimarySidebar extends React.Component {
                 </ListSubheader>
               }>
           {this.sidebarItem(faDatabase, "DATA_MODEL", "Data Models")}
-          {this.sidebarItem(faCube, "RESOURCES", "Resources")}
-          {this.sidebarItem(faSlidersH, "PROFILES", "Profiles")}
+          {this.sidebarItem(faTable, "QUERY", "Queries")}
+          {this.sidebarItem(faCube, "RESOURCE", "Resources")}
+          {this.sidebarItem(faServer, "PROFILE", "Profiles")}
           {this.sidebarItem(faCog, "SETTINGS", "Settings")}
           {/*{this.sidebarItem(faFlask, "NA", "Console")}*/}
         </List>

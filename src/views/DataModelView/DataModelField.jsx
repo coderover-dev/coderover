@@ -30,21 +30,25 @@ export class DataModelField extends React.Component {
 
   constructor(props) {
     super(props);
+    this.originalFieldState = props.field;
+    this.state = {
+      ...props
+    }
   }
 
   setFieldValue(fieldId, fieldAttribute, fieldValue) {
-    let field = this.props.field;
+    let field = this.state.field;
     field[fieldAttribute] = fieldValue;
-    this.props.onUpdate(field);
+    this.setState({field: field})
   }
 
   allowSave() {
-    if (this.props.field.fieldName.trim() !== "" &&
-      this.props.field.fieldDataType.trim() !== "") {
-      if (!this.props.field.transient && this.props.field.dbColumnName.trim() !== "") {
+    if (this.state.field.fieldName.trim() !== "" &&
+      this.state.field.fieldDataType.trim() !== "") {
+      if (!this.state.field.transient && this.state.field.dbColumnName.trim() !== "") {
         return true;
       } else {
-        return this.props.field.transient;
+        return this.state.field.transient;
       }
     }
 
@@ -54,52 +58,55 @@ export class DataModelField extends React.Component {
   readonlyView() {
     return (
       <Grid container direction="row" style={{height: '35px', width: '100%'}}
-            key={'field_' + this.props.field.fieldId}>
+            key={'field_' + this.state.field.fieldId}>
         <Grid item style={{paddingRight: '10px', paddingTop: '5px', minWidth: '150px'}}>
           <Typography variant={"body1"}
-                      style={{fontWeight: 'bolder'}}>{this.props.field.fieldName}</Typography>
+                      style={{fontWeight: 'bolder'}}>{this.state.field.fieldName}</Typography>
         </Grid>
         <Grid item style={{paddingRight: '10px', paddingTop: '4px'}}>
           <Typography variant={"body2"} style={{
             fontWeight: "bolder",
             fontStyle: "italic",
-            color:"gray"
-          }}>{this.props.field.fieldDataType}</Typography>
+            color: "gray"
+          }}>{this.state.field.fieldDataType}</Typography>
         </Grid>
         <Grid item style={{paddingRight: '10px', paddingTop: '5px'}}>
           <Typography
             variant={"body2"}>
-            {(this.props.field.transient != null && this.props.field.transient) ? 'transient' : ''}
+            {(this.state.field.transient != null && this.state.field.transient) ? 'transient' : ''}
           </Typography>
         </Grid>
         <Grid item style={{paddingRight: '10px', paddingTop: '5px'}}>
           <Typography
             variant={"body2"}>
-            {(this.props.field.nullable != null && this.props.field.nullable) ? 'nullable' : ''}
+            {(this.state.field.nullable != null && this.state.field.nullable) ? 'nullable' : ''}
           </Typography>
         </Grid>
         <Grid item style={{paddingRight: '10px', paddingTop: '5px'}}>
           <Typography
             variant={"body2"}>
-            {(this.props.field.unique != null && this.props.field.unique) ? 'unique' : ''}</Typography>
+            {(this.state.field.unique != null && this.state.field.unique) ? 'unique' : ''}</Typography>
         </Grid>
         <Grid item style={{paddingRight: '10px', paddingTop: '4px'}}>
           <Tooltip title="Edit">
             <IconButton style={{fontSize: '14pt', height: '10px'}}
                         color="primary"
                         onClick={() => {
-                          this.setFieldValue(this.props.field.fieldId, 'editMode', true);
+                          this.setFieldValue(this.state.field.fieldId, 'editMode', true);
                         }}>
-              <FontAwesomeIcon icon={faEdit} style={{fontSize:'10pt'}}/><span style={{fontSize:'10pt'}}>&nbsp;Edit</span>
+              <FontAwesomeIcon icon={faEdit} style={{fontSize: '10pt'}}/><span
+              style={{fontSize: '10pt'}}>&nbsp;Edit</span>
             </IconButton>
           </Tooltip>
           <Tooltip title="Delete">
             <IconButton style={{fontSize: '14pt', height: '10px'}}
                         color="primary"
                         onClick={() => {
-                          this.setFieldValue(this.props.field.fieldId, 'deleted', true);
+                          this.setFieldValue(this.state.field.fieldId, 'deleted', true);
+                          this.props.onUpdate(this.state.field);
                         }}>
-              <FontAwesomeIcon icon={faTimesCircle} style={{fontSize:'10pt'}}/><span style={{fontSize:'10pt'}}>&nbsp;Delete</span>
+              <FontAwesomeIcon icon={faTimesCircle} style={{fontSize: '10pt'}}/><span
+              style={{fontSize: '10pt'}}>&nbsp;Delete</span>
             </IconButton>
           </Tooltip>
         </Grid>
@@ -116,7 +123,7 @@ export class DataModelField extends React.Component {
         marginTop: 10,
         borderRadius: '10px'
       }}
-            key={'field_' + this.props.field.fieldId}>
+            key={'field_' + this.state.field.fieldId}>
         <Grid item container direction={"row"} spacing={2}>
 
           <Grid item style={{width: '150px'}}>
@@ -125,18 +132,18 @@ export class DataModelField extends React.Component {
             </Grid>
             <Grid item>
               <OutlinedInput fullWidth
-                             id={'fieldName_' + this.props.field.fieldId}
-                             value={this.props.field.fieldName}
+                             id={'fieldName_' + this.state.field.fieldId}
+                             value={this.state.field.fieldName}
                              onChange={(event) => {
-                               let dbColumnName = this.props.field.dbColumnName;
+                               let dbColumnName = this.state.field.dbColumnName;
                                let fieldName = event.target.value;
-                               //let newField = this.props.field.newField;
-                               let transient = this.props.field.transient;
+                               //let newField = this.state.field.newField;
+                               let transient = this.state.field.transient;
                                if (!transient) {
                                  dbColumnName = camelCaseToSnakeCase(fieldName, dbColumnName);
-                                 this.setFieldValue(this.props.field.fieldId, 'dbColumnName', dbColumnName);
+                                 this.setFieldValue(this.state.field.fieldId, 'dbColumnName', dbColumnName);
                                }
-                               this.setFieldValue(this.props.field.fieldId, 'fieldName', fieldName);
+                               this.setFieldValue(this.state.field.fieldId, 'fieldName', fieldName);
                              }}
                              margin="dense"/>
             </Grid>
@@ -147,16 +154,16 @@ export class DataModelField extends React.Component {
               <Typography variant={"caption"}>Data Type</Typography>
             </Grid>
             <Grid item>
-              <TextField select id={'fieldDataType_' + this.props.field.fieldId} size="small"
+              <TextField select id={'fieldDataType_' + this.state.field.fieldId} size="small"
                          defaultValue="" variant="outlined" fullWidth
-                         value={this.props.field.fieldDataType}
+                         value={this.state.field.fieldDataType}
                          onChange={(event) => {
                            if (event.target.value === 'ID') {
-                             this.props.field.transient = false;
-                             this.props.field.nullable = false;
-                             this.props.field.unique = true;
+                             this.state.field.transient = false;
+                             this.state.field.nullable = false;
+                             this.state.field.unique = true;
                            }
-                           this.setFieldValue(this.props.field.fieldId, 'fieldDataType', event.target.value);
+                           this.setFieldValue(this.state.field.fieldId, 'fieldDataType', event.target.value);
                          }}>
                 {this.dataTypes.map((dataType) => (
                   <MenuItem key={dataType.value} value={dataType.value}>
@@ -173,10 +180,10 @@ export class DataModelField extends React.Component {
             </Grid>
             <Grid item style={{paddingTop: '2px'}}>
               <OutlinedInput fullWidth
-                             id={'dbColumnName_' + this.props.field.fieldId}
-                             value={this.props.field.dbColumnName}
+                             id={'dbColumnName_' + this.state.field.fieldId}
+                             value={this.state.field.dbColumnName}
                              onChange={(event) => {
-                               this.setFieldValue(this.props.field.fieldId, 'dbColumnName', event.target.value);
+                               this.setFieldValue(this.state.field.fieldId, 'dbColumnName', event.target.value);
                              }}
                              margin="dense"/>
             </Grid>
@@ -188,10 +195,10 @@ export class DataModelField extends React.Component {
             </Grid>
             <Grid item style={{paddingTop: '2px'}}>
               <OutlinedInput fullWidth
-                             id={'defaultValue_' + this.props.field.fieldId}
-                             value={this.props.field.defaultValue}
+                             id={'defaultValue_' + this.state.field.fieldId}
+                             value={this.state.field.defaultValue}
                              onChange={(event) => {
-                               this.setFieldValue(this.props.field.fieldId, 'defaultValue', event.target.value);
+                               this.setFieldValue(this.state.field.fieldId, 'defaultValue', event.target.value);
                              }}
                              margin="dense"/>
             </Grid>
@@ -203,11 +210,11 @@ export class DataModelField extends React.Component {
             </Grid>
             <Grid item style={{paddingTop: '2px'}}>
               <Checkbox
-                id={'transient_' + this.props.field.fieldId}
+                id={'transient_' + this.state.field.fieldId}
                 color="primary"
-                checked={this.props.field.transient}
+                checked={this.state.field.transient}
                 onChange={(event, checked) => {
-                  this.setFieldValue(this.props.field.fieldId, 'transient', checked);
+                  this.setFieldValue(this.state.field.fieldId, 'transient', checked);
                 }}
                 inputProps={{'aria-label': 'secondary checkbox'}}/>
             </Grid>
@@ -219,11 +226,11 @@ export class DataModelField extends React.Component {
             </Grid>
             <Grid item style={{paddingTop: '2px'}}>
               <Checkbox
-                id={'nullable_' + this.props.field.fieldId}
+                id={'nullable_' + this.state.field.fieldId}
                 color="primary"
-                checked={this.props.field.nullable}
+                checked={this.state.field.nullable}
                 onChange={(event, checked) => {
-                  this.setFieldValue(this.props.field.fieldId, 'nullable', checked);
+                  this.setFieldValue(this.state.field.fieldId, 'nullable', checked);
                 }}
                 inputProps={{'aria-label': 'secondary checkbox'}}/>
             </Grid>
@@ -235,11 +242,11 @@ export class DataModelField extends React.Component {
             </Grid>
             <Grid item style={{paddingTop: '2px'}}>
               <Checkbox
-                id={'nullable_' + this.props.field.fieldId}
+                id={'nullable_' + this.state.field.fieldId}
                 color="primary"
-                checked={this.props.field.unique}
+                checked={this.state.field.unique}
                 onChange={(event, checked) => {
-                  this.setFieldValue(this.props.field.fieldId, 'unique', checked);
+                  this.setFieldValue(this.state.field.fieldId, 'unique', checked);
                 }}
                 inputProps={{'aria-label': 'secondary checkbox'}}/>
             </Grid>
@@ -252,10 +259,11 @@ export class DataModelField extends React.Component {
                 color="primary"
                 disabled={!this.allowSave()}
                 onClick={() => {
-                  this.props.field.editMode = false;
-                  this.props.onUpdate(this.props.field);
+                  this.state.field.editMode = false;
+                  this.props.onUpdate(this.state.field);
                 }}>
-                <FontAwesomeIcon icon={faCheckCircle} style={{fontSize:'12pt'}}/><span style={{fontSize:'12pt'}}>&nbsp;Save</span>
+                <FontAwesomeIcon icon={faCheckCircle} style={{fontSize: '12pt'}}/><span
+                style={{fontSize: '12pt'}}>&nbsp;Save</span>
               </IconButton>
             </Tooltip>
           </Grid>
@@ -266,12 +274,14 @@ export class DataModelField extends React.Component {
                 size="small"
                 color="primary"
                 onClick={() => {
-                  if (this.props.field.newField) {
-                    this.setFieldValue(this.props.field.fieldId, 'deleted', true);
+                  this.setFieldValue(this.state.field.fieldId, 'editMode', false);
+                  if (this.state.field.newField) {
+                    this.setFieldValue(this.state.field.fieldId, 'deleted', true);
+                    this.props.onUpdate(this.state.field);
                   }
-                  this.setFieldValue(this.props.field.fieldId, 'editMode', false);
                 }}>
-                <FontAwesomeIcon icon={faTimesCircle} style={{fontSize:'12pt'}}/><span style={{fontSize:'12pt'}}>&nbsp;Discard</span>
+                <FontAwesomeIcon icon={faTimesCircle} style={{fontSize: '12pt'}}/><span
+                style={{fontSize: '12pt'}}>&nbsp;Discard</span>
               </IconButton>
             </Tooltip>
           </Grid>
@@ -282,6 +292,6 @@ export class DataModelField extends React.Component {
   }
 
   render() {
-    return this.props.field.editMode ? this.editView() : this.readonlyView();
+    return this.state.field.editMode ? this.editView() : this.readonlyView();
   }
 }
