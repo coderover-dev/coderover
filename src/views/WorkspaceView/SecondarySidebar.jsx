@@ -13,7 +13,7 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Tooltip from "@material-ui/core/Tooltip";
 import {workspaceData} from "../../shared/workspace-data";
-import {dataModelSubject, secondarySidebarSubject, tabBarSubject} from "../../shared/workspace-events";
+import {dataModelSubject, querySubject, secondarySidebarSubject, tabBarSubject} from "../../shared/workspace-events";
 import {getRenderer} from "../../renderer/renderer";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 
@@ -30,6 +30,10 @@ export class SecondarySidebar extends React.Component {
 
   prepareItemList(componentIdField, componentNameField) {
     let items = [];
+    if(this.props.components===undefined||this.props.components==null){
+      return items;
+    }
+
     const idList = Object.keys(this.props.components);
     for (let i = 0; i < idList.length; i++) {
       items.push(this.prepareItemKeyValuePair(this.props.components[idList[i]], componentIdField, componentNameField));
@@ -48,6 +52,11 @@ export class SecondarySidebar extends React.Component {
   handleItemSelection(itemType, itemId) {
     switch (itemType) {
       case "DATA_MODEL":
+        this.renderer
+          .getDataModelHandler()
+          .fetchDataModel(workspaceData.project, itemId);
+        break;
+      case "QUERY":
         this.renderer
           .getDataModelHandler()
           .fetchDataModel(workspaceData.project, itemId);
@@ -75,6 +84,9 @@ export class SecondarySidebar extends React.Component {
       case "DATA_MODEL":
         this.state.items = this.prepareItemList('id', 'dataModelName');
         break;
+      case "QUERY":
+        this.state.items = this.prepareItemList('id', 'queryName');
+        break;
       default:
         this.state.items = [];
         break;
@@ -100,6 +112,9 @@ export class SecondarySidebar extends React.Component {
     switch (this.props.componentType) {
       case "DATA_MODEL":
         dataModelSubject.next(null);
+        break;
+      case "QUERY":
+        querySubject.next(null);
         break;
       default:
         break;

@@ -10,18 +10,21 @@ import {workspaceData} from "../../shared/workspace-data";
 import {DataModelView} from "../DataModelView/DataModelView";
 import {
   dataModelListSubject,
-  dataModelSubject,
+  dataModelSubject, querySubject,
   secondarySidebarSubject,
   tabBarSubject,
   workspaceSubject
 } from "../../shared/workspace-events";
 import {ComponentTabBar} from "./ComponentTabBar";
 import {v4 as uuidv4} from "uuid";
+import {QueryView} from "../QueryView/QueryView";
+import {getRenderer} from "../../renderer/renderer";
 
 export class WorkspaceView extends React.Component {
 
   constructor(props) {
     super(props);
+    this.renderer = getRenderer();
     this.sidebar = true;
     this.state = {
       tabs: {},
@@ -35,6 +38,7 @@ export class WorkspaceView extends React.Component {
 
   componentDidMount() {
     this.initSubscriptions();
+    this.initData();
   }
 
   initSubscriptions() {
@@ -43,13 +47,19 @@ export class WorkspaceView extends React.Component {
     this.dataModelListSubscription = dataModelListSubject.subscribe((dataModels) => {
       this.setState({dataModels: dataModels})
       secondarySidebarSubject.next(dataModels);
-    })
+    });
+    this.querySubscription = querySubject.subscribe(this.loadQuery.bind(this));
+  }
+
+  initData(){
+    this.renderer.getDataModelHandler().fetchDataModels(workspaceData.project);
   }
 
   componentWillUnmount() {
     this.tabBarSubscription.unsubscribe();
     this.dataModelSubscription.unsubscribe();
     this.dataModelListSubscription.unsubscribe();
+    this.querySubscription.unsubscribe();
   }
 
   openTab(tab) {
@@ -82,6 +92,10 @@ export class WorkspaceView extends React.Component {
         tab.componentId = tab.data.id;
         tab.componentName = tab.data.dataModelName;
         break;
+      case "QUERY":
+        tab.componentId = tab.data.id;
+        tab.componentName = tab.data.queryName;
+        break;
       default:
         break;
     }
@@ -97,7 +111,8 @@ export class WorkspaceView extends React.Component {
         for (let i = 0; i < fields.length; i++) {
           fieldNameList.push(fields[i].fieldName);
         }
-        dataModelFieldMapping[dataModel] = fieldNameList;
+        let dataModelName = this.state.dataModels[dataModel].dataModelName;
+        dataModelFieldMapping[dataModelName] = fieldNameList;
       })
     return dataModelFieldMapping;
   }
@@ -113,6 +128,22 @@ export class WorkspaceView extends React.Component {
       tabBarSubject.next({
         data: {},
         componentType: "DATA_MODEL",
+        tabId: uuidv4()
+      })
+    }
+  }
+
+  loadQuery(metadata) {
+    if (this.state !== undefined && metadata != null) {
+      tabBarSubject.next({
+        data: metadata,
+        componentType: "QUERY",
+        tabId: uuidv4()
+      })
+    } else {
+      tabBarSubject.next({
+        data: {},
+        componentType: "QUERY",
         tabId: uuidv4()
       })
     }
@@ -194,7 +225,6 @@ export class WorkspaceView extends React.Component {
   }
 
   onTabUpdate(tabId, data) {
-    console.log("onTabUpdate",tabId);
     let tabs = this.state.tabs;
     tabs[tabId].data = data;
     this.fillTabComponentProps(tabs[tabId]);
@@ -209,6 +239,13 @@ export class WorkspaceView extends React.Component {
           <DataModelView data={tab.data}
                          dataModelFieldMap={this.getDataModelFieldMapping()}
                          onUpdate={(data) => this.onTabUpdate(tab.tabId, data)}/>
+        );
+        break;
+      case "QUERY":
+        content = (
+          <QueryView
+            dataModels={this.state.dataModels}
+            onUpdate={(data) => this.onTabUpdate(tab.tabId, data)}/>
         );
         break;
       default:
@@ -231,6 +268,8 @@ export class WorkspaceView extends React.Component {
     switch (selectedMenuKey) {
       case "DATA_MODEL":
         return this.state.dataModels;
+      case "QUERY":
+        return this.state.queries;
       default:
         return {};
     }

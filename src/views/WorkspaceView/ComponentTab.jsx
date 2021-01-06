@@ -36,11 +36,17 @@ export class ComponentTab extends React.Component {
             <Grid item style={{
               fontSize: '7pt',
             }}>{this.getTabTypeLabel(this.props.data.componentType)}</Grid>
-            <Grid item style={{
-              fontSize: '10pt',
-              fontWeight: 'bolder',
-              color: 'var(--fg-primary--shade--one)'
-            }}>{this.props.data.componentName}</Grid>
+            <Tooltip title={this.props.data.componentName}>
+              <Grid item style={{
+                fontSize: '10pt',
+                fontWeight: 'bolder',
+                color: 'var(--fg-primary--shade--one)',
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+                whitespace: 'nowrap',
+                width: '100px',
+              }}>{this.props.data.componentName}</Grid>
+            </Tooltip>
           </Grid>
           <Grid item xs={2}>
             <Tooltip title="Close">
@@ -65,6 +71,8 @@ export class ComponentTab extends React.Component {
     switch (tabType.toUpperCase()) {
       case "DATA_MODEL":
         return "Data Models";
+      case "QUERY":
+        return "Query";
       default:
         return "";
     }

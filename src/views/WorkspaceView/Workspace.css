@@ -53,6 +53,15 @@
     color: rgba(0, 0, 0, 0.54) !important;
 }
 
+.SelectedMenu{
+    border-left: 3px solid var(--fg-primary--shade--one) !important;
+    background-color: var(--bg-primary--shade--two) !important;
+}
+
+.OtherMenu{
+    border-left: 0;
+}
+
 .SelectedTab{
     font-weight: normal !important;
     border-top: 3px solid var(--fg-primary--shade--one) !important;

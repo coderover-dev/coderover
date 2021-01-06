@@ -7,6 +7,7 @@ export let workspaceSubject = new ReplaySubject(1);
 
 export let dataModelListSubject = new ReplaySubject(1);
 export let dataModelSubject = new ReplaySubject(1);
+export let querySubject = new ReplaySubject(1);
 
 export let tabBarSubject = new ReplaySubject(1);
 

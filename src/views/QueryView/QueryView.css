@@ -1,0 +1,16 @@
+.landingViewButton {
+    font-family: "Montserrat", serif !important;
+    font-size: 11pt !important;
+    font-weight: 500;
+    color: white !important;
+    text-align: left !important;
+    text-decoration: none;
+}
+
+.MuiTypography-root {
+    font-family: "Montserrat", serif !important;
+}
+
+.iconButton {
+    font-size: 14pt;
+}

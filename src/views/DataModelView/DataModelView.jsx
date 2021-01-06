@@ -163,7 +163,7 @@ export class DataModelView extends React.Component {
               value={this.state.dataModelName}
               onChange={(event) => {
                 this.setState({
-                  dataModelName: event.target.value,
+                  dataModelName: event.target.value.replace(/[^\w\s]/gi, ""),
                   dbTableName: camelCaseToSnakeCase(event.target.value),
                   dirty: true
                 }, this.stateUpdated.bind(this))

@@ -94,7 +94,8 @@ export class DataModelRelation extends React.Component {
                         onClick={() => {
                           this.setFieldValue(this.props.relation.fieldId, 'editMode', true);
                         }}>
-              <FontAwesomeIcon icon={faEdit} style={{fontSize:'10pt'}}/><span style={{fontSize:'10pt'}}>&nbsp;Edit</span>
+              <FontAwesomeIcon icon={faEdit} style={{fontSize: '10pt'}}/><span
+              style={{fontSize: '10pt'}}>&nbsp;Edit</span>
             </IconButton>
           </Tooltip>
           <Tooltip title="Delete">
@@ -103,7 +104,8 @@ export class DataModelRelation extends React.Component {
                         onClick={() => {
                           this.setFieldValue(this.props.relation.fieldId, 'deleted', true);
                         }}>
-              <FontAwesomeIcon icon={faPlusCircle} style={{fontSize:'10pt'}}/><span style={{fontSize:'10pt'}}>&nbsp;Delete</span>
+              <FontAwesomeIcon icon={faPlusCircle} style={{fontSize: '10pt'}}/><span
+              style={{fontSize: '10pt'}}>&nbsp;Delete</span>
             </IconButton>
           </Tooltip>
         </Grid>
@@ -132,7 +134,9 @@ export class DataModelRelation extends React.Component {
                              id={'foreignKey_' + this.props.relation.fieldId}
                              value={this.props.relation.fieldName}
                              onChange={(event) => {
-                               this.setFieldValue(this.props.relation.fieldId, 'fieldName', event.target.value);
+                               this.setFieldValue(
+                                 this.props.relation.fieldId, 'fieldName',
+                                 event.target.value.replace(/[^\w\s]/gi, ""));
                              }}
                              margin="dense"/>
             </Grid>
@@ -228,7 +232,8 @@ export class DataModelRelation extends React.Component {
                   this.props.relation.editMode = false;
                   this.props.onUpdate(this.props.relation);
                 }}>
-                <FontAwesomeIcon icon={faCheckCircle} style={{fontSize:'12pt'}}/><span style={{fontSize:'12pt'}}>&nbsp;Save</span>
+                <FontAwesomeIcon icon={faCheckCircle} style={{fontSize: '12pt'}}/><span
+                style={{fontSize: '12pt'}}>&nbsp;Save</span>
               </IconButton>
             </Tooltip>
           </Grid>
@@ -244,7 +249,8 @@ export class DataModelRelation extends React.Component {
                   }
                   this.setFieldValue(this.props.relation.fieldId, 'editMode', false);
                 }}>
-                <FontAwesomeIcon icon={faTimesCircle} style={{fontSize:'12pt'}}/><span style={{fontSize:'12pt'}}>&nbsp;Discard</span>
+                <FontAwesomeIcon icon={faTimesCircle} style={{fontSize: '12pt'}}/><span
+                style={{fontSize: '12pt'}}>&nbsp;Discard</span>
               </IconButton>
             </Tooltip>
           </Grid>

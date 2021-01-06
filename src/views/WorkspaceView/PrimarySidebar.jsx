@@ -26,6 +26,9 @@ export class PrimarySidebar extends React.Component {
           .getDataModelHandler()
           .fetchDataModels(workspaceData.project);
         break;
+      case "QUERY":
+        secondarySidebarSubject.next([]);
+        break;
       default:
         secondarySidebarSubject.next([]);
         break;
@@ -33,7 +36,7 @@ export class PrimarySidebar extends React.Component {
   }
 
   sidebarItem(icon, key, text) {
-    const sidebarItemClassName = this.props.selected === key ? '' : '';
+    const sidebarItemClassName = this.props.selected === key ? 'SelectedMenu' : 'OtherMenu';
     return (
       <ListItem button
                 className={sidebarItemClassName}

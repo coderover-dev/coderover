@@ -137,7 +137,7 @@ export class DataModelField extends React.Component {
                              value={this.state.field.fieldName}
                              onChange={(event) => {
                                let dbColumnName = this.state.field.dbColumnName;
-                               let fieldName = event.target.value;
+                               let fieldName = event.target.value.replace(/[^\w\s]/gi, "");
                                //let newField = this.state.field.newField;
                                let transient = this.state.field.transient;
                                if (!transient) {
