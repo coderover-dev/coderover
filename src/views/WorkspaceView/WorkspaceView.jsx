@@ -175,8 +175,6 @@ export class WorkspaceView extends React.Component {
                 let tab = this.state.tabs[tabId];
                 if (Object.keys(tab).length > 0) {
                   return this.getTabContent(tab);
-                } else {
-                  return (<div/>);
                 }
               })
           }
@@ -214,7 +212,7 @@ export class WorkspaceView extends React.Component {
         );
         break;
       default:
-        content = (<div/>);
+        //content = (<div/>);
         break;
     }
 

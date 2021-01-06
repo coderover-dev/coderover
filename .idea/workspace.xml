@@ -24,15 +24,7 @@
   <component name="ChangeListManager">
     <list default="true" id="07424044-891a-4bc7-8a83-ef9993154c32" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/generators/node-express/data-model-generator.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/generators/node-express/data-model-generator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/generators/node-express/template.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/generators/node-express/template.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/main/data-model-main-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/platform/main/data-model-main-event.handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/data-model-renderer-event.handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/data-model-renderer-event.handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/DataModelView/DataModelView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DataModelView/DataModelView.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/ComponentTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/ComponentTab.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/ComponentTabBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/ComponentTabBar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/PrimarySidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/PrimarySidebar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/SecondarySidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/SecondarySidebar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/WorkspaceView/WorkspaceView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkspaceView/WorkspaceView.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -144,7 +136,7 @@
       <workItem from="1608727060698" duration="863000" />
       <workItem from="1609392937765" duration="82575000" />
       <workItem from="1609750146968" duration="26005000" />
-      <workItem from="1609847293306" duration="34112000" />
+      <workItem from="1609847293306" duration="34876000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1606071312677</created>
@@ -391,7 +383,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609926197408</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="refactored data flow">
+      <created>1609934923496</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1609934923496</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -410,7 +409,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added blue print generators&#10;added alerts &#10;added progress indicator" />
     <MESSAGE value="added basic metadata generator" />
     <MESSAGE value="refactored events&#10;added open &amp; close workspace functionality" />
     <MESSAGE value="removed inputs like project type, platform and framework as these should be hidden from the end user." />
@@ -435,7 +433,8 @@
     <MESSAGE value="fixed state update issues&#10;removed dependency on externalized workspace data for data model" />
     <MESSAGE value="localized state for DataModelField.jsx to reduce number of state updates" />
     <MESSAGE value="change metadata file persistence logic to use uuid as file names&#10;and further use uuids to identify components" />
-    <option name="LAST_COMMIT_MESSAGE" value="change metadata file persistence logic to use uuid as file names&#10;and further use uuids to identify components" />
+    <MESSAGE value="refactored data flow" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored data flow" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-815" y="-553" key="#JavaScript" timestamp="1609405449583">
@@ -461,7 +460,7 @@
     <state x="-708" y="-748" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609423162907" />
     <state x="-1259" y="259" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1680.1025/-1920.25.1920.983@-1920.25.1920.983" timestamp="1606916405922" />
     <state x="578" y="252" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1680.953/-115.-1055.1920.1055@0.25.1680.953" timestamp="1606049503244" />
-    <state x="80" y="46" key="CommitChangelistDialog2" timestamp="1609926197240">
+    <state x="80" y="46" key="CommitChangelistDialog2" timestamp="1609934923320">
       <screen x="0" y="25" width="2048" height="1179" />
     </state>
     <state x="-1038" y="-1150" key="CommitChangelistDialog2/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609696451173" />
@@ -473,7 +472,7 @@
     <state x="-1435" y="44" key="CommitChangelistDialog2/0.25.1680.953/-1920.25.1920.1055@-1920.25.1920.1055" timestamp="1606929662661" />
     <state x="424" y="42" key="CommitChangelistDialog2/0.25.1680.953@0.25.1680.953" timestamp="1607009590787" />
     <state x="2187" y="-53" key="CommitChangelistDialog2/0.25.1920.995/1920.-87.1080.1895@1920.-87.1080.1895" timestamp="1607955579633" />
-    <state x="80" y="46" key="CommitChangelistDialog2/0.25.2048.1179@0.25.2048.1179" timestamp="1609926197240" />
+    <state x="80" y="46" key="CommitChangelistDialog2/0.25.2048.1179@0.25.2048.1179" timestamp="1609934923320" />
     <state x="108" y="136" width="968" height="1596" key="DiffContextDialog" timestamp="1609847178968">
       <screen x="0" y="25" width="2048" height="1179" />
     </state>
@@ -538,7 +537,7 @@
       <screen x="-1920" y="25" width="1920" height="1055" />
     </state>
     <state width="500" height="445" key="SwitcherDM/0.25.1680.953/-1920.25.1920.1055@-1920.25.1920.1055" timestamp="1606984701704" />
-    <state x="531" y="273" key="Vcs.Push.Dialog.v2" timestamp="1609926199775">
+    <state x="531" y="273" key="Vcs.Push.Dialog.v2" timestamp="1609934925153">
       <screen x="0" y="25" width="2048" height="1179" />
     </state>
     <state x="-800" y="-799" key="Vcs.Push.Dialog.v2/-1080.-1183.1080.1827/0.25.2048.1255/0.-1055.1920.1055@-1080.-1183.1080.1827" timestamp="1609696453877" />
@@ -550,7 +549,7 @@
     <state x="-1417" y="246" key="Vcs.Push.Dialog.v2/0.25.1680.953/-1920.25.1920.1055@-1920.25.1920.1055" timestamp="1606929666934" />
     <state x="440" y="225" key="Vcs.Push.Dialog.v2/0.25.1680.953@0.25.1680.953" timestamp="1607009593123" />
     <state x="2200" y="311" key="Vcs.Push.Dialog.v2/0.25.1920.995/1920.-87.1080.1895@1920.-87.1080.1895" timestamp="1607955582404" />
-    <state x="531" y="273" key="Vcs.Push.Dialog.v2/0.25.2048.1179@0.25.2048.1179" timestamp="1609926199775" />
+    <state x="531" y="273" key="Vcs.Push.Dialog.v2/0.25.2048.1179@0.25.2048.1179" timestamp="1609934925153" />
     <state x="121" y="148" width="1806" height="933" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1609778831535">
       <screen x="0" y="25" width="2048" height="1179" />
     </state>

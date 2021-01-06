@@ -23,8 +23,6 @@ export class ComponentTabBar extends React.Component {
               let tab = this.props.tabs[tabId]
               if(Object.keys(tab).length>0) {
                 return this.getTab(tabId);
-              }else{
-                return (<div/>);
               }
             })
         }
