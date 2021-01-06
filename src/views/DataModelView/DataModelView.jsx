@@ -249,18 +249,18 @@ export class DataModelView extends React.Component {
                                    icon={faSave}/>
                 }>Save</Button>
             </Grid>
-            <Grid item>
-              <Button variant={"outlined"}
-                      size={"small"}
-                      color="primary"
-                      onClick={() => {
-                        this.props.onClose();
-                      }}
-                      startIcon={
-                        <FontAwesomeIcon style={{fontSize: '15pt'}}
-                                         icon={faTimesCircle}/>
-                      }>Close</Button>
-            </Grid>
+            {/*<Grid item>*/}
+            {/*  <Button variant={"outlined"}*/}
+            {/*          size={"small"}*/}
+            {/*          color="primary"*/}
+            {/*          onClick={() => {*/}
+            {/*            this.props.onClose(this.props.key);*/}
+            {/*          }}*/}
+            {/*          startIcon={*/}
+            {/*            <FontAwesomeIcon style={{fontSize: '15pt'}}*/}
+            {/*                             icon={faTimesCircle}/>*/}
+            {/*          }>Close</Button>*/}
+            {/*</Grid>*/}
           </Grid>
         </Grid>
         <Grid item style={{paddingTop: '5px', paddingBottom: '5px'}}>

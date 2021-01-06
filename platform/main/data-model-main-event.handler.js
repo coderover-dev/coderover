@@ -138,11 +138,11 @@ class DataModelMainEventHandler extends MainProcessEventHandler {
         let jsonDataModel = {};
         try {
           jsonDataModel = JSON.parse(content.toString());
-          if(jsonDataModel.dataModelId===undefined||jsonDataModel.dataModelId==null){
-            jsonDataModel.dataModelId = uuidv4();
+          if(jsonDataModel.id===undefined||jsonDataModel.id==null){
+            jsonDataModel.id = uuidv4();
           }
         } catch (err) {}
-        dataModels[jsonDataModel.dataModelId] = jsonDataModel;
+        dataModels[jsonDataModel.id] = jsonDataModel;
       }
       this.replyEventName = 'DataModelsFetched';
       this.event.reply(

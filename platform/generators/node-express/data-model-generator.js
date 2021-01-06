@@ -32,12 +32,12 @@ class DataModelGenerator {
   }
 
   writeMetadata(projectMetadata, dataModelMetadata) {
-    if(dataModelMetadata.dataModelId===undefined||dataModelMetadata.dataModelId==null){
-      dataModelMetadata.dataModelId = uuidv4();
+    if(dataModelMetadata.id===undefined||dataModelMetadata.id==null){
+      dataModelMetadata.id = uuidv4();
     }
     dataModelMetadata.fieldList = this.prepareListFromObject(dataModelMetadata.fields);
     dataModelMetadata.relationList = this.prepareListFromObject(dataModelMetadata.relations);
-    let metadataFileName = dataModelMetadata.dataModelId + ".data.json";
+    let metadataFileName = dataModelMetadata.id + ".data.json";
     let content = utils.parseTemplate(template.DATA_MODEL_METADATA_JSON_TEMPLATE, dataModelMetadata);
     return utils.writeFileSync(
       path.join(projectMetadata.location, constants.APP_METADATA_DIR),

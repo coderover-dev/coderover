@@ -19,7 +19,7 @@ export class PrimarySidebar extends React.Component {
     this.renderer = getRenderer();
   }
 
-  initMenuContent(key, metadata) {
+  loadMenuContent(key, metadata) {
     switch (key) {
       case "DATA_MODEL":
         this.renderer
@@ -33,25 +33,25 @@ export class PrimarySidebar extends React.Component {
   }
 
   sidebarItem(icon, key, text) {
+    const sidebarItemClassName = this.props.selected === key ? '' : '';
     return (
-      <ListItem button style={{
-        minHeight: '60px', maxHeight: '60px',
-        justifyContent: "center",
-        paddingLeft: 0, paddingRight: 0
-      }} onClick={() => {
-        breadcrumbSubject.next({
-          project: workspaceData.project.name,
-          component: text
-        });
+      <ListItem button
+                className={sidebarItemClassName}
+                style={{
+                  minHeight: '60px', maxHeight: '60px',
+                  justifyContent: "center",
+                  paddingLeft: 0, paddingRight: 0
+                }}
+                onClick={() => {
+                  breadcrumbSubject.next({
+                    project: workspaceData.project.name,
+                    component: text
+                  });
 
-        workspaceData.selectedComponent = {
-          key: key,
-          text: text
-        }
-
-        workspaceSubject.next(0);
-        this.initMenuContent(key, workspaceData.project);
-      }}>
+                  //workspaceSubject.next(0);
+                  this.loadMenuContent(key, workspaceData.project);
+                  this.props.onSelection(key);
+                }}>
         <ListItemText style={{textAlign: "center"}}>
           <Grid container direction={"row"}>
             <Grid item xs={12} style={{textAlign: "center"}}>

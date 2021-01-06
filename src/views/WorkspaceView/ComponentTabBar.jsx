@@ -10,10 +10,12 @@ export class ComponentTabBar extends React.Component {
   render() {
     return (
       <div style={{
-        height: '38px',
-        minHeight: '38px',
+        height: '44px',
+        minHeight: '44px',
         display: "flex",
-        flexDirection: "row"
+        flexDirection: "row",
+        width: "100%",
+        overflow: "auto"
       }} key="componentTabBar">
         {
           Object.keys(this.props.tabs)
@@ -30,9 +32,9 @@ export class ComponentTabBar extends React.Component {
     )
   }
 
-  removeTab(tab) {
+  removeTab(tabId) {
     let tabs = this.props.tabs;
-    tabs[tab.tabId] = {};
+    tabs[tabId] = {};
     this.setState({tabs: tabs});
   }
 
@@ -52,7 +54,9 @@ export class ComponentTabBar extends React.Component {
                     value={this.props.currentTab}
                     data={tab}
                     onTabSelection={this.props.onTabSelection}
-                    onClose={(tab) => this.removeTab(tab)}/>
+                    onClose={() => {
+                      this.removeTab(tabId)
+                    }}/>
     )
   }
 

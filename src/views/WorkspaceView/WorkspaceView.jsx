@@ -26,6 +26,7 @@ export class WorkspaceView extends React.Component {
     this.state = {
       tabs: {},
       dataModels: {},
+      selectedPrimaryMenu: null,
       currentTab: null,
       currentTabIdx: 0,
       component: ""
@@ -37,11 +38,6 @@ export class WorkspaceView extends React.Component {
   }
 
   initSubscriptions() {
-    this.workspaceUpdateSubscription =
-      workspaceSubject.subscribe((data) => {
-        this.setState({component: workspaceData.selectedComponent.key});
-      });
-
     this.tabBarSubscription = tabBarSubject.subscribe(this.openTab.bind(this));
     this.dataModelSubscription = dataModelSubject.subscribe(this.loadDataModel.bind(this));
     this.dataModelListSubscription = dataModelListSubject.subscribe((dataModels) => {
@@ -51,7 +47,6 @@ export class WorkspaceView extends React.Component {
   }
 
   componentWillUnmount() {
-    this.workspaceUpdateSubscription.unsubscribe();
     this.tabBarSubscription.unsubscribe();
     this.dataModelSubscription.unsubscribe();
     this.dataModelListSubscription.unsubscribe();
@@ -84,7 +79,7 @@ export class WorkspaceView extends React.Component {
 
     switch (tabType.toUpperCase()) {
       case "DATA_MODEL":
-        tab.componentId = tab.data.dataModelName;
+        tab.componentId = tab.data.id;
         tab.componentName = tab.data.dataModelName;
         break;
       default:
@@ -147,7 +142,11 @@ export class WorkspaceView extends React.Component {
                 alignContent: "flex-start",
                 borderRight: "1px solid #cecece"
               }}>
-          <PrimarySidebar/>
+          <PrimarySidebar selected={this.state.selectedPrimaryMenu}
+                          onSelection={(selectedMenu)=>{
+                            console.log(selectedMenu)
+                            this.setState({selectedPrimaryMenu: selectedMenu});
+                          }}/>
         </Grid>
       )
     }
@@ -211,8 +210,7 @@ export class WorkspaceView extends React.Component {
         content = (
           <DataModelView data={tab.data}
                          dataModelFieldMap={this.getDataModelFieldMapping()}
-                         onUpdate={(data) => this.onTabUpdate(tab.tabId, data)}
-                         onClose={() => this.removeTab(tab)}/>
+                         onUpdate={(data) => this.onTabUpdate(tab.tabId, data)}/>
         );
         break;
       default:
@@ -231,6 +229,16 @@ export class WorkspaceView extends React.Component {
     );
   }
 
+  getComponentsForSecondarySidebar(selectedMenuKey){
+    switch (selectedMenuKey) {
+      case "DATA_MODEL":
+        return this.state.dataModels;
+      default:
+        return {};
+    }
+
+  }
+
   getContentContainer() {
     if (this.sidebar) {
       return (
@@ -239,7 +247,8 @@ export class WorkspaceView extends React.Component {
           alignContent: "flex-start"
         }}>
           <Grid item style={{width: '240px'}}>
-            <SecondarySidebar componentType={"DATA_MODEL"} components={this.state.dataModels}/>
+            <SecondarySidebar componentType={this.state.selectedPrimaryMenu}
+                              components={this.getComponentsForSecondarySidebar(this.state.selectedPrimaryMenu)}/>
           </Grid>
           <Grid item style={{
             width: 'calc(100% - 240px)',
@@ -258,7 +267,8 @@ export class WorkspaceView extends React.Component {
                 alignContent: "flex-start"
               }}>
           <Grid item style={{width: '240px'}}>
-            <SecondarySidebar componentType={"DATA_MODEL"} components={this.state.dataModels}/>
+            <SecondarySidebar componentType={this.state.selectedPrimaryMenu}
+                              components={this.getComponentsForSecondarySidebar(this.state.selectedPrimaryMenu)}/>
           </Grid>
           <Grid item style={{
             width: 'calc(100% - 240px)',

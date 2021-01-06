@@ -7,7 +7,7 @@ const PROJECT_METADATA_JSON_TEMPLATE = `{
 }
 `
 const DATA_MODEL_METADATA_JSON_TEMPLATE = `{
-    "dataModelId":"{{dataModelId}}",
+    "id":"{{id}}",
     "dataModelName":"{{dataModelName}}",
     "transient":{{transient}},
     "dbTableName":"{{dbTableName}}",

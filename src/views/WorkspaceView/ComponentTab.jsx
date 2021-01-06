@@ -11,9 +11,6 @@ export class ComponentTab extends React.Component {
     super(props);
   }
 
-  componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
-  }
-
   render() {
     let tabClassName = (this.props.data.tabId === this.props.value) ? 'SelectedTab' : 'OtherTab';
     return (
@@ -52,7 +49,7 @@ export class ComponentTab extends React.Component {
                 color="primary"
                 onClick={() => {
                   if (this.props.onClose !== undefined && this.props.onClose != null) {
-                    this.props.onClose(this.props.data);
+                    this.props.onClose();
                   }
                 }}>
                 <FontAwesomeIcon icon={faTimesCircle} style={{fontSize: '12pt'}}/>

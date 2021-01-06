@@ -28,56 +28,6 @@ export class SecondarySidebar extends React.Component {
     }
   }
 
-  handleSidebarItemClick(itemType, itemId, itemName, itemIdx) {
-    switch (itemType) {
-      case "DATA_MODEL":
-        this.renderer
-          .getDataModelHandler()
-          .fetchDataModel(workspaceData.project, itemId);
-        break;
-      default:
-        break;
-    }
-  }
-
-  createSidebarItem(itemType, itemId, itemName, itemIdx) {
-    return (
-      <ListItem button style={{height: '32px'}}
-                key={itemId}
-                onClick={() => this.handleSidebarItemClick(itemType, itemId, itemName, itemIdx)}
-                className="sidebarSubMenuItem">
-        <ListItemText>
-          <span className="sidebarSubMenuItemText">{itemName}</span>
-        </ListItemText>
-      </ListItem>
-    )
-  }
-
-  getItemList() {
-    switch (this.props.componentType) {
-      case "DATA_MODEL":
-        this.state.items = this.prepareItemList('dataModelId', 'dataModelName');
-        break;
-      default:
-        break;
-    }
-
-    return (
-      <Grid container style={{
-        flexDirection: "column",
-        borderRight: '2px',
-        paddingTop: '5px',
-        borderRightColor: "#cecece"
-      }}>
-        <List component="nav">
-          {
-            this.state.items.map((item, index) => this.createSidebarItem(workspaceData.selectedComponent.key, item.key, item.value, index))
-          }
-        </List>
-      </Grid>
-    )
-  }
-
   prepareItemList(componentIdField, componentNameField) {
     let items = [];
     const idList = Object.keys(this.props.components);
@@ -95,8 +45,59 @@ export class SecondarySidebar extends React.Component {
     }
   }
 
+  handleItemSelection(itemType, itemId) {
+    switch (itemType) {
+      case "DATA_MODEL":
+        this.renderer
+          .getDataModelHandler()
+          .fetchDataModel(workspaceData.project, itemId);
+        break;
+      default:
+        break;
+    }
+  }
+
+  createItem(itemType, itemId, itemName, itemIdx) {
+    return (
+      <ListItem button style={{height: '32px'}}
+                key={itemId}
+                onClick={() => this.handleItemSelection(itemType, itemId)}
+                className="sidebarSubMenuItem">
+        <ListItemText>
+          <span className="sidebarSubMenuItemText">{itemName}</span>
+        </ListItemText>
+      </ListItem>
+    )
+  }
+
+  getItemList() {
+    switch (this.props.componentType) {
+      case "DATA_MODEL":
+        this.state.items = this.prepareItemList('id', 'dataModelName');
+        break;
+      default:
+        this.state.items = [];
+        break;
+    }
+
+    return (
+      <Grid container style={{
+        flexDirection: "column",
+        borderRight: '2px',
+        paddingTop: '5px',
+        borderRightColor: "#cecece"
+      }}>
+        <List component="nav">
+          {
+            this.state.items.map((item, index) => this.createItem(this.props.componentType, item.key, item.value, index))
+          }
+        </List>
+      </Grid>
+    )
+  }
+
   handleAddNewComponent() {
-    switch (workspaceData.selectedComponent.key) {
+    switch (this.props.componentType) {
       case "DATA_MODEL":
         dataModelSubject.next(null);
         break;
