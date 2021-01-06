@@ -2,6 +2,7 @@ const constants = require('../../constants');
 const utils = require('../../utils');
 const template = require('./template');
 const path = require('path');
+const { v4: uuidv4 } = require('uuid');
 
 class DataModelGenerator {
 
@@ -31,10 +32,12 @@ class DataModelGenerator {
   }
 
   writeMetadata(projectMetadata, dataModelMetadata) {
+    if(dataModelMetadata.dataModelId===undefined||dataModelMetadata.dataModelId==null){
+      dataModelMetadata.dataModelId = uuidv4();
+    }
     dataModelMetadata.fieldList = this.prepareListFromObject(dataModelMetadata.fields);
     dataModelMetadata.relationList = this.prepareListFromObject(dataModelMetadata.relations);
-    let metadataFileName = dataModelMetadata.dataModelName.toLowerCase() + ".data.json";
-    console.log(metadataFileName)
+    let metadataFileName = dataModelMetadata.dataModelId + ".data.json";
     let content = utils.parseTemplate(template.DATA_MODEL_METADATA_JSON_TEMPLATE, dataModelMetadata);
     return utils.writeFileSync(
       path.join(projectMetadata.location, constants.APP_METADATA_DIR),

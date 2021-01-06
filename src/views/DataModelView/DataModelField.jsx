@@ -30,9 +30,10 @@ export class DataModelField extends React.Component {
 
   constructor(props) {
     super(props);
-    this.originalFieldState = props.field;
     this.state = {
-      ...props
+      field: {
+        ...props.field
+      }
     }
   }
 

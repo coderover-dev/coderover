@@ -6,6 +6,7 @@ const MainProcessEventHandler = require('./main-process-event.handler');
 const path = require('path');
 const constants = require("../constants");
 const fs = require('fs');
+const { v4: uuidv4 } = require('uuid');
 
 class DataModelMainEventHandler extends MainProcessEventHandler {
 
@@ -128,17 +129,20 @@ class DataModelMainEventHandler extends MainProcessEventHandler {
     this.args = args;
     let location = path.join(args.location, constants.APP_METADATA_DIR);
     let error = false;
-    const dataModelNames = utils.listMetaFiles(location, ".data.json");
-    if (dataModelNames != null && dataModelNames.length > 0) {
+    const dataModelIds = utils.listMetaFiles(location, ".data.json");
+    if (dataModelIds != null && dataModelIds.length > 0) {
       let dataModels = {};
-      for(let i=0;i<dataModelNames.length;i++){
-        let metadataFileName = dataModelNames[i].toLowerCase() + ".data.json";
+      for(let i=0;i<dataModelIds.length;i++){
+        let metadataFileName = dataModelIds[i] + ".data.json";
         let content = fs.readFileSync(path.join(location, metadataFileName), 'utf8');
         let jsonDataModel = {};
         try {
           jsonDataModel = JSON.parse(content.toString());
+          if(jsonDataModel.dataModelId===undefined||jsonDataModel.dataModelId==null){
+            jsonDataModel.dataModelId = uuidv4();
+          }
         } catch (err) {}
-        dataModels[dataModelNames[i]] = jsonDataModel;
+        dataModels[jsonDataModel.dataModelId] = jsonDataModel;
       }
       this.replyEventName = 'DataModelsFetched';
       this.event.reply(

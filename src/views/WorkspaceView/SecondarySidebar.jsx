@@ -26,19 +26,6 @@ export class SecondarySidebar extends React.Component {
     this.state = {
       items: []
     }
-
-    this.secondarySidebarSubscription =
-      secondarySidebarSubject.subscribe(this.handleSidebarRefresh.bind(this));
-  }
-
-  componentWillUnmount() {
-    this.secondarySidebarSubscription.unsubscribe();
-  }
-
-  handleSidebarRefresh(items) {
-    this.setState({
-      items: Object.keys(items)
-    })
   }
 
   handleSidebarItemClick(itemType, itemId, itemName, itemIdx) {
@@ -69,7 +56,7 @@ export class SecondarySidebar extends React.Component {
   getItemList() {
     switch (this.props.componentType) {
       case "DATA_MODEL":
-        this.items = Object.keys(this.props.components);
+        this.state.items = this.prepareItemList('dataModelId', 'dataModelName');
         break;
       default:
         break;
@@ -84,11 +71,28 @@ export class SecondarySidebar extends React.Component {
       }}>
         <List component="nav">
           {
-            this.state.items.map((item, index) => this.createSidebarItem(workspaceData.selectedComponent.key, item, item, index))
+            this.state.items.map((item, index) => this.createSidebarItem(workspaceData.selectedComponent.key, item.key, item.value, index))
           }
         </List>
       </Grid>
     )
+  }
+
+  prepareItemList(componentIdField, componentNameField) {
+    let items = [];
+    const idList = Object.keys(this.props.components);
+    for (let i = 0; i < idList.length; i++) {
+      items.push(this.prepareItemKeyValuePair(this.props.components[idList[i]], componentIdField, componentNameField));
+    }
+
+    return items;
+  }
+
+  prepareItemKeyValuePair(data, componentIdField, componentNameField) {
+    return {
+      key: data[componentIdField],
+      value: data[componentNameField]
+    }
   }
 
   handleAddNewComponent() {
